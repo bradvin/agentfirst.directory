@@ -41,7 +41,7 @@ test("render-wrangler-config writes a config for the named D1 database", async (
   assert.equal(config.d1_databases[0].binding, "agentfirst-production");
   assert.equal(config.d1_databases[0].database_name, "agentfirst-production");
   assert.equal(config.d1_databases[0].database_id, "11111111-1111-1111-1111-111111111111");
-  assert.equal(config.d1_databases[0].migrations_dir, "./migrations");
+  assert.equal(config.d1_databases[0].migrations_dir, path.resolve(".", "migrations"));
 
   await rm(tempDir, { recursive: true, force: true });
 });
