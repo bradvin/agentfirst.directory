@@ -11,6 +11,7 @@ websiteUrl: "https://www.browserbase.com"
 pricing: "freemium"
 submittedBy: "bradvin"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://www.browserbase.com"
+ogImageUrl: "https://www.browserbase.com/assets/social_share.png?v=2"
 sortOrder: 10
 ---
 

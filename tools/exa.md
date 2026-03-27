@@ -11,6 +11,7 @@ websiteUrl: "https://exa.ai/exa-api"
 pricing: "freemium"
 submittedBy: "bradvin"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://exa.ai"
+ogImageUrl: "https://exa.imgix.net/og-image.png/"
 sortOrder: 30
 ---
 

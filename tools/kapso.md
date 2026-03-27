@@ -11,6 +11,7 @@ websiteUrl: "https://kapso.ai"
 pricing: "paid"
 submittedBy: "bradvin"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://kapso.ai"
+ogImageUrl: "https://kapso.ai/og-image.png"
 sortOrder: 30
 ---
 
