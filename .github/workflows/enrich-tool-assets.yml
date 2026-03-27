@@ -1,0 +1,109 @@
+name: Enrich Tool Assets
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+    paths:
+      - "tools/*.md"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  enrich:
+    if: ${{ github.actor != 'github-actions[bot]' }}
+    runs-on: ubuntu-latest
+
+    env:
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+      PR_HEAD_REF: ${{ github.event.pull_request.head.ref }}
+      PR_HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
+      PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+      PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+      GH_TOKEN: ${{ github.token }}
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+    steps:
+      - name: Checkout automation scripts
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+          path: automation
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: automation/package-lock.json
+
+      - name: Install automation dependencies
+        run: npm ci
+        working-directory: automation
+
+      - name: Checkout PR head
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
+          path: pr
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Fetch base commit
+        run: |
+          git -C pr remote add upstream "https://github.com/${GITHUB_REPOSITORY}.git"
+          git -C pr fetch --no-tags --depth=1 upstream "${PR_BASE_SHA}"
+
+      - name: List changed tools
+        id: changed-tools
+        run: |
+          node automation/scripts/list-changed-tools.mjs pr "${PR_BASE_SHA}" "${PR_HEAD_SHA}" > /tmp/changed-tools.json
+          cat /tmp/changed-tools.json
+          {
+            echo "json=$(cat /tmp/changed-tools.json)"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Enrich changed tool files
+        if: ${{ steps.changed-tools.outputs.json != '[]' }}
+        run: |
+          mapfile -t TOOL_SLUGS < <(node -e 'const slugs = JSON.parse(process.argv[1]); for (const slug of slugs) console.log(slug);' '${{ steps.changed-tools.outputs.json }}')
+          ARGS=(automation/scripts/enrich-tool-assets.mjs --write --root-dir pr)
+          for slug in "${TOOL_SLUGS[@]}"; do
+            ARGS+=(--slug "$slug")
+          done
+          node "${ARGS[@]}"
+
+      - name: Validate PR content
+        if: ${{ steps.changed-tools.outputs.json != '[]' }}
+        run: node automation/scripts/validate-content.mjs pr
+
+      - name: Check for tool file changes
+        if: ${{ steps.changed-tools.outputs.json != '[]' }}
+        id: tool-diff
+        run: |
+          if git -C pr diff --quiet -- tools; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit enrichment to PR branch
+        if: ${{ steps.tool-diff.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name == github.repository }}
+        run: |
+          git -C pr config user.name "github-actions[bot]"
+          git -C pr config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C pr add tools
+          git -C pr commit -m "Auto-fill tool logo and og image"
+          git -C pr remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${PR_HEAD_REPO}.git"
+          git -C pr push origin "HEAD:${PR_HEAD_REF}"
+
+      - name: Comment when fork PR needs enrichment
+        if: ${{ steps.tool-diff.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name != github.repository }}
+        run: |
+          gh pr comment "${PR_NUMBER}" --repo "${GITHUB_REPOSITORY}" --body "I found missing \`logoUrl\` and/or \`ogImageUrl\` values in this PR. I can't push directly to forked PR branches, but you can generate them locally with:\n\n\`\`\`bash\nnpm run enrich:tool-assets -- --write $(node -e 'const slugs = JSON.parse(process.argv[1]); process.stdout.write(slugs.map((slug) => `--slug ${slug}`).join(\" \"));' '${{ steps.changed-tools.outputs.json }}')\n\`\`\`\n\nThen commit the updated tool files to this PR branch."

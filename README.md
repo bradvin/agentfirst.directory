@@ -49,6 +49,8 @@ tags:
   - "api"
 websiteUrl: "https://coolapi.dev"
 githubUrl: "https://github.com/cooldev/coolapi"
+logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://coolapi.dev"
+ogImageUrl: "https://coolapi.dev/og-image.png"
 pricing: "freemium"
 submittedBy: "your-github-handle"
 ---
@@ -86,8 +88,13 @@ Valid `pricing` values:
 1. Fork this repo or create a branch.
 2. Pick the closest existing category in `categories/`.
 3. Add a new file in `tools/<slug>.md`.
-4. Fill in the frontmatter and add a short body description.
+4. Fill in the frontmatter, including `ogImageUrl` when available, and add a short body description.
 5. Open a pull request to `main`.
+
+If a tool PR omits asset fields, the repo now auto-fills them on the PR branch when possible:
+
+- missing `logoUrl` defaults to a Google favicon URL based on `websiteUrl`
+- missing `ogImageUrl` is discovered from the tool website's social metadata
 
 ## How To Add A Category
 
@@ -103,8 +110,35 @@ Add a new category only when the current list clearly does not fit.
 - Keep descriptions factual and compact.
 - Use the canonical website URL.
 - Add `githubUrl` when the tool is open source.
+- Add `ogImageUrl` from the product's social preview image when available.
 - Keep tags useful and specific.
 - Do not create duplicate listings for the same product.
+
+## Maintenance Scripts
+
+Populate missing social preview images from each tool's website metadata:
+
+```bash
+npm run enrich:og-images
+```
+
+Write discovered `ogImageUrl` values back into tool files:
+
+```bash
+npm run enrich:og-images -- --write
+```
+
+Refresh even tools that already have `ogImageUrl` set:
+
+```bash
+npm run enrich:og-images -- --write --refresh
+```
+
+Populate both missing `logoUrl` and `ogImageUrl` values:
+
+```bash
+npm run enrich:tool-assets -- --write
+```
 
 ## Current Categories
 

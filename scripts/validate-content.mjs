@@ -1,6 +1,7 @@
 import { validateContent } from "./lib/content.mjs";
 
-const { categories, tools, errors } = await validateContent();
+const rootDir = process.argv[2] ?? process.cwd();
+const { categories, tools, errors } = await validateContent(rootDir);
 
 if (errors.length > 0) {
   console.error("Content validation failed:\n");
