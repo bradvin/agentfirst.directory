@@ -94,8 +94,6 @@ ON CONFLICT(slug) DO UPDATE SET
     .join("\n");
 
   return `
-BEGIN TRANSACTION;
-
 CREATE TEMP TABLE repo_categories (
   slug TEXT PRIMARY KEY,
   label TEXT NOT NULL,
@@ -146,7 +144,5 @@ WHERE slug NOT IN (SELECT slug FROM repo_categories)
 
 DROP TABLE repo_categories;
 DROP TABLE repo_tools;
-
-COMMIT;
 `.trimStart();
 }
