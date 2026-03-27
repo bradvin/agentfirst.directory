@@ -115,6 +115,7 @@ Add a new category only when the current list clearly does not fit.
 - Memory & State
 - Payments
 - SaaS Integrations
+- Orchestrators
 - API Orchestration
 - Voice & Multimodal
 - Search & Discovery
