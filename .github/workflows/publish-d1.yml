@@ -4,9 +4,17 @@ on:
   push:
     branches:
       - main
+      - d1-publish-pipeline
+  workflow_dispatch:
+    inputs:
+      run_purge:
+        description: Purge Cloudflare cache after a successful D1 sync
+        required: false
+        default: false
+        type: boolean
 
 concurrency:
-  group: publish-d1-main
+  group: publish-d1-${{ github.ref_name }}
   cancel-in-progress: false
 
 jobs:
@@ -56,7 +64,9 @@ jobs:
         run: npx wrangler d1 execute "$CLOUDFLARE_D1_DATABASE_NAME" --remote --file /tmp/agentfirst-d1-sync.sql --config /tmp/agentfirst-wrangler.jsonc
 
       - name: Compute purge URLs
+        if: ${{ github.ref_name == 'main' || (github.event_name == 'workflow_dispatch' && inputs.run_purge) }}
         run: node ./scripts/compute-purge-urls.mjs /tmp/agentfirst-purge-urls.json
 
       - name: Purge Cloudflare cache
+        if: ${{ github.ref_name == 'main' || (github.event_name == 'workflow_dispatch' && inputs.run_purge) }}
         run: node ./scripts/purge-cloudflare-cache.mjs /tmp/agentfirst-purge-urls.json
