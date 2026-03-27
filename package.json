@@ -1,0 +1,21 @@
+{
+  "name": "agentfirst-directory-content",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "node --test",
+    "validate:content": "node ./scripts/validate-content.mjs",
+    "sync:d1:sql": "node ./scripts/generate-d1-sync-sql.mjs",
+    "compute:purge-urls": "node ./scripts/compute-purge-urls.mjs"
+  },
+  "dependencies": {
+    "gray-matter": "4.0.3"
+  },
+  "devDependencies": {
+    "wrangler": "4.77.0"
+  }
+}
