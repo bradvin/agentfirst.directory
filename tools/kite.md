@@ -11,6 +11,7 @@ websiteUrl: "https://gokite.ai"
 pricing: "paid"
 submittedBy: "bradvin"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://gokite.ai"
+ogImageUrl: "https://gokite.ai/preview-newkiteai.png"
 sortOrder: 10
 ---
 

@@ -12,6 +12,7 @@ githubUrl: "https://github.com/paperclipai/paperclip"
 pricing: "open-source"
 submittedBy: "bradvin"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://paperclip.ing"
+ogImageUrl: "https://paperclip.ing/og.jpg"
 sortOrder: 20
 ---
 

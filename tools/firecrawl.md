@@ -12,6 +12,7 @@ githubUrl: "https://github.com/mendableai/firecrawl"
 pricing: "freemium"
 submittedBy: "bradvin"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://www.firecrawl.dev"
+ogImageUrl: "https://www.firecrawl.dev/og.png"
 sortOrder: 10
 ---
 

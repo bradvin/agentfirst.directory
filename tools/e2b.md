@@ -12,6 +12,7 @@ githubUrl: "https://github.com/e2b-dev/E2B"
 pricing: "freemium"
 submittedBy: "bradvin"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Fe2b.dev"
+ogImageUrl: "https://cdn.prod.website-files.com/6717bb6618f6a40d53ac2929/689daedd2d27f81001967356_Share-Image-(1200x630).png"
 sortOrder: 20
 ---
 

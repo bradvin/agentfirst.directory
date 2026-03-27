@@ -11,6 +11,7 @@ websiteUrl: "https://agentphone.to/"
 pricing: "freemium"
 submittedBy: "bradvin"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://agentphone.to/"
+ogImageUrl: "https://agentphone.to/og-image.png"
 sortOrder: 20
 ---
 
