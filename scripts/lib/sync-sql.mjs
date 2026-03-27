@@ -12,6 +12,14 @@ function sqlInteger(value) {
   return Number.isInteger(value) ? String(value) : "NULL";
 }
 
+function sqlNotInCondition(columnName, values) {
+  if (values.length === 0) {
+    return "1 = 1";
+  }
+
+  return `${columnName} NOT IN (${values.map((value) => sqlString(value)).join(", ")})`;
+}
+
 export async function generateSyncSql(rootDir = process.cwd()) {
   const { categories, tools, errors } = await validateContent(rootDir);
 
@@ -21,29 +29,14 @@ export async function generateSyncSql(rootDir = process.cwd()) {
     throw error;
   }
 
-  const categoryRows = categories
-    .map(
-      (category) =>
-        `(${sqlString(category.slug)}, ${sqlString(category.label)}, ${sqlInteger(
-          category.sortOrder,
-        )}, ${sqlString(category.sourcePath)})`,
-    )
-    .join(",\n");
-
-  const toolRows = tools
-    .map(
-      (tool) =>
-        `(${sqlString(tool.slug)}, ${sqlString(tool.name)}, ${sqlString(
-          tool.description,
-        )}, ${sqlString(tool.body)}, ${sqlString(tool.category)}, ${sqlString(
-          JSON.stringify(tool.tags),
-        )}, ${sqlString(tool.websiteUrl)}, ${sqlString(tool.githubUrl)}, ${sqlString(
-          tool.pricing,
-        )}, ${sqlString(tool.submittedBy)}, ${sqlString(tool.logoUrl)}, ${sqlString(
-          tool.ogImageUrl,
-        )}, ${sqlInteger(tool.sortOrder)}, ${sqlString(tool.sourcePath)})`,
-    )
-    .join(",\n");
+  const missingToolCondition = sqlNotInCondition(
+    "slug",
+    tools.map((tool) => tool.slug),
+  );
+  const missingCategoryCondition = sqlNotInCondition(
+    "slug",
+    categories.map((category) => category.slug),
+  );
 
   const categoryUpserts = categories
     .map(
@@ -94,34 +87,6 @@ ON CONFLICT(slug) DO UPDATE SET
     .join("\n");
 
   return `
-CREATE TEMP TABLE repo_categories (
-  slug TEXT PRIMARY KEY,
-  label TEXT NOT NULL,
-  sort_order INTEGER,
-  source_path TEXT NOT NULL
-);
-
-CREATE TEMP TABLE repo_tools (
-  slug TEXT PRIMARY KEY,
-  name TEXT NOT NULL,
-  description TEXT NOT NULL,
-  body_md TEXT NOT NULL,
-  category_slug TEXT NOT NULL,
-  tags_json TEXT NOT NULL,
-  website_url TEXT NOT NULL,
-  github_url TEXT,
-  pricing TEXT NOT NULL,
-  submitted_by_github TEXT NOT NULL,
-  logo_url TEXT,
-  og_image_url TEXT,
-  sort_order INTEGER,
-  source_path TEXT NOT NULL
-);
-
-${categoryRows ? `INSERT INTO repo_categories (slug, label, sort_order, source_path) VALUES\n${categoryRows};` : ""}
-
-${toolRows ? `INSERT INTO repo_tools (slug, name, description, body_md, category_slug, tags_json, website_url, github_url, pricing, submitted_by_github, logo_url, og_image_url, sort_order, source_path) VALUES\n${toolRows};` : ""}
-
 ${categoryUpserts}
 
 ${toolUpserts}
@@ -129,20 +94,17 @@ ${toolUpserts}
 UPDATE tools
 SET is_published = 0,
     synced_at = CURRENT_TIMESTAMP
-WHERE slug NOT IN (SELECT slug FROM repo_tools);
+WHERE ${missingToolCondition};
 
 UPDATE categories
 SET is_active = 0,
     synced_at = CURRENT_TIMESTAMP
-WHERE slug NOT IN (SELECT slug FROM repo_categories)
+WHERE ${missingCategoryCondition}
   AND NOT EXISTS (
     SELECT 1
     FROM tools
     WHERE tools.category_slug = categories.slug
       AND tools.is_published = 1
   );
-
-DROP TABLE repo_categories;
-DROP TABLE repo_tools;
 `.trimStart();
 }
