@@ -7,10 +7,10 @@ tags:
   - "phone"
   - "voice"
   - "communication"
-websiteUrl: "https://agentphone.app"
+websiteUrl: "https://agentphone.to/"
 pricing: "freemium"
 submittedBy: "bradvin"
-logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://agentphone.app"
+logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://agentphone.to/"
 sortOrder: 20
 ---
 
