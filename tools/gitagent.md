@@ -2,7 +2,7 @@
 slug: "gitagent"
 name: "GitAgent"
 description: "Git-native open standard for defining and running AI agents"
-category: "orchestrators"
+category: "agent-frameworks-standards"
 tags:
   - "orchestration"
   - "git-native"
