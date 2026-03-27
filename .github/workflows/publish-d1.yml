@@ -50,7 +50,7 @@ jobs:
         run: npx wrangler d1 migrations apply "$CLOUDFLARE_D1_DATABASE_NAME" --remote --config /tmp/agentfirst-wrangler.jsonc
 
       - name: Generate sync SQL
-        run: npm run sync:d1:sql > /tmp/agentfirst-d1-sync.sql
+        run: node ./scripts/generate-d1-sync-sql.mjs > /tmp/agentfirst-d1-sync.sql
 
       - name: Sync D1 data
         run: npx wrangler d1 execute "$CLOUDFLARE_D1_DATABASE_NAME" --remote --file /tmp/agentfirst-d1-sync.sql --config /tmp/agentfirst-wrangler.jsonc
