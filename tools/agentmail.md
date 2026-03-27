@@ -7,10 +7,11 @@ tags:
   - "email"
   - "identity"
   - "communication"
-websiteUrl: "https://agentmail.email"
+websiteUrl: "https://www.agentmail.to/"
 pricing: "freemium"
 submittedBy: "bradvin"
-logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://agentmail.email"
+logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://www.agentmail.to/"
+ogImageUrl: "https://www.agentmail.to/og-image.png"
 sortOrder: 10
 ---
 
