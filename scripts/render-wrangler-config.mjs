@@ -1,11 +1,13 @@
 import { writeFile } from "node:fs/promises";
 import { execFile } from "node:child_process";
+import path from "node:path";
 import { promisify } from "node:util";
 
 const execFileAsync = promisify(execFile);
 const outputPath = process.argv[2];
 const databaseName = process.env.CLOUDFLARE_D1_DATABASE_NAME;
 const listJsonOverride = process.env.CLOUDFLARE_D1_LIST_JSON;
+const migrationsDir = path.resolve(process.cwd(), "migrations");
 
 if (!outputPath) {
   console.error("Usage: node ./scripts/render-wrangler-config.mjs <output-file>");
@@ -43,7 +45,7 @@ const config = {
       binding: databaseName,
       database_name: databaseName,
       database_id: database.uuid,
-      migrations_dir: "./migrations",
+      migrations_dir: migrationsDir,
     },
   ],
 };
