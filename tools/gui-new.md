@@ -2,7 +2,7 @@
 slug: "gui-new"
 name: "gui.new"
 description: "Hosted visual pages and shareable links for agent-generated interfaces"
-category: "web-browser-interaction-tools"
+category: "agent-ui-frontends"
 tags:
   - "browser"
   - "ui-generation"

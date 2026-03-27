@@ -2,7 +2,7 @@
 slug: "arrow-js"
 name: "ArrowJS"
 description: "Agent-era UI framework with WASM sandboxes for safe generated interfaces"
-category: "agent-frameworks-standards"
+category: "agent-ui-frontends"
 tags:
   - "ui-framework"
   - "wasm-sandbox"
