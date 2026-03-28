@@ -11,6 +11,8 @@ tags:
   - "agent-infrastructure"
 websiteUrl: "https://www.onecli.sh"
 githubUrl: "https://github.com/onecli/onecli"
+logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Fwww.onecli.sh"
+ogImageUrl: "https://www.onecli.sh/og.png"
 pricing: "open-source"
 submittedBy: "bradvin"
 ---
