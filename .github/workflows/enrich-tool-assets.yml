@@ -84,7 +84,7 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Sync tool submitters
-        if: ${{ steps.review-decision.outputs.decision == 'APPROVED' && steps.changed-tools.outputs.json != '[]' }}
+        if: ${{ steps.changed-tools.outputs.json != '[]' }}
         run: |
           mapfile -t TOOL_SLUGS < <(node -e 'const slugs = JSON.parse(process.argv[1]); for (const slug of slugs) console.log(slug);' '${{ steps.changed-tools.outputs.json }}')
           ARGS=(automation/scripts/sync-tool-submitters.mjs --root-dir pr --submitted-by "${PR_AUTHOR}")

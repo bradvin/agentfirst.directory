@@ -1,7 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import os from "node:os";
 import path from "node:path";
-import { readFile } from "node:fs/promises";
+import { cp, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { DatabaseSync } from "node:sqlite";
 import { generateSyncSql } from "../scripts/lib/sync-sql.mjs";
 
@@ -68,4 +69,28 @@ test("sync SQL upserts repo content and retires missing rows", async () => {
       submitted_by_github: "bradvin",
     },
   ]);
+});
+
+test("sync SQL fails when a tool is missing submitter metadata", async () => {
+  const tempRoot = await mkdtemp(path.join(os.tmpdir(), "agentfirst-sync-sql-"));
+
+  try {
+    await cp(fixtureRoot, tempRoot, { recursive: true });
+    await writeFile(
+      path.join(tempRoot, "tool-submitters.json"),
+      `${JSON.stringify({ vapi: "bradvin" }, null, 2)}\n`,
+      "utf8",
+    );
+
+    await assert.rejects(
+      generateSyncSql(tempRoot),
+      (error) =>
+        Array.isArray(error.validationErrors)
+        && error.validationErrors.includes(
+          "tools/paperclip.md: submitter must be set in tool-submitters.json",
+        ),
+    );
+  } finally {
+    await rm(tempRoot, { recursive: true, force: true });
+  }
 });
