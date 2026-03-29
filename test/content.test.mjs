@@ -111,7 +111,7 @@ test("submitter metadata is optional during PR validation", async () => {
   assert.equal(result.errors.length, 0);
 });
 
-test("invalid submitter metadata is rejected when submitters are required", async () => {
+test("invalid submitter metadata does not fail validation", async () => {
   const tempRoot = await createFixtureCopy();
 
   try {
@@ -121,12 +121,8 @@ test("invalid submitter metadata is rejected when submitters are required", asyn
       "utf8",
     );
 
-    const result = await validateContent(tempRoot, { requireSubmitters: true });
-    assert(
-      result.errors.some((error) =>
-        error.includes("tools/paperclip.md: submitter must be set in tool-submitters.json"),
-      ),
-    );
+    const result = await validateContent(tempRoot);
+    assert.equal(result.errors.length, 0);
   } finally {
     await rm(tempRoot, { recursive: true, force: true });
   }

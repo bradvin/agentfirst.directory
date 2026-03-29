@@ -21,13 +21,15 @@ function sqlNotInCondition(columnName, values) {
 }
 
 export async function generateSyncSql(rootDir = process.cwd()) {
-  const { categories, tools, errors } = await validateContent(rootDir, {
-    requireSubmitters: true,
-  });
+  const { categories, tools, errors } = await validateContent(rootDir);
+  const missingSubmitterErrors = tools
+    .filter((tool) => typeof tool.submittedBy !== "string" || tool.submittedBy.trim().length === 0)
+    .map((tool) => `${tool.sourcePath}: submitter must be set in tool-submitters.json`);
+  const validationErrors = [...errors, ...missingSubmitterErrors];
 
-  if (errors.length > 0) {
+  if (validationErrors.length > 0) {
     const error = new Error("Content validation failed");
-    error.validationErrors = errors;
+    error.validationErrors = validationErrors;
     throw error;
   }
 

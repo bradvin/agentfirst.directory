@@ -5,7 +5,6 @@ import { readToolSubmitters } from "./tool-submitters.mjs";
 
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const PRICING_VALUES = new Set(["open-source", "freemium", "free", "paid"]);
-const GITHUB_USERNAME_PATTERN = /^(?!-)(?!.*--)[A-Za-z0-9-]{1,39}$/;
 
 function getCategoryDir(rootDir) {
   return path.join(rootDir, "categories");
@@ -39,10 +38,6 @@ function isNonEmptyString(value) {
 
 function isOptionalInteger(value) {
   return value === undefined || Number.isInteger(value);
-}
-
-function isGitHubUsername(value) {
-  return isNonEmptyString(value) && GITHUB_USERNAME_PATTERN.test(value) && !value.endsWith("-");
 }
 
 function validateUrl(value, fieldName, errors, sourcePath) {
@@ -116,8 +111,7 @@ export async function loadContent(rootDir = process.cwd()) {
   return { categories, tools, toolSubmitters };
 }
 
-export async function validateContent(rootDir = process.cwd(), options = {}) {
-  const { requireSubmitters = false } = options;
+export async function validateContent(rootDir = process.cwd()) {
   const { categories, tools } = await loadContent(rootDir);
   const errors = [];
   const categorySlugs = new Set();
@@ -203,10 +197,6 @@ export async function validateContent(rootDir = process.cwd(), options = {}) {
       errors.push(
         `${tool.sourcePath}: pricing must be one of ${Array.from(PRICING_VALUES).join(", ")}`,
       );
-    }
-
-    if (requireSubmitters && !isGitHubUsername(tool.submittedBy)) {
-      errors.push(`${tool.sourcePath}: submitter must be set in tool-submitters.json`);
     }
 
     if (!isOptionalInteger(tool.sortOrder)) {

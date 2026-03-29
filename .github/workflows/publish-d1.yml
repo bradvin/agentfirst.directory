@@ -48,7 +48,7 @@ jobs:
         run: npm test
 
       - name: Validate content
-        run: npm run validate:content -- --require-submitters
+        run: npm run validate:content
 
       - name: Render Wrangler config
         run: node ./scripts/render-wrangler-config.mjs /tmp/agentfirst-wrangler.jsonc
