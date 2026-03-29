@@ -7,7 +7,7 @@ This repo contains the approved directory content only:
 - categories in `categories/`
 - tools in `tools/`
 
-The website code lives separately in `bradvin/agentfirst.directory-site` and consumes this repo as a git submodule.
+The website code lives separately in [bradvin/agentfirst.directory-site](https://github.com/bradvin/agentfirst.directory-site).
 
 ## Structure
 

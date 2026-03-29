@@ -38,7 +38,7 @@ On approved tool PRs:
 - commit those generated changes back to same-repo PR branches
 - comment with the exact commands for fork PRs when the workflow cannot push
 
-On `push` to `main`:
+On `push` to `main` with category or tool content changes:
 
 1. validate content again
 2. generate a full-sync payload from all approved files
@@ -48,6 +48,8 @@ On `push` to `main`:
 6. mark missing categories inactive when they are no longer used
 7. compute affected URLs from the pushed diff
 8. purge the affected Cloudflare cache URLs
+
+Non-content changes such as docs or workflow edits must not trigger the D1 publish workflow automatically.
 
 Use full-sync behavior, not diff-based DB writes, so the database cannot drift from the approved repo state.
 

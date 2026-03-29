@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "categories/**"
+      - "tools/**"
   workflow_dispatch:
     inputs:
       run_purge:
