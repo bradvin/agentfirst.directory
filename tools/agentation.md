@@ -12,7 +12,6 @@ githubUrl: "https://github.com/benjitaylor/agentation"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Fwww.agentation.com%2F"
 ogImageUrl: "https://agentation.com/og-image.png"
 pricing: "paid"
-submittedBy: "bradvin"
 sortOrder: 40
 ---
 

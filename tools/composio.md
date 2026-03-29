@@ -10,7 +10,6 @@ tags:
 websiteUrl: "https://composio.dev"
 githubUrl: "https://github.com/ComposioHQ/composio"
 pricing: "freemium"
-submittedBy: "bradvin"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Fcomposio.dev"
 sortOrder: 10
 ---

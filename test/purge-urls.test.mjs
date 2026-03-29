@@ -41,7 +41,6 @@ tags:
   - "tag"
 websiteUrl: "https://${slug}.example.com"
 pricing: "freemium"
-submittedBy: "bradvin"
 ---
 
 ${body}

@@ -8,7 +8,6 @@ tags:
   - "telephony"
 websiteUrl: "https://vapi.ai"
 pricing: "freemium"
-submittedBy: "bradvin"
 ---
 
 Vapi provides APIs and tooling for voice and phone agent experiences.

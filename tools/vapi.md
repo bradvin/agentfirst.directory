@@ -9,7 +9,6 @@ tags:
   - "realtime"
 websiteUrl: "https://vapi.ai"
 pricing: "freemium"
-submittedBy: "bradvin"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://vapi.ai"
 ogImageUrl: "https://vapi.ai/vapi_social_preview.png"
 sortOrder: 20

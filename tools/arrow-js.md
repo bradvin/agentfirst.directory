@@ -12,7 +12,6 @@ githubUrl: "https://github.com/standardagents/arrow-js"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Farrow-js.com%2F"
 ogImageUrl: "https://assets.arrow-js.com/og.webp?2"
 pricing: "open-source"
-submittedBy: "bradvin"
 sortOrder: 30
 ---
 

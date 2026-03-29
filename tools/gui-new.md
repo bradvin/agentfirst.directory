@@ -11,7 +11,6 @@ websiteUrl: "https://gui.new/"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Fgui.new%2F"
 ogImageUrl: "https://gui.new/og.jpg"
 pricing: "freemium"
-submittedBy: "bradvin"
 sortOrder: 50
 ---
 
