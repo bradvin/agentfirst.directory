@@ -14,7 +14,6 @@ githubUrl: "https://github.com/onecli/onecli"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Fwww.onecli.sh"
 ogImageUrl: "https://www.onecli.sh/og.png"
 pricing: "open-source"
-submittedBy: "bradvin"
 ---
 
 OneCLI runs as a local proxy and encrypted credential vault so agents can make authenticated API calls without directly handling raw secrets. It adds audit logs, revocation controls, and per-agent access constraints while fitting into existing HTTP-based agent workflows.

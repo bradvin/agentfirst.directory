@@ -1,6 +1,7 @@
 import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import matter from "gray-matter";
+import { readToolSubmitters } from "./tool-submitters.mjs";
 
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const PRICING_VALUES = new Set(["open-source", "freemium", "free", "paid"]);
@@ -107,11 +108,16 @@ export async function readTools(rootDir = process.cwd()) {
 
 export async function loadContent(rootDir = process.cwd()) {
   const categories = await readCategories(rootDir);
-  const tools = await readTools(rootDir);
-  return { categories, tools };
+  const toolSubmitters = await readToolSubmitters(rootDir);
+  const tools = (await readTools(rootDir)).map((tool) => ({
+    ...tool,
+    submittedBy: toolSubmitters[tool.slug],
+  }));
+  return { categories, tools, toolSubmitters };
 }
 
-export async function validateContent(rootDir = process.cwd()) {
+export async function validateContent(rootDir = process.cwd(), options = {}) {
+  const { requireSubmitters = false } = options;
   const { categories, tools } = await loadContent(rootDir);
   const errors = [];
   const categorySlugs = new Set();
@@ -199,8 +205,8 @@ export async function validateContent(rootDir = process.cwd()) {
       );
     }
 
-    if (!isGitHubUsername(tool.submittedBy)) {
-      errors.push(`${tool.sourcePath}: submittedBy must be a valid GitHub username`);
+    if (requireSubmitters && !isGitHubUsername(tool.submittedBy)) {
+      errors.push(`${tool.sourcePath}: submitter must be set in tool-submitters.json`);
     }
 
     if (!isOptionalInteger(tool.sortOrder)) {

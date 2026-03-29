@@ -52,7 +52,6 @@ githubUrl: "https://github.com/cooldev/coolapi"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://coolapi.dev"
 ogImageUrl: "https://coolapi.dev/og-image.png"
 pricing: "freemium"
-submittedBy: "your-github-handle"
 ---
 
 Short summary of what the tool does.
@@ -67,7 +66,6 @@ Required tool fields:
 - `tags`
 - `websiteUrl`
 - `pricing`
-- `submittedBy`
 
 Optional tool fields:
 
@@ -88,13 +86,24 @@ Valid `pricing` values:
 1. Fork this repo or create a branch.
 2. Pick the closest existing category in `categories/`.
 3. Add a new file in `tools/<slug>.md`.
-4. Fill in the frontmatter, including `ogImageUrl` when available, and add a short body description.
-5. Open a pull request to `main`.
+4. Fill in the required frontmatter fields.
+5. Add a short body description.
+6. Open a pull request to `main`.
 
-If a tool PR omits asset fields, the repo now auto-fills them on the PR branch when possible:
+What you need to provide:
 
-- missing `logoUrl` defaults to a Google favicon URL based on `websiteUrl`
-- missing `ogImageUrl` is discovered from the tool website's social metadata
+- a valid tool file in `tools/<slug>.md`
+- the required frontmatter fields
+- a short factual description of the tool
+- useful, specific tags
+- `githubUrl` when the tool is open source
+- `logoUrl` and `ogImageUrl` when you already have the canonical values, but these are optional
+
+What you do not need to worry about:
+
+- author attribution
+- generated logo metadata
+- generated OG image metadata
 
 ## How To Add A Category
 
@@ -113,6 +122,30 @@ Add a new category only when the current list clearly does not fit.
 - Add `ogImageUrl` from the product's social preview image when available.
 - Keep tags useful and specific.
 - Do not create duplicate listings for the same product.
+
+Prefer including an agent-enablement section in the markdown body that makes the tool's value to agents explicit. Good headings for this section include:
+
+- `## So agents can...`
+- `## Allows agents to...`
+- `## Allows you to create agents that...`
+
+This section should usually be a short bullet list of concrete agent outcomes. A simple example is:
+
+```md
+## So agents can...
+
+- do outcome one
+- do outcome two
+- do outcome three
+```
+
+## Behind The Scenes
+
+After a tool PR is approved, the repo handles a few things automatically:
+
+- author attribution is derived from the PR author
+- missing `logoUrl` defaults to a Google favicon URL based on `websiteUrl`
+- missing `ogImageUrl` is discovered from the tool website's social metadata when available
 
 ## Maintenance Scripts
 
