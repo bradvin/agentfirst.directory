@@ -129,13 +129,7 @@ Prefer including an agent-enablement section in the markdown body that makes the
 - `## Allows agents to...`
 - `## Allows you to create agents that...`
 
-This section should usually be a short bullet list of concrete agent outcomes. Existing examples in the repo include:
-
-- [tools/paperclip.md](/Users/brad/Documents/GitHub/bradvin/agentfirst.directory/tools/paperclip.md): coordinating as a team with roles, goals, budgets, and governance
-- [tools/vapi.md](/Users/brad/Documents/GitHub/bradvin/agentfirst.directory/tools/vapi.md): running phone-based workflows and handing conversations between specialized voice agents
-- [tools/browser-use.md](/Users/brad/Documents/GitHub/bradvin/agentfirst.directory/tools/browser-use.md): logging in, completing multi-page workflows, and keeping browser state across runs
-
-A simple pattern is:
+This section should usually be a short bullet list of concrete agent outcomes. A simple example is:
 
 ```md
 ## So agents can...
