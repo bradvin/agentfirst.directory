@@ -10,7 +10,6 @@ tags:
 websiteUrl: "https://browser-use.com"
 githubUrl: "https://github.com/browser-use/browser-use"
 pricing: "freemium"
-submittedBy: "bradvin"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://browser-use.com"
 ogImageUrl: "https://browser-use.com/og/browser-use-og.png"
 sortOrder: 20

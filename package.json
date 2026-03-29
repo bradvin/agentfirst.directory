@@ -12,7 +12,8 @@
     "sync:d1:sql": "node ./scripts/generate-d1-sync-sql.mjs",
     "compute:purge-urls": "node ./scripts/compute-purge-urls.mjs",
     "enrich:og-images": "node ./scripts/enrich-og-images.mjs",
-    "enrich:tool-assets": "node ./scripts/enrich-tool-assets.mjs"
+    "enrich:tool-assets": "node ./scripts/enrich-tool-assets.mjs",
+    "sync:tool-submitters": "node ./scripts/sync-tool-submitters.mjs"
   },
   "dependencies": {
     "gray-matter": "4.0.3"

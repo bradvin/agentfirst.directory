@@ -9,7 +9,6 @@ tags:
   - "multimodal"
 websiteUrl: "https://elevenlabs.io/agents"
 pricing: "freemium"
-submittedBy: "bradvin"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://elevenlabs.io"
 ogImageUrl: "https://eleven-public-cdn.elevenlabs.io/payloadcms/xwcen4uv3-Convo%20AI%20OG.webp"
 sortOrder: 10

@@ -21,7 +21,9 @@ function sqlNotInCondition(columnName, values) {
 }
 
 export async function generateSyncSql(rootDir = process.cwd()) {
-  const { categories, tools, errors } = await validateContent(rootDir);
+  const { categories, tools, errors } = await validateContent(rootDir, {
+    requireSubmitters: true,
+  });
 
   if (errors.length > 0) {
     const error = new Error("Content validation failed");

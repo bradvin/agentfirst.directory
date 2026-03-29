@@ -10,7 +10,6 @@ tags:
 websiteUrl: "https://www.daytona.io"
 githubUrl: "https://github.com/daytonaio/daytona"
 pricing: "freemium"
-submittedBy: "bradvin"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://www.daytona.io"
 ogImageUrl: "https://framerusercontent.com/images/dbk8NXJZTDaQmlzEzM3pI1y98.png"
 sortOrder: 10

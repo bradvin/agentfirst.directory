@@ -103,14 +103,33 @@ test("invalid URL fields are rejected", async () => {
   assert(result.errors.some((error) => error.includes("githubUrl must be a valid URL")));
 });
 
-test("invalid submittedBy is rejected", async () => {
+test("submitter metadata is optional during PR validation", async () => {
   const result = await withFixture(async (rootDir) => {
-    const filePath = path.join(rootDir, "tools/paperclip.md");
-    const original = await readFile(filePath, "utf8");
-    await writeFile(filePath, original.replace('"bradvin"', '"bad-user-"'), "utf8");
+    await rm(path.join(rootDir, "tool-submitters.json"), { force: true });
   });
 
-  assert(result.errors.some((error) => error.includes("submittedBy must be a valid GitHub username")));
+  assert.equal(result.errors.length, 0);
+});
+
+test("invalid submitter metadata is rejected when submitters are required", async () => {
+  const tempRoot = await createFixtureCopy();
+
+  try {
+    await writeFile(
+      path.join(tempRoot, "tool-submitters.json"),
+      `${JSON.stringify({ paperclip: "bad-user-", vapi: "bradvin" }, null, 2)}\n`,
+      "utf8",
+    );
+
+    const result = await validateContent(tempRoot, { requireSubmitters: true });
+    assert(
+      result.errors.some((error) =>
+        error.includes("tools/paperclip.md: submitter must be set in tool-submitters.json"),
+      ),
+    );
+  } finally {
+    await rm(tempRoot, { recursive: true, force: true });
+  }
 });
 
 test("invalid pricing is rejected", async () => {

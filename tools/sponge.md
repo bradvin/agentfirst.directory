@@ -9,7 +9,6 @@ tags:
   - "spending-controls"
 websiteUrl: "https://paysponge.com"
 pricing: "paid"
-submittedBy: "bradvin"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://paysponge.com"
 sortOrder: 20
 ---

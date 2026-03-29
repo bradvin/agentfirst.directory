@@ -96,5 +96,7 @@ if (options.help) {
 const summary = await enrichToolAssets(options);
 
 if (summary.failed > 0) {
-  process.exitCode = 1;
+  console.warn(
+    `Enrichment skipped ${summary.failed} tool${summary.failed === 1 ? "" : "s"} due to fetch errors.`,
+  );
 }

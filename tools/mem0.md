@@ -10,7 +10,6 @@ tags:
 websiteUrl: "https://mem0.ai"
 githubUrl: "https://github.com/mem0ai/mem0"
 pricing: "freemium"
-submittedBy: "bradvin"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Fmem0.ai"
 ogImageUrl: "https://framerusercontent.com/images/Mm4DtRfHMURyBy4FmfV4AFt7OQ.png"
 sortOrder: 10

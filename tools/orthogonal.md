@@ -9,7 +9,6 @@ tags:
   - "discovery"
 websiteUrl: "https://www.orthogonal.com"
 pricing: "freemium"
-submittedBy: "bradvin"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://www.orthogonal.com"
 sortOrder: 10
 ---

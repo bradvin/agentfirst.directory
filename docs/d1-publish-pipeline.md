@@ -20,7 +20,7 @@ Approved tools live at:
 
 - `tools/<slug>.md`
 
-Tool files must include `submittedBy` as the GitHub username of the submitter.
+Submitter attribution is stored in `tool-submitters.json`, not in tool frontmatter. The approval workflow must derive each changed tool's submitter from the PR author and write that mapping back to the PR branch before merge.
 
 This repo is the only authoring source of truth. D1 is a published runtime mirror, not the place where content is edited.
 
@@ -30,6 +30,13 @@ On `pull_request`:
 
 - validate content only
 - fail on invalid schema or invalid references
+
+On approved tool PRs:
+
+- sync changed tool slugs into `tool-submitters.json` using the PR author login
+- enrich missing `logoUrl` and `ogImageUrl` values
+- commit those generated changes back to same-repo PR branches
+- comment with the exact commands for fork PRs when the workflow cannot push
 
 On `push` to `main`:
 
@@ -53,7 +60,7 @@ Validation must fail on any of the following:
 - invalid category reference from a tool
 - invalid URL fields
 - missing markdown body
-- invalid `submittedBy`
+- missing or invalid submitter metadata in `tool-submitters.json` during publish validation
 
 Validation should also continue enforcing the existing filename-to-slug alignment and required fields for tools and categories.
 

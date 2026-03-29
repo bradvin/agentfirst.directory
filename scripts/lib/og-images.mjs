@@ -138,6 +138,23 @@ export function upsertFrontmatterField(rawContent, fieldName, fieldValue, anchor
   return rawContent.replace(fullMatch, `---\n${lines.join("\n")}\n---\n`);
 }
 
+export function removeFrontmatterField(rawContent, fieldName) {
+  const frontmatterMatch = rawContent.match(/^---\n([\s\S]*?)\n---\n?/);
+  if (!frontmatterMatch) {
+    throw new Error("Tool file is missing YAML frontmatter");
+  }
+
+  const [fullMatch, frontmatterBody] = frontmatterMatch;
+  const lines = frontmatterBody.split("\n");
+  const nextLines = lines.filter((line) => !line.startsWith(`${fieldName}:`));
+
+  if (nextLines.length === lines.length) {
+    return rawContent;
+  }
+
+  return rawContent.replace(fullMatch, `---\n${nextLines.join("\n")}\n---\n`);
+}
+
 export function upsertOgImageUrl(rawContent, ogImageUrl) {
   return upsertFrontmatterField(rawContent, "ogImageUrl", ogImageUrl, [
     "logoUrl:",

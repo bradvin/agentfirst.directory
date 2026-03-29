@@ -10,7 +10,6 @@ tags:
 websiteUrl: "https://github.com/openai/symphony"
 githubUrl: "https://github.com/openai/symphony"
 pricing: "open-source"
-submittedBy: "bradvin"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://github.com/openai/symphony"
 ogImageUrl: "https://opengraph.githubassets.com/7818f1c9907170338302b8225650b60ed1f0f67526abccda752be85ccd81a2c6/openai/symphony"
 sortOrder: 10

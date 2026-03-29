@@ -12,7 +12,6 @@ githubUrl: "https://github.com/open-gitagent/gitagent"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Fwww.gitagent.sh%2F"
 ogImageUrl: "https://gitagent.sh/og-banner-2.png"
 pricing: "open-source"
-submittedBy: "bradvin"
 sortOrder: 20
 ---
 
