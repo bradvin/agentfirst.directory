@@ -23,5 +23,7 @@ if (options.help) {
 const summary = await enrichOgImages(options);
 
 if (summary.failed > 0) {
-  process.exitCode = 1;
+  console.warn(
+    `OG image enrichment skipped ${summary.failed} tool${summary.failed === 1 ? "" : "s"} due to fetch errors.`,
+  );
 }
