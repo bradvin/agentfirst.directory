@@ -9,6 +9,82 @@ This repo contains the approved directory content only:
 
 The website code lives separately in `bradvin/agentfirst.directory-site` and consumes this repo as a git submodule.
 
+## Editorial Intent
+
+**Agent First is intentionally opinionated.**
+
+This directory is for tools and platforms where **agents are a first-class citizen** — not just supported, integrated, or mentioned in marketing.
+
+The bar is deliberately strict:
+
+> If the product still makes complete sense as a normal devtool, API, SaaS, infra company, or AI product after removing the word "agent," it probably does **not** belong here.
+
+We are not trying to index every tool an agent can use. We are trying to highlight tools built **for agents as the primary actor, user, runtime, or system boundary**.
+
+## What Counts As Agent-First
+
+A tool is a good fit when agents are central to the product itself, for example:
+
+- **Agent identity** — inboxes, phone numbers, credentials, accounts, or durable agent presence
+- **Agent memory/state** — persistent memory, context, state, or retrieval built primarily for agents
+- **Agent orchestration/runtime** — systems where autonomous agents are the core abstraction
+- **Agent-native execution environments** — products built specifically around how agents operate, not generic compute with agent messaging
+- **Agent-specific interfaces or protocols** — standards, operating layers, or workflows designed around agent use from day one
+- **Agent-to-human / agent-to-agent workflows** — where the agent is the primary participant, not just an automation backend
+
+## What Usually Does *Not* Count
+
+These categories are often useful in agent stacks, but are usually **not** enough on their own:
+
+- generic browser automation
+- generic cloud/browser/sandbox infrastructure
+- generic search, crawling, scraping, or extraction APIs
+- generic voice or multimodal AI platforms
+- generic SaaS integrations or auth/connectivity middleware
+- generic developer tooling, CI, evals, or frontend frameworks
+- products that added agent features later but were not built around agents originally
+
+In short: **dependencies of agents are not automatically agent-first products.**
+
+## Inclusion Test
+
+Before adding or approving a tool, ask:
+
+1. **Who is the product really built for?**
+   - An autonomous agent?
+   - Or a human developer/team building software in general?
+2. **What breaks if the agent framing is removed?**
+   - If almost nothing breaks, it is probably not a fit.
+3. **Is the agent the primary user/entity/system boundary?**
+   - If not, it is probably adjacent tooling.
+4. **Would this listing make the directory feel more focused or more diluted?**
+   - If diluted, reject it.
+
+## Fast Rejection Heuristics
+
+A PR will often be rejected if the tool is primarily:
+
+- browser infra for agents
+- scraping/crawling/search infra for agents
+- generic sandbox/compute infra for agents
+- a standard API/productivity/devtool with new agent positioning
+- integration plumbing for agent stacks
+- broad AI tooling where agents are only one use case among many
+
+These may be excellent products. They just may not match the directory thesis.
+
+## Why PRs Get Rejected
+
+Common reasons for non-approval:
+
+- the tool is **agent-compatible**, but not **agent-first**
+- the tool is mostly a **general-purpose primitive** used by agent builders
+- the listing relies more on **marketing language** than product structure
+- the tool fits a broader AI/devtools directory better than this one
+- approving it would weaken the editorial line of the site
+
+When in doubt, the directory should prefer being **smaller, sharper, and more defensible** over being comprehensive.
+
 ## Structure
 
 ### Categories
@@ -89,7 +165,8 @@ Valid `pricing` values:
 2. Pick the closest existing category in `categories/`.
 3. Add a new file in `tools/<slug>.md`.
 4. Fill in the frontmatter, including `ogImageUrl` when available, and add a short body description.
-5. Open a pull request to `main`.
+5. In the PR description, explain **why the tool is agent-first** using the inclusion test above.
+6. Open a pull request to `main`.
 
 If a tool PR omits asset fields, the repo now auto-fills them on the PR branch when possible:
 
@@ -113,6 +190,7 @@ Add a new category only when the current list clearly does not fit.
 - Add `ogImageUrl` from the product's social preview image when available.
 - Keep tags useful and specific.
 - Do not create duplicate listings for the same product.
+- Do not rely on vague claims like "works with agents" or "great for agent workflows" as the main justification.
 
 ## Maintenance Scripts
 
