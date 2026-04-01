@@ -108,7 +108,7 @@ jobs:
         run: node automation/scripts/validate-content.mjs pr --require-submitters
 
       - name: Check for tool file changes
-        if: ${{ steps.review-decision.outputs.decision == 'APPROVED' && steps.changed-tools.outputs.json != '[]' }}
+        if: ${{ steps.changed-tools.outputs.json != '[]' }}
         id: tool-diff
         run: |
           if git -C pr diff --quiet -- tools tool-submitters.json; then
@@ -130,4 +130,4 @@ jobs:
       - name: Comment when fork PR needs enrichment
         if: ${{ steps.tool-diff.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name != github.repository }}
         run: |
-          gh pr comment "${PR_NUMBER}" --repo "${GITHUB_REPOSITORY}" --body "This PR is approved, and I found missing media metadata and/or repo-managed submitter metadata that should be written back to the PR branch. I can't push directly to forked PR branches, but you can generate the same changes locally with:\n\n\`\`\`bash\nnpm run sync:tool-submitters -- --submitted-by \"${PR_AUTHOR}\" $(node -e 'const slugs = JSON.parse(process.argv[1]); process.stdout.write(slugs.map((slug) => `--slug ${slug}`).join(\" \"));' '${{ steps.changed-tools.outputs.json }}')\nnpm run enrich:tool-assets -- --write $(node -e 'const slugs = JSON.parse(process.argv[1]); process.stdout.write(slugs.map((slug) => `--slug ${slug}`).join(\" \"));' '${{ steps.changed-tools.outputs.json }}')\n\`\`\`\n\nThen commit the updated files to this PR branch."
+          gh pr comment "${PR_NUMBER}" --repo "${GITHUB_REPOSITORY}" --body "I found missing media metadata and/or repo-managed submitter metadata that should be written back to the PR branch. I can't push directly to forked PR branches, but you can generate the same changes locally with:\n\n\`\`\`bash\nnpm run sync:tool-submitters -- --submitted-by \"${PR_AUTHOR}\" $(node -e 'const slugs = JSON.parse(process.argv[1]); process.stdout.write(slugs.map((slug) => `--slug ${slug}`).join(\" \"));' '${{ steps.changed-tools.outputs.json }}')\nnpm run enrich:tool-assets -- --write $(node -e 'const slugs = JSON.parse(process.argv[1]); process.stdout.write(slugs.map((slug) => `--slug ${slug}`).join(\" \"));' '${{ steps.changed-tools.outputs.json }}')\n\`\`\`\n\nThen commit the updated files to this PR branch."
