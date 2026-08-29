@@ -13,7 +13,7 @@ if (!repoDirArg || !baseSha || !headSha) {
 const repoDir = path.resolve(repoDirArg);
 const { stdout } = await execFileAsync(
   "git",
-  ["diff", "--name-only", baseSha, headSha, "--", "tools/*.md"],
+  ["diff", "--diff-filter=ACMR", "--name-only", baseSha, headSha, "--", "tools/*.md"],
   { cwd: repoDir },
 );
 
