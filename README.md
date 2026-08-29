@@ -153,6 +153,7 @@ Optional tool fields:
 Valid `pricing` values:
 
 - `open-source`
+- `source-available`
 - `freemium`
 - `free`
 - `paid`

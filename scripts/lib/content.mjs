@@ -4,7 +4,7 @@ import matter from "gray-matter";
 import { readToolSubmitters } from "./tool-submitters.mjs";
 
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
-const PRICING_VALUES = new Set(["open-source", "freemium", "free", "paid"]);
+const PRICING_VALUES = new Set(["open-source", "source-available", "freemium", "free", "paid"]);
 
 function getCategoryDir(rootDir) {
   return path.join(rootDir, "categories");
