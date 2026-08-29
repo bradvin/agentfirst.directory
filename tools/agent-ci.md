@@ -9,6 +9,7 @@ tags:
   - "developer-tools"
 websiteUrl: "https://agent-ci.dev/"
 githubUrl: "https://github.com/redwoodjs/local-ci"
+logoUrl: "https://avatars.githubusercontent.com/u/45050444?v=4"
 pricing: "paid"
 sortOrder: 40
 ---
