@@ -1,4 +1,5 @@
 {
+  "ag-ui": "foo-bender",
   "agent-ci": "bradvin",
   "agentation": "bradvin",
   "agentcomputer": "bradvin",
@@ -9,7 +10,9 @@
   "browser-use": "bradvin",
   "browserbase": "bradvin",
   "browsertrace": "aaronlab",
+  "circle-agent-stack": "foo-bender",
   "composio": "bradvin",
+  "cua": "foo-bender",
   "daytona": "bradvin",
   "e2b": "bradvin",
   "elevenlabs": "bradvin",
@@ -18,9 +21,12 @@
   "firecrawl": "bradvin",
   "gitagent": "bradvin",
   "hermes-agent": "foo-bender",
+  "honcho": "foo-bender",
   "kapso": "bradvin",
   "kite": "bradvin",
+  "kitesurf": "foo-bender",
   "mem0": "bradvin",
+  "mission-control": "foo-bender",
   "onecli": "bradvin",
   "openbrowser": "bradvin",
   "orthogonal": "bradvin",
@@ -29,6 +35,7 @@
   "proofeditor": "foo-bender",
   "sixtyfour": "bradvin",
   "sponge": "bradvin",
+  "supermemory": "foo-bender",
   "symphony": "bradvin",
   "vapi": "bradvin"
 }
