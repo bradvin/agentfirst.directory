@@ -7,9 +7,10 @@ tags:
   - "search"
   - "people-data"
   - "company-data"
-websiteUrl: "https://www.fiber.ai/apis"
+websiteUrl: "https://www.fiber.ai/integrations#apis"
 pricing: "paid"
-logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://www.fiber.ai"
+logoUrl: "https://www.fiber.ai/images/new/favicons/android-icon-192x192.png"
+ogImageUrl: "https://www.fiber.ai/images/opengraph.png"
 sortOrder: 20
 ---
 

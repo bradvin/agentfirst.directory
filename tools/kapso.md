@@ -7,10 +7,10 @@ tags:
   - "whatsapp"
   - "messaging"
   - "communication"
-websiteUrl: "https://kapso.ai"
+websiteUrl: "https://kapso.com/"
 pricing: "paid"
-logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://kapso.ai"
-ogImageUrl: "https://kapso.ai/og-image.png"
+logoUrl: "https://kapso.com/favicon-32x32.png"
+ogImageUrl: "https://kapso.com/og-image.png"
 sortOrder: 30
 ---
 
