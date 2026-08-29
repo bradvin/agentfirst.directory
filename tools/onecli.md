@@ -9,10 +9,10 @@ tags:
   - "proxy"
   - "vault"
   - "agent-infrastructure"
-websiteUrl: "https://www.onecli.sh"
+websiteUrl: "https://onecli.sh/"
 githubUrl: "https://github.com/onecli/onecli"
-logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Fwww.onecli.sh"
-ogImageUrl: "https://www.onecli.sh/og.png"
+logoUrl: "https://onecli.sh/icon.png?icon.2556a84e.png"
+ogImageUrl: "https://onecli.sh/og.png?v=2"
 pricing: "open-source"
 ---
 

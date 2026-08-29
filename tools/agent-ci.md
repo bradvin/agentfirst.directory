@@ -8,8 +8,7 @@ tags:
   - "github-actions"
   - "developer-tools"
 websiteUrl: "https://agent-ci.dev/"
-githubUrl: "https://github.com/redwoodjs/agent-ci"
-logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Fagent-ci.dev%2F"
+githubUrl: "https://github.com/redwoodjs/local-ci"
 pricing: "paid"
 sortOrder: 40
 ---
