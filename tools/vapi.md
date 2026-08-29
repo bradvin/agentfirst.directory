@@ -9,8 +9,8 @@ tags:
   - "realtime"
 websiteUrl: "https://vapi.ai"
 pricing: "freemium"
-logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://vapi.ai"
-ogImageUrl: "https://vapi.ai/vapi_social_preview.png"
+logoUrl: "https://vapi.ai/icon.svg?icon.05txosa6z_gu8.svg"
+ogImageUrl: "https://vapi.ai/opengraph-image.png?opengraph-image.0dryxzls5gf-2.png"
 sortOrder: 20
 ---
 
