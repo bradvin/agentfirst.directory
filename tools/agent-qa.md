@@ -9,6 +9,8 @@ tags:
   - "mcp"
   - "mobile"
 websiteUrl: "https://vostride.com/docs/agent-qa"
+logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Fvostride.com%2Fdocs%2Fagent-qa"
+ogImageUrl: "https://vostride.com/og/docs?slug="
 pricing: "source-available"
 ---
 
