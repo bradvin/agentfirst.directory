@@ -12,6 +12,8 @@ tags:
   - "self-hosted"
 websiteUrl: "https://github.com/sandbaseai/sandbase-harness"
 githubUrl: "https://github.com/sandbaseai/sandbase-harness"
+logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Fgithub.com%2Fsandbaseai%2Fsandbase-harness"
+ogImageUrl: "https://repository-images.githubusercontent.com/1297278222/e7ab6bfd-e25c-486c-8214-6143c57cc82c"
 pricing: "open-source"
 classification: "agent-enabling"
 ---
