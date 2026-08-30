@@ -84,11 +84,22 @@ jobs:
             echo "json=$(cat /tmp/changed-tools.json)"
           } >> "$GITHUB_OUTPUT"
 
-      - name: Sync tool submitters
-        if: ${{ steps.changed-tools.outputs.json != '[]' }}
+      - name: List tool submitter changes
+        id: submitter-tools
         run: |
-          mapfile -t TOOL_SLUGS < <(node -e 'const slugs = JSON.parse(process.argv[1]); for (const slug of slugs) console.log(slug);' '${{ steps.changed-tools.outputs.json }}')
-          ARGS=(automation/scripts/sync-tool-submitters.mjs --root-dir pr --submitted-by "${PR_AUTHOR}")
+          node automation/scripts/list-changed-tools.mjs pr "${PR_BASE_SHA}" "${PR_HEAD_SHA}" --include-deleted > /tmp/submitter-tools.json
+          cat /tmp/submitter-tools.json
+          {
+            echo "json=$(cat /tmp/submitter-tools.json)"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Sync tool submitters
+        if: ${{ steps.submitter-tools.outputs.json != '[]' }}
+        env:
+          TOOL_SLUGS_JSON: ${{ steps.submitter-tools.outputs.json }}
+        run: |
+          mapfile -t TOOL_SLUGS < <(node -e 'const slugs = JSON.parse(process.argv[1]); for (const slug of slugs) console.log(slug);' "${TOOL_SLUGS_JSON}")
+          ARGS=(automation/scripts/sync-tool-submitters.mjs --root-dir pr --base-root-dir automation --submitted-by "${PR_AUTHOR}")
           for slug in "${TOOL_SLUGS[@]}"; do
             ARGS+=(--slug "$slug")
           done
@@ -96,8 +107,10 @@ jobs:
 
       - name: Enrich changed tool files
         if: ${{ steps.review-decision.outputs.decision == 'APPROVED' && steps.changed-tools.outputs.json != '[]' }}
+        env:
+          TOOL_SLUGS_JSON: ${{ steps.changed-tools.outputs.json }}
         run: |
-          mapfile -t TOOL_SLUGS < <(node -e 'const slugs = JSON.parse(process.argv[1]); for (const slug of slugs) console.log(slug);' '${{ steps.changed-tools.outputs.json }}')
+          mapfile -t TOOL_SLUGS < <(node -e 'const slugs = JSON.parse(process.argv[1]); for (const slug of slugs) console.log(slug);' "${TOOL_SLUGS_JSON}")
           ARGS=(automation/scripts/enrich-tool-assets.mjs --write --root-dir pr)
           for slug in "${TOOL_SLUGS[@]}"; do
             ARGS+=(--slug "$slug")
@@ -109,7 +122,7 @@ jobs:
         run: node automation/scripts/validate-content.mjs pr --require-submitters
 
       - name: Check for tool file changes
-        if: ${{ steps.changed-tools.outputs.json != '[]' }}
+        if: ${{ steps.submitter-tools.outputs.json != '[]' }}
         id: tool-diff
         run: |
           if git -C pr diff --quiet -- tools tool-submitters.json; then
@@ -130,8 +143,31 @@ jobs:
 
       - name: Comment when fork PR needs enrichment
         if: ${{ steps.tool-diff.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name != github.repository }}
+        env:
+          CHANGED_TOOLS_JSON: ${{ steps.changed-tools.outputs.json }}
+          SUBMITTER_TOOLS_JSON: ${{ steps.submitter-tools.outputs.json }}
         run: |
-          gh pr comment "${PR_NUMBER}" --repo "${GITHUB_REPOSITORY}" --body "I found missing media metadata and/or repo-managed submitter metadata that should be written back to the PR branch. I can't push directly to forked PR branches, but you can generate the same changes locally with:\n\n\`\`\`bash\nnpm run sync:tool-submitters -- --submitted-by \"${PR_AUTHOR}\" $(node -e 'const slugs = JSON.parse(process.argv[1]); process.stdout.write(slugs.map((slug) => `--slug ${slug}`).join(\" \"));' '${{ steps.changed-tools.outputs.json }}')\nnpm run enrich:tool-assets -- --write $(node -e 'const slugs = JSON.parse(process.argv[1]); process.stdout.write(slugs.map((slug) => `--slug ${slug}`).join(\" \"));' '${{ steps.changed-tools.outputs.json }}')\n\`\`\`\n\nThen commit the updated files to this PR branch."
+          node --input-type=module <<'NODE'
+          import { writeFileSync } from "node:fs";
+
+          const shellQuote = (value) => `'${value.replaceAll("'", `'"'"'`)}'`;
+          const flags = (json) => JSON.parse(json).map((slug) => `--slug ${shellQuote(slug)}`).join(" ");
+          const baseRoot = `../agentfirst-base-${process.env.PR_NUMBER}`;
+          const upstreamUrl = `https://github.com/${process.env.GITHUB_REPOSITORY}.git`;
+          const body = `I found missing media metadata and/or repo-managed submitter metadata that should be written back to the PR branch. I can't push directly to forked PR branches, but you can generate the same changes locally with:
+
+          \`\`\`bash
+          git fetch ${shellQuote(upstreamUrl)} ${shellQuote(process.env.PR_BASE_SHA)}
+          git worktree add --detach ${shellQuote(baseRoot)} FETCH_HEAD
+          npm run sync:tool-submitters -- --base-root-dir ${shellQuote(baseRoot)} --submitted-by ${shellQuote(process.env.PR_AUTHOR)} ${flags(process.env.SUBMITTER_TOOLS_JSON)}
+          npm run enrich:tool-assets -- --write ${flags(process.env.CHANGED_TOOLS_JSON)}
+          git worktree remove ${shellQuote(baseRoot)}
+          \`\`\`
+
+          Then commit the updated files to this PR branch.`;
+          writeFileSync("/tmp/enrichment-comment.md", body);
+          NODE
+          gh pr comment "${PR_NUMBER}" --repo "${GITHUB_REPOSITORY}" --body-file /tmp/enrichment-comment.md
 
       - name: Require fork PR enrichment changes
         if: ${{ steps.tool-diff.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name != github.repository }}
