@@ -11,6 +11,7 @@ tags:
 websiteUrl: "https://github.com/builderz-labs/mission-control"
 githubUrl: "https://github.com/builderz-labs/mission-control"
 pricing: "open-source"
+classification: "agent-native"
 ---
 
 Mission Control is an MIT-licensed, self-hosted control plane for coordinating agents and runtimes through shared tasks, run visibility, approvals, schedules, alerts, and cost tracking.

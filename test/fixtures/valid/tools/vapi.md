@@ -8,6 +8,7 @@ tags:
   - "telephony"
 websiteUrl: "https://vapi.ai"
 pricing: "freemium"
+classification: "agent-native"
 ---
 
 Vapi provides APIs and tooling for voice and phone agent experiences.

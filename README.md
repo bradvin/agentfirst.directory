@@ -9,81 +9,39 @@ This repo contains the approved directory content only:
 
 The website code lives separately in [bradvin/agentfirst.directory-site](https://github.com/bradvin/agentfirst.directory-site).
 
-## Editorial Intent
+## Editorial Policy
 
-**Agent First is intentionally opinionated.**
+**Agent First is intentionally opinionated, but agent-first infrastructure is broader than agent-only software.** The directory includes products and protocols that meet at least one of these classifications:
 
-This directory is for tools and platforms where **agents are a first-class citizen** — not just supported, integrated, or mentioned in marketing.
+- **`agent-native`** — agents are a core actor, runtime, entity, or participant in the product. Examples include agent orchestration, agent identity and communications, agent-operated interfaces, and human-agent collaboration systems.
+- **`agent-enabling`** — the product materially empowers an agent-first workflow through substantive capabilities such as execution, memory, data access, communication, testing, or safe interaction. Agents do not need to be the product's exclusive or primary users.
+- **`agent-internet-protocol`** — an open protocol or interaction standard lets agents participate in internet communication, commerce, identity, coordination, or other machine-to-machine interaction.
 
-The bar is deliberately strict:
-
-> If the product still makes complete sense as a normal devtool, API, SaaS, infra company, or AI product after removing the word "agent," it probably does **not** belong here.
-
-We are not trying to index every tool an agent can use. We are trying to highlight tools built **for agents as the primary actor, user, runtime, or system boundary**.
-
-## What Counts As Agent-First
-
-A tool is a good fit when agents are central to the product itself, for example:
-
-- **Agent identity** — inboxes, phone numbers, credentials, accounts, or durable agent presence
-- **Agent memory/state** — persistent memory, context, state, or retrieval built primarily for agents
-- **Agent orchestration/runtime** — systems where autonomous agents are the core abstraction
-- **Agent-native execution environments** — products built specifically around how agents operate, not generic compute with agent messaging
-- **Agent-specific interfaces or protocols** — standards, operating layers, or workflows designed around agent use from day one
-- **Agent-to-human / agent-to-agent workflows** — where the agent is the primary participant, not just an automation backend
-
-## What Usually Does *Not* Count
-
-These categories are often useful in agent stacks, but are usually **not** enough on their own:
-
-- generic browser automation
-- generic cloud/browser/sandbox infrastructure
-- generic search, crawling, scraping, or extraction APIs
-- generic voice or multimodal AI platforms
-- generic SaaS integrations or auth/connectivity middleware
-- generic developer tooling, CI, evals, or frontend frameworks
-- products that added agent features later but were not built around agents originally
-
-In short: **dependencies of agents are not automatically agent-first products.**
+Classification explains *how* each listing qualifies; it is not a quality tier.
 
 ## Inclusion Test
 
-Before adding or approving a tool, ask:
+A listing must pass all of these checks:
 
-1. **Who is the product really built for?**
-   - An autonomous agent?
-   - Or a human developer/team building software in general?
-2. **What breaks if the agent framing is removed?**
-   - If almost nothing breaks, it is probably not a fit.
-3. **Is the agent the primary user/entity/system boundary?**
-   - If not, it is probably adjacent tooling.
-4. **Would this listing make the directory feel more focused or more diluted?**
-   - If diluted, reject it.
+1. **Identify one classification.** Which of the three definitions does the product satisfy?
+2. **Name the concrete agent outcome.** What can an agent or agent builder materially do because this product or protocol exists?
+3. **Verify the claim from first-party evidence.** Product documentation, source repositories, protocol specifications, or first-party pages must describe the relevant capability.
+4. **Check that the capability is substantive.** The qualifying value must come from the product or protocol itself, not a thin wrapper or an integration badge.
+5. **Keep the directory defensible.** The listing and its classification must remain accurate without stretching generic technical compatibility into an agent-first claim.
 
-## Fast Rejection Heuristics
+## What Does Not Qualify
 
-A PR will often be rejected if the tool is primarily:
+A listing should be rejected when its only support is:
 
-- browser infra for agents
-- scraping/crawling/search infra for agents
-- generic sandbox/compute infra for agents
-- a standard API/productivity/devtool with new agent positioning
-- integration plumbing for agent stacks
-- broad AI tooling where agents are only one use case among many
+- generic technical compatibility with software an agent could call;
+- a thin MCP, API, or command wrapper over an otherwise unrelated product;
+- vague or unsupported marketing language about agents;
+- a general-purpose primitive with no material agent-first workflow or agent-internet role;
+- third-party claims that cannot be confirmed from an authoritative first-party source.
 
-These may be excellent products. They just may not match the directory thesis.
+General-purpose products can qualify as `agent-enabling` when their documented capabilities materially empower agent-first workflows. Conversely, adding an agent integration does not automatically qualify a product.
 
-## Why PRs Get Rejected
-
-Common reasons for non-approval:
-
-- the tool is **agent-compatible**, but not **agent-first**
-- the tool is mostly a **general-purpose primitive** used by agent builders
-- the listing relies more on **marketing language** than product structure
-- the tool fits a broader AI/devtools directory better than this one
-- approving it would weaken the editorial line of the site
-
-When in doubt, the directory should prefer being **smaller, sharper, and more defensible** over being comprehensive.
+When evidence is ambiguous, do not invent a rationale: request stronger first-party evidence or reject the listing.
 
 ## Structure
 
@@ -128,6 +86,7 @@ githubUrl: "https://github.com/cooldev/coolapi"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://coolapi.dev"
 ogImageUrl: "https://coolapi.dev/og-image.png"
 pricing: "freemium"
+classification: "agent-native"
 ---
 
 Short summary of what the tool does.
@@ -142,6 +101,7 @@ Required tool fields:
 - `tags`
 - `websiteUrl`
 - `pricing`
+- `classification`
 
 Optional tool fields:
 
@@ -157,6 +117,12 @@ Valid `pricing` values:
 - `freemium`
 - `free`
 - `paid`
+
+Valid `classification` values:
+
+- `agent-native`
+- `agent-enabling`
+- `agent-internet-protocol`
 
 ## How To Add A Tool
 

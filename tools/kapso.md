@@ -9,6 +9,7 @@ tags:
   - "communication"
 websiteUrl: "https://kapso.com/"
 pricing: "paid"
+classification: "agent-enabling"
 logoUrl: "https://kapso.com/favicon-32x32.png"
 ogImageUrl: "https://kapso.com/og-image.png"
 sortOrder: 30

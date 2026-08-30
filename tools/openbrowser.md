@@ -12,6 +12,7 @@ githubUrl: "https://github.com/ntegrals/openbrowser"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Fgithub.com%2Fntegrals%2Fopenbrowser"
 ogImageUrl: "https://opengraph.githubassets.com/16a4683e8a8a1b1b11569d00797418535e5517f10efd77ed953a12fc51717198/ntegrals/openbrowser"
 pricing: "open-source"
+classification: "agent-native"
 sortOrder: 30
 ---
 

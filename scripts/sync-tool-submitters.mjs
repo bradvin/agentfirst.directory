@@ -6,6 +6,7 @@ import { readToolSubmitters, writeToolSubmitters } from "./lib/tool-submitters.m
 function parseArgs(argv) {
   const options = {
     rootDir: process.cwd(),
+    baseRootDir: null,
     submittedBy: "",
     slugs: [],
   };
@@ -29,6 +30,16 @@ function parseArgs(argv) {
         throw new Error("--submitted-by requires a value");
       }
       options.submittedBy = value;
+      index += 1;
+      continue;
+    }
+
+    if (arg === "--base-root-dir") {
+      const value = argv[index + 1];
+      if (!value) {
+        throw new Error("--base-root-dir requires a value");
+      }
+      options.baseRootDir = path.resolve(value);
       index += 1;
       continue;
     }
@@ -60,6 +71,7 @@ function parseArgs(argv) {
 
 const options = parseArgs(process.argv.slice(2));
 const toolSubmitters = await readToolSubmitters(options.rootDir);
+const baseToolSubmitters = await readToolSubmitters(options.baseRootDir ?? options.rootDir);
 let metadataChanged = 0;
 let strippedFields = 0;
 let removedMetadata = 0;
@@ -91,8 +103,12 @@ for (const slug of options.slugs) {
     strippedFields += 1;
   }
 
-  if (toolSubmitters[slug] !== options.submittedBy) {
-    toolSubmitters[slug] = options.submittedBy;
+  const submittedBy = Object.hasOwn(baseToolSubmitters, slug)
+    ? baseToolSubmitters[slug]
+    : options.submittedBy;
+
+  if (toolSubmitters[slug] !== submittedBy) {
+    toolSubmitters[slug] = submittedBy;
     metadataChanged += 1;
   }
 }

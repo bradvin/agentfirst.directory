@@ -10,6 +10,7 @@ tags:
 websiteUrl: "https://alook.ai"
 githubUrl: "https://github.com/alookai/alook"
 pricing: "open-source"
+classification: "agent-native"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://alook.ai"
 ogImageUrl: "https://alook.ai/opengraph-image-12gd74?84c2c0cd355e860c"
 ---
