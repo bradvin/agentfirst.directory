@@ -24,4 +24,8 @@ test("pull_request_target enrichment keeps PR data out of shell source and trust
     /npm run sync:tool-submitters -- --base-root-dir \$\{shellQuote\(baseRoot\)\}/,
   );
   assert.match(workflow, /git worktree add --detach \$\{shellQuote\(baseRoot\)\}/);
+  assert.match(
+    workflow,
+    /const enrichmentCommand = enrichmentFlags\s+\? `npm run enrich:tool-assets -- --write \$\{enrichmentFlags\}\\n`\s+: "";/,
+  );
 });

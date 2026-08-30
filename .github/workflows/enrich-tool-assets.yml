@@ -154,14 +154,18 @@ jobs:
           const flags = (json) => JSON.parse(json).map((slug) => `--slug ${shellQuote(slug)}`).join(" ");
           const baseRoot = `../agentfirst-base-${process.env.PR_NUMBER}`;
           const upstreamUrl = `https://github.com/${process.env.GITHUB_REPOSITORY}.git`;
+          const submitterFlags = flags(process.env.SUBMITTER_TOOLS_JSON);
+          const enrichmentFlags = flags(process.env.CHANGED_TOOLS_JSON);
+          const enrichmentCommand = enrichmentFlags
+            ? `npm run enrich:tool-assets -- --write ${enrichmentFlags}\n`
+            : "";
           const body = `I found missing media metadata and/or repo-managed submitter metadata that should be written back to the PR branch. I can't push directly to forked PR branches, but you can generate the same changes locally with:
 
           \`\`\`bash
           git fetch ${shellQuote(upstreamUrl)} ${shellQuote(process.env.PR_BASE_SHA)}
           git worktree add --detach ${shellQuote(baseRoot)} FETCH_HEAD
-          npm run sync:tool-submitters -- --base-root-dir ${shellQuote(baseRoot)} --submitted-by ${shellQuote(process.env.PR_AUTHOR)} ${flags(process.env.SUBMITTER_TOOLS_JSON)}
-          npm run enrich:tool-assets -- --write ${flags(process.env.CHANGED_TOOLS_JSON)}
-          git worktree remove ${shellQuote(baseRoot)}
+          npm run sync:tool-submitters -- --base-root-dir ${shellQuote(baseRoot)} --submitted-by ${shellQuote(process.env.PR_AUTHOR)} ${submitterFlags}
+          ${enrichmentCommand}git worktree remove ${shellQuote(baseRoot)}
           \`\`\`
 
           Then commit the updated files to this PR branch.`;
