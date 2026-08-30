@@ -49,8 +49,20 @@ test("lists added, modified, and renamed tool files but excludes deleted tools",
     const headSha = await commitAll(repoDir, "change tools");
 
     const output = await run("node", [scriptPath, repoDir, baseSha, headSha], repoDir);
+    const submitterOutput = await run(
+      "node",
+      [scriptPath, repoDir, baseSha, headSha, "--include-deleted"],
+      repoDir,
+    );
 
     assert.deepEqual(JSON.parse(output), ["added", "modified", "renamed-existing"]);
+    assert.deepEqual(JSON.parse(submitterOutput), [
+      "added",
+      "deleted",
+      "modified",
+      "rename-source",
+      "renamed-existing",
+    ]);
   } finally {
     await rm(repoDir, { recursive: true, force: true });
   }

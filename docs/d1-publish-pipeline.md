@@ -24,6 +24,8 @@ Submitter attribution is stored in `tool-submitters.json`, not in tool frontmatt
 
 This repo is the only authoring source of truth. D1 is a published runtime mirror, not the place where content is edited.
 
+Schema migrations are staged before the full content sync. `0003_add_tool_classification.sql` adds a nullable `TEXT` column with an enum `CHECK` and no semantic default, so existing rows are not mislabeled during deployment. The immediately following full sync must populate every published tool; a published row with a null or invalid classification is an integrity failure.
+
 ## CI And Merge Behavior
 
 On `pull_request`:
@@ -62,6 +64,7 @@ Validation must fail on any of the following:
 - invalid category reference from a tool
 - invalid URL fields
 - missing markdown body
+- missing or invalid tool classification
 - missing or invalid submitter metadata in `tool-submitters.json` during publish validation
 
 Validation should also continue enforcing the existing filename-to-slug alignment and required fields for tools and categories.
@@ -72,6 +75,7 @@ The D1 sync step must:
 
 - upsert all categories from `categories/`
 - upsert all tools from `tools/`
+- insert or update each tool's required classification
 - preserve `is_published = 1` for approved tools in the repo
 - set `is_published = 0` for tools missing from the repo
 - preserve `is_active = 1` for approved categories in the repo
@@ -99,6 +103,7 @@ tools(
   website_url,
   github_url,
   pricing,
+  classification,
   submitted_by_github,
   logo_url,
   og_image_url,

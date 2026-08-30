@@ -9,6 +9,7 @@ tags:
   - "realtime"
 websiteUrl: "https://vapi.ai"
 pricing: "freemium"
+classification: "agent-native"
 logoUrl: "https://vapi.ai/icon.svg?icon.05txosa6z_gu8.svg"
 ogImageUrl: "https://vapi.ai/opengraph-image.png?opengraph-image.0dryxzls5gf-2.png"
 sortOrder: 20

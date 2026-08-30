@@ -12,6 +12,7 @@ githubUrl: "https://github.com/aaronlab/browsertrace"
 logoUrl: "https://avatars.githubusercontent.com/u/78432083?v=4"
 ogImageUrl: "https://aaronlab.github.io/browsertrace/social-preview.png"
 pricing: "open-source"
+classification: "agent-enabling"
 sortOrder: 45
 ---
 

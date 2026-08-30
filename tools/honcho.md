@@ -11,6 +11,7 @@ tags:
 websiteUrl: "https://honcho.dev/"
 githubUrl: "https://github.com/plastic-labs/honcho"
 pricing: "freemium"
+classification: "agent-enabling"
 ---
 
 Honcho is an AGPL-licensed memory system with a managed service for stateful agents. It stores conversations and entities, reasons over accumulated history, and maintains evolving state across sessions.
