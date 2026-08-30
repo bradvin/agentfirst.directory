@@ -9,6 +9,7 @@ tags:
   - "communication"
 websiteUrl: "https://agentphone.ai/"
 pricing: "freemium"
+classification: "agent-native"
 logoUrl: "https://agentphone.ai/favicon.png?v=3"
 ogImageUrl: "https://agentphone.ai/og-image.png"
 sortOrder: 20

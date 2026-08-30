@@ -11,6 +11,7 @@ websiteUrl: "https://www.agentcomputer.ai/"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Fwww.agentcomputer.ai%2F"
 ogImageUrl: "https://www.agentcomputer.ai/opengraph-image?eea9f4a0854a102e"
 pricing: "paid"
+classification: "agent-enabling"
 sortOrder: 30
 ---
 

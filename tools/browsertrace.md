@@ -12,6 +12,7 @@ githubUrl: "https://github.com/aaronlab/browsertrace"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Faaronlab.github.io%2Fbrowsertrace%2F"
 ogImageUrl: "https://aaronlab.github.io/browsertrace/social-preview.png"
 pricing: "open-source"
+classification: "agent-enabling"
 sortOrder: 45
 ---
 

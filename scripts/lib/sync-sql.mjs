@@ -60,14 +60,14 @@ ON CONFLICT(slug) DO UPDATE SET
   const toolUpserts = tools
     .map(
       (tool) => `
-INSERT INTO tools (slug, name, description, body_md, category_slug, tags_json, website_url, github_url, pricing, submitted_by_github, logo_url, og_image_url, sort_order, source_path, is_published, synced_at)
+INSERT INTO tools (slug, name, description, body_md, category_slug, tags_json, website_url, github_url, pricing, classification, submitted_by_github, logo_url, og_image_url, sort_order, source_path, is_published, synced_at)
 VALUES (${sqlString(tool.slug)}, ${sqlString(tool.name)}, ${sqlString(
         tool.description,
       )}, ${sqlString(tool.body)}, ${sqlString(tool.category)}, ${sqlString(
         JSON.stringify(tool.tags),
       )}, ${sqlString(tool.websiteUrl)}, ${sqlString(tool.githubUrl)}, ${sqlString(
         tool.pricing,
-      )}, ${sqlString(tool.submittedBy)}, ${sqlString(tool.logoUrl)}, ${sqlString(
+      )}, ${sqlString(tool.classification)}, ${sqlString(tool.submittedBy)}, ${sqlString(tool.logoUrl)}, ${sqlString(
         tool.ogImageUrl,
       )}, ${sqlInteger(tool.sortOrder)}, ${sqlString(tool.sourcePath)}, 1, CURRENT_TIMESTAMP)
 ON CONFLICT(slug) DO UPDATE SET
@@ -79,6 +79,7 @@ ON CONFLICT(slug) DO UPDATE SET
   website_url = excluded.website_url,
   github_url = excluded.github_url,
   pricing = excluded.pricing,
+  classification = excluded.classification,
   submitted_by_github = excluded.submitted_by_github,
   logo_url = excluded.logo_url,
   og_image_url = excluded.og_image_url,

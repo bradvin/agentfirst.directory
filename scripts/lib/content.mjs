@@ -5,6 +5,11 @@ import { readToolSubmitters } from "./tool-submitters.mjs";
 
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const PRICING_VALUES = new Set(["open-source", "freemium", "free", "paid"]);
+const CLASSIFICATION_VALUES = new Set([
+  "agent-native",
+  "agent-enabling",
+  "agent-internet-protocol",
+]);
 
 function getCategoryDir(rootDir) {
   return path.join(rootDir, "categories");
@@ -196,6 +201,12 @@ export async function validateContent(rootDir = process.cwd()) {
     if (!PRICING_VALUES.has(tool.pricing)) {
       errors.push(
         `${tool.sourcePath}: pricing must be one of ${Array.from(PRICING_VALUES).join(", ")}`,
+      );
+    }
+
+    if (!CLASSIFICATION_VALUES.has(tool.classification)) {
+      errors.push(
+        `${tool.sourcePath}: classification must be one of ${Array.from(CLASSIFICATION_VALUES).join(", ")}`,
       );
     }
 

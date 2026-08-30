@@ -9,6 +9,7 @@ tags:
   - "company-data"
 websiteUrl: "https://www.sixtyfour.ai"
 pricing: "paid"
+classification: "agent-enabling"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://www.sixtyfour.ai"
 ogImageUrl: "https://framerusercontent.com/images/KhyIWSULnwxK818vjwAjRBurE.png"
 sortOrder: 10

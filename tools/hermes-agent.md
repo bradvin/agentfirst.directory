@@ -12,6 +12,7 @@ tags:
 websiteUrl: "https://hermes-agent.nousresearch.com/"
 githubUrl: "https://github.com/NousResearch/hermes-agent"
 pricing: "open-source"
+classification: "agent-native"
 ---
 
 Hermes Agent is an open-source autonomous agent platform from Nous Research for running persistent agents across local and remote environments. It combines long-term memory, reusable skills, tool calling, subagents, and messaging integrations so agents can operate continuously instead of only inside a single chat or terminal session.

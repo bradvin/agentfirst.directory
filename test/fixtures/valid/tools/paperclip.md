@@ -9,6 +9,7 @@ tags:
 websiteUrl: "https://paperclip.ing"
 githubUrl: "https://github.com/paperclipai/paperclip"
 pricing: "open-source"
+classification: "agent-native"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://paperclip.ing"
 sortOrder: 20
 ---
