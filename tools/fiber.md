@@ -9,6 +9,7 @@ tags:
   - "company-data"
 websiteUrl: "https://www.fiber.ai/integrations#apis"
 pricing: "paid"
+classification: "agent-enabling"
 logoUrl: "https://www.fiber.ai/images/new/favicons/android-icon-192x192.png"
 ogImageUrl: "https://www.fiber.ai/images/opengraph.png"
 sortOrder: 20

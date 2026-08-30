@@ -9,6 +9,7 @@ tags:
   - "media"
 websiteUrl: "https://pixelvault.dev"
 pricing: "freemium"
+classification: "agent-enabling"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://pixelvault.dev"
 ogImageUrl: "https://pixelvault.dev/og-image.png"
 sortOrder: 10

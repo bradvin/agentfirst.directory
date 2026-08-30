@@ -13,6 +13,7 @@ websiteUrl: "https://proofeditor.ai"
 githubUrl: "https://github.com/EveryInc/proof-sdk"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://proofeditor.ai"
 pricing: "freemium"
+classification: "agent-native"
 ---
 
 Proof is a collaborative document editor built for humans and agents to work in the same document. Its public product and SDK expose document state, edit, presence, comments, suggestions, and event APIs, with provenance tracking so users can see who wrote what.

@@ -11,6 +11,7 @@ tags:
 websiteUrl: "https://cua.ai/"
 githubUrl: "https://github.com/trycua/cua"
 pricing: "freemium"
+classification: "agent-enabling"
 ---
 
 Cua provides open-source computer-use infrastructure for controlling native desktop applications and provisioning isolated GUI environments across Linux, Windows, macOS, and Android. Managed fleets are available alongside the MIT-licensed software.

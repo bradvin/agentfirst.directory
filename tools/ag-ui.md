@@ -11,6 +11,7 @@ tags:
 websiteUrl: "https://docs.ag-ui.com/introduction"
 githubUrl: "https://github.com/ag-ui-protocol/ag-ui"
 pricing: "open-source"
+classification: "agent-internet-protocol"
 ---
 
 AG-UI is an MIT-licensed protocol that standardizes the bidirectional connection between agent backends and user-facing applications, including streamed events, shared state, tool calls, and user interactions.

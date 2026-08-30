@@ -138,6 +138,54 @@ test("invalid pricing is rejected", async () => {
   assert(result.errors.some((error) => error.includes("pricing must be one of")));
 });
 
+test("missing classification is rejected", async () => {
+  const result = await withFixture(async (rootDir) => {
+    const filePath = path.join(rootDir, "tools/paperclip.md");
+    const original = await readFile(filePath, "utf8");
+    await writeFile(
+      filePath,
+      original.replace('classification: "agent-native"\n', ""),
+      "utf8",
+    );
+  });
+
+  assert(result.errors.some((error) => error.includes("classification must be one of")));
+});
+
+test("invalid classification is rejected", async () => {
+  const result = await withFixture(async (rootDir) => {
+    const filePath = path.join(rootDir, "tools/paperclip.md");
+    const original = await readFile(filePath, "utf8");
+    await writeFile(
+      filePath,
+      original.replace('classification: "agent-native"', 'classification: "agent-compatible"'),
+      "utf8",
+    );
+  });
+
+  assert(result.errors.some((error) => error.includes("classification must be one of")));
+});
+
+for (const classification of [
+  "agent-native",
+  "agent-enabling",
+  "agent-internet-protocol",
+]) {
+  test(`classification value ${classification} is accepted`, async () => {
+    const result = await withFixture(async (rootDir) => {
+      const filePath = path.join(rootDir, "tools/paperclip.md");
+      const original = await readFile(filePath, "utf8");
+      await writeFile(
+        filePath,
+        original.replace('classification: "agent-native"', `classification: "${classification}"`),
+        "utf8",
+      );
+    });
+
+    assert.equal(result.errors.length, 0);
+  });
+}
+
 test("empty tags are rejected", async () => {
   const result = await withFixture(async (rootDir) => {
     const filePath = path.join(rootDir, "tools/paperclip.md");

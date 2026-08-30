@@ -11,6 +11,7 @@ tags:
 websiteUrl: "https://supermemory.ai/"
 githubUrl: "https://github.com/supermemoryai/supermemory"
 pricing: "freemium"
+classification: "agent-enabling"
 ---
 
 Supermemory provides an MIT-licensed memory and context layer for agents, combining extracted memories, evolving user profiles, document retrieval, connectors, and hosted or self-hosted operation.

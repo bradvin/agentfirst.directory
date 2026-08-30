@@ -10,6 +10,7 @@ tags:
 websiteUrl: "https://agent-ci.dev/"
 githubUrl: "https://github.com/redwoodjs/local-ci"
 pricing: "paid"
+classification: "agent-enabling"
 sortOrder: 40
 ---
 
