@@ -1,4 +1,5 @@
 import { validateContent } from "./content.mjs";
+import { getMissingToolSubmitterErrors } from "./tool-submitters.mjs";
 
 function sqlString(value) {
   if (value === undefined || value === null) {
@@ -22,9 +23,7 @@ function sqlNotInCondition(columnName, values) {
 
 export async function generateSyncSql(rootDir = process.cwd()) {
   const { categories, tools, errors } = await validateContent(rootDir);
-  const missingSubmitterErrors = tools
-    .filter((tool) => typeof tool.submittedBy !== "string" || tool.submittedBy.trim().length === 0)
-    .map((tool) => `${tool.sourcePath}: submitter must be set in tool-submitters.json`);
+  const missingSubmitterErrors = getMissingToolSubmitterErrors(tools);
   const validationErrors = [...errors, ...missingSubmitterErrors];
 
   if (validationErrors.length > 0) {

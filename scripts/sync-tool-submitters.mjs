@@ -62,10 +62,28 @@ const options = parseArgs(process.argv.slice(2));
 const toolSubmitters = await readToolSubmitters(options.rootDir);
 let metadataChanged = 0;
 let strippedFields = 0;
+let removedMetadata = 0;
 
 for (const slug of options.slugs) {
   const filePath = path.join(options.rootDir, "tools", `${slug}.md`);
-  const rawContent = await readFile(filePath, "utf8");
+  let rawContent;
+
+  try {
+    rawContent = await readFile(filePath, "utf8");
+  } catch (error) {
+    if (error.code !== "ENOENT") {
+      throw error;
+    }
+
+    if (Object.hasOwn(toolSubmitters, slug)) {
+      delete toolSubmitters[slug];
+      metadataChanged += 1;
+      removedMetadata += 1;
+    }
+
+    continue;
+  }
+
   const nextContent = removeFrontmatterField(rawContent, "submittedBy");
 
   if (nextContent !== rawContent) {
@@ -82,5 +100,5 @@ for (const slug of options.slugs) {
 await writeToolSubmitters(toolSubmitters, options.rootDir);
 
 console.log(
-  `synced ${options.slugs.length} tool submitter${options.slugs.length === 1 ? "" : "s"}; metadataChanged=${metadataChanged} strippedFields=${strippedFields}`,
+  `synced ${options.slugs.length} tool submitter${options.slugs.length === 1 ? "" : "s"}; metadataChanged=${metadataChanged} removedMetadata=${removedMetadata} strippedFields=${strippedFields}`,
 );
