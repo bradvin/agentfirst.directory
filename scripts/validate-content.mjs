@@ -1,10 +1,13 @@
 import { validateContent } from "./lib/content.mjs";
+import { getMissingToolSubmitterErrors } from "./lib/tool-submitters.mjs";
 
 const args = process.argv.slice(2);
 let rootDir = process.cwd();
+let requireSubmitters = false;
 
 for (const arg of args) {
   if (arg === "--require-submitters") {
+    requireSubmitters = true;
     continue;
   }
 
@@ -12,10 +15,13 @@ for (const arg of args) {
 }
 
 const { categories, tools, errors } = await validateContent(rootDir);
+const validationErrors = requireSubmitters
+  ? [...errors, ...getMissingToolSubmitterErrors(tools)]
+  : errors;
 
-if (errors.length > 0) {
+if (validationErrors.length > 0) {
   console.error("Content validation failed:\n");
-  for (const error of errors) {
+  for (const error of validationErrors) {
     console.error(`- ${error}`);
   }
   process.exit(1);

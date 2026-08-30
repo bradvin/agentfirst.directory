@@ -36,3 +36,9 @@ export async function writeToolSubmitters(toolSubmitters, rootDir = process.cwd(
 
   await writeFile(filePath, `${JSON.stringify(sortedToolSubmitters, null, 2)}\n`, "utf8");
 }
+
+export function getMissingToolSubmitterErrors(tools) {
+  return tools
+    .filter((tool) => typeof tool.submittedBy !== "string" || tool.submittedBy.trim().length === 0)
+    .map((tool) => `${tool.sourcePath}: submitter must be set in tool-submitters.json`);
+}
