@@ -9,14 +9,16 @@ tags:
   - "mcp"
   - "mobile"
 websiteUrl: "https://vostride.com/docs/agent-qa"
-logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Fvostride.com%2Fdocs%2Fagent-qa"
-ogImageUrl: "https://vostride.com/og/docs?slug="
+githubUrl: "https://github.com/vostride/agent-qa"
+logoUrl: "https://vostride.com/brand/vostride-colored-logo.svg"
+ogImageUrl: "https://raw.githubusercontent.com/vostride/agent-qa/main/docs/assets/readme-banner.png"
 pricing: "source-available"
+classification: "agent-native"
 ---
 
 Agent QA is an autonomous QA agent that authors, runs, and troubleshoots natural-language tests for web and mobile applications. It exposes CLI, MCP, and agent-skill interfaces, and uses execution memory to adapt tests when an application's UI changes.
 
-The current release is source-available under FSL-1.1-ALv2, with each release converting to Apache-2.0 after two years. The software has no fee for permitted use; configured model, browser, or device providers may charge separately. Source and license terms are available in the [Agent QA repository](https://github.com/vostride/agent-qa).
+The current release is source-available under FSL-1.1-ALv2. That license permits copying, use, modification, and redistribution for purposes other than a competing use, and each release converts to Apache-2.0 after two years. Configured model, browser, or device providers may charge separately. Source and license terms are available in the [Agent QA repository](https://github.com/vostride/agent-qa).
 
 ## So agents can...
 
