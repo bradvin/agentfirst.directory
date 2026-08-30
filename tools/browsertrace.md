@@ -9,7 +9,7 @@ tags:
   - "observability"
 websiteUrl: "https://aaronlab.github.io/browsertrace/"
 githubUrl: "https://github.com/aaronlab/browsertrace"
-logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Faaronlab.github.io%2Fbrowsertrace%2F"
+logoUrl: "https://avatars.githubusercontent.com/u/78432083?v=4"
 ogImageUrl: "https://aaronlab.github.io/browsertrace/social-preview.png"
 pricing: "open-source"
 classification: "agent-enabling"
