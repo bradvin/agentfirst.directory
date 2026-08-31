@@ -128,6 +128,16 @@ test("invalid submitter metadata does not fail validation", async () => {
   }
 });
 
+test("source-available pricing is accepted", async () => {
+  const result = await withFixture(async (rootDir) => {
+    const filePath = path.join(rootDir, "tools/paperclip.md");
+    const original = await readFile(filePath, "utf8");
+    await writeFile(filePath, original.replace('"open-source"', '"source-available"'), "utf8");
+  });
+
+  assert.deepEqual(result.errors, []);
+});
+
 test("invalid pricing is rejected", async () => {
   const result = await withFixture(async (rootDir) => {
     const filePath = path.join(rootDir, "tools/paperclip.md");
