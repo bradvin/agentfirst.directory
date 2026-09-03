@@ -2,7 +2,7 @@
 slug: "paygseo"
 name: "PAYGSEO"
 description: "Pay-as-you-go SEO workflows for AI agents via REST and MCP"
-category: "specialized-search-discovery-engines"
+category: "marketing-seo"
 tags:
   - "seo"
   - "mcp"
