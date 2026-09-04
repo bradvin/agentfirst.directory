@@ -1,5 +1,26 @@
 {
   "slug": "agent-testing-qa",
   "label": "Agent Testing & QA",
-  "sortOrder": 45
+  "sortOrder": 45,
+  "seoTitle": "Testing and QA tools for AI agents",
+  "descriptionMd": "Tools that let agents plan, run, inspect, or maintain tests for software and agent-driven workflows.",
+  "definitionMd": "This category covers testing and quality-assurance systems in which agents are active test authors, operators, evaluators, or debugging participants.",
+  "scopeMd": "Includes systems where agents actively author, execute, adapt, evaluate, or diagnose tests and produce reviewable artifacts such as traces, screenshots, or reproducible steps.",
+  "inclusionMd": "- An agent can author, execute, adapt, or diagnose tests through a documented interface.\n- The product preserves evidence such as steps, traces, screenshots, or reproducible results.\n- Agent-driven QA is central to the product rather than a generic automation claim.",
+  "exclusionMd": "- It is a conventional test runner that an agent can merely invoke.\n- It evaluates model output but provides no material agent or agent-builder workflow.",
+  "selectionGuideMd": "- What can the agent author, execute, and repair?\n- Which artifacts make a result reviewable?\n- How are flaky tests, changed interfaces, and failed runs handled?",
+  "useCases": [
+    "Generate and maintain tests as interfaces change",
+    "Run multi-step tests and capture reviewable evidence",
+    "Diagnose failures and repair broken tests"
+  ],
+  "sources": [
+    {
+      "title": "LangSmith application-specific evaluation approaches",
+      "url": "https://docs.langchain.com/langsmith/evaluation-approaches",
+      "claim": "LangSmith documents final-response, single-step, and trajectory evaluation as distinct, complementary ways to test agent behaviour.",
+      "accessedAt": "2026-09-03",
+      "sourceType": "official-documentation"
+    }
+  ]
 }

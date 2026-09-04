@@ -1,5 +1,26 @@
 {
   "slug": "specialized-search-discovery-engines",
   "label": "Search & Discovery",
-  "sortOrder": 100
+  "sortOrder": 100,
+  "seoTitle": "Specialized search and discovery tools for AI agents",
+  "descriptionMd": "Search, enrichment, and discovery systems that give agents structured access to specialized people, company, job, or domain data.",
+  "definitionMd": "This category covers purpose-built retrieval and discovery products whose indexed data, ranking, enrichment, or result structure materially improves an agent workflow.",
+  "scopeMd": "Includes specialized indexes, ranking, enrichment, and structured retrieval for people, companies, jobs, or other domain-specific data used by agents.",
+  "inclusionMd": "- The search corpus or enrichment is specialized and documented.\n- Results are available in structured, agent-usable form with useful provenance or identifiers.\n- The product materially improves discovery beyond a generic web search or API call.",
+  "exclusionMd": "- It is a broad consumer search engine with no substantive agent interface.\n- Its main capability is crawling or extraction rather than search and discovery.",
+  "selectionGuideMd": "- What corpus is searched and how current is it?\n- Which fields, filters, identifiers, and provenance accompany results?\n- What coverage, confidence, and data-use limitations are disclosed?",
+  "useCases": [
+    "Discover people, companies, jobs, or domain records",
+    "Filter and rank specialized datasets programmatically",
+    "Enrich results with identifiers, provenance, and structured fields"
+  ],
+  "sources": [
+    {
+      "title": "Exa Websets documentation",
+      "url": "https://exa.ai/docs/websets/api-guide",
+      "claim": "Exa Websets documents natural-language searches that verify candidates against criteria, enrich matches, and return structured results.",
+      "accessedAt": "2026-09-03",
+      "sourceType": "official-documentation"
+    }
+  ]
 }

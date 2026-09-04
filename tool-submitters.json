@@ -1,6 +1,5 @@
 {
   "ag-ui": "foo-bender",
-  "agent-ci": "bradvin",
   "agent-qa": "pranshuchittora",
   "agentation": "bradvin",
   "agentcomputer": "bradvin",
@@ -28,6 +27,7 @@
   "kapso": "bradvin",
   "kite": "bradvin",
   "kitesurf": "foo-bender",
+  "local-ci": "bradvin",
   "mem0": "bradvin",
   "mission-control": "foo-bender",
   "okara": "foo-bender",
