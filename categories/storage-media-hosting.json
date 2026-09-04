@@ -1,5 +1,27 @@
 {
   "slug": "storage-media-hosting",
   "label": "Storage & Media",
-  "sortOrder": 45
+  "sortOrder": 45,
+  "seoTitle": "Storage and media hosting for AI agents",
+  "descriptionMd": "Storage and delivery services that help agents persist, transform, retrieve, or share files and media.",
+  "definitionMd": "This category covers storage or media infrastructure with a documented agent-first workflow, such as direct tool access, durable artifact URLs, transformations, or agent-oriented discovery.",
+  "scopeMd": "Includes agent-oriented storage, retrieval, transformation, and delivery of files or media where durability, permissions, provenance, or processing is a material capability.",
+  "inclusionMd": "- Agents can store, retrieve, transform, or share artifacts through a documented machine interface.\n- Durability, permissions, provenance, or media processing materially improves the agent workflow.\n- The product provides more than generic object storage with an API.",
+  "exclusionMd": "- It is conventional file hosting or object storage with no substantive agent workflow.\n- The listing relies only on the fact that an agent could call its API.",
+  "selectionGuideMd": "- Which artifact types and transformations are supported?\n- How long do links and stored objects remain available?\n- What access, privacy, and provenance controls exist?",
+  "useCases": [
+    "Persist artifacts between agent tasks",
+    "Transform files or media through a machine interface",
+    "Share durable artifact URLs with people or systems",
+    "Control access and provenance for stored outputs"
+  ],
+  "sources": [
+    {
+      "title": "Cloudinary upload documentation",
+      "url": "https://cloudinary.com/documentation/upload_images",
+      "claim": "Cloudinary documents programmatic media uploads that return access URLs and asset metadata, with uploaded assets available for transformation and delivery.",
+      "accessedAt": "2026-09-03",
+      "sourceType": "official-documentation"
+    }
+  ]
 }

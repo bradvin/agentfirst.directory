@@ -1,4 +1,5 @@
 import { validateContent } from "./lib/content.mjs";
+import { loadRedirectManifest } from "./lib/redirects.mjs";
 import { getMissingToolSubmitterErrors } from "./lib/tool-submitters.mjs";
 
 const args = process.argv.slice(2);
@@ -15,9 +16,13 @@ for (const arg of args) {
 }
 
 const { categories, tools, errors } = await validateContent(rootDir);
+const { redirects, errors: redirectErrors } = await loadRedirectManifest(rootDir, {
+  categories,
+  tools,
+});
 const validationErrors = requireSubmitters
-  ? [...errors, ...getMissingToolSubmitterErrors(tools)]
-  : errors;
+  ? [...errors, ...redirectErrors, ...getMissingToolSubmitterErrors(tools)]
+  : [...errors, ...redirectErrors];
 
 if (validationErrors.length > 0) {
   console.error("Content validation failed:\n");
@@ -28,5 +33,6 @@ if (validationErrors.length > 0) {
 }
 
 console.log(
-  `Content validation passed for ${categories.length} categories and ${tools.length} tools.`,
+  `Content validation passed for ${categories.length} categories, ${tools.length} tools, `
+    + `and ${redirects.length} redirects/retirements.`,
 );

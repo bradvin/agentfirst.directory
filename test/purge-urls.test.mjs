@@ -5,20 +5,38 @@ import path from "node:path";
 import { mkdtemp, mkdir, rename, rm, writeFile } from "node:fs/promises";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
+import { withoutGitRepositoryOverrides } from "../scripts/lib/git-environment.mjs";
 import { computePurgeUrls } from "../scripts/lib/purge-urls.mjs";
 
 const execFileAsync = promisify(execFile);
 const BASE_URL = "https://agentfirst.directory";
 const STATIC_URLS = [
   `${BASE_URL}/`,
+  `${BASE_URL}/api/tools.json`,
+  `${BASE_URL}/data/agent-first-tools.csv`,
+  `${BASE_URL}/feed.xml`,
+  `${BASE_URL}/llms-full.txt`,
+  `${BASE_URL}/llms.txt`,
+  `${BASE_URL}/open-source-ai-agent-tools`,
+  `${BASE_URL}/research/state-of-agent-first-infrastructure`,
   `${BASE_URL}/sitemap-categories.xml`,
   `${BASE_URL}/sitemap-index.xml`,
   `${BASE_URL}/sitemap-pages.xml`,
   `${BASE_URL}/sitemap-tools.xml`,
 ];
 
+function toolMediaUrls(slug) {
+  return [
+    `${BASE_URL}/media/tools/${slug}/card`,
+    `${BASE_URL}/media/tools/${slug}/hero-small`,
+    `${BASE_URL}/media/tools/${slug}/hero`,
+  ];
+}
+
 async function git(repoDir, ...args) {
-  const { stdout } = await execFileAsync("git", args, { cwd: repoDir });
+  const { stdout } = await execFileAsync("git", ["-C", repoDir, ...args], {
+    env: withoutGitRepositoryOverrides(),
+  });
   return stdout.trim();
 }
 
@@ -101,7 +119,15 @@ test("tool edits purge the tool page and its category page", async () => {
     );
   });
 
-  assert.deepEqual(urls, [...STATIC_URLS, `${BASE_URL}/category/orchestrators`, `${BASE_URL}/tools/paperclip`].sort());
+  assert.deepEqual(
+    urls,
+    [
+      ...STATIC_URLS,
+      ...toolMediaUrls("paperclip"),
+      `${BASE_URL}/category/orchestrators`,
+      `${BASE_URL}/tools/paperclip`,
+    ].sort(),
+  );
 });
 
 test("tool deletion purges the deleted tool page and prior category page", async () => {
@@ -109,7 +135,15 @@ test("tool deletion purges the deleted tool page and prior category page", async
     await rm(path.join(repoDir, "tools/paperclip.md"));
   });
 
-  assert.deepEqual(urls, [...STATIC_URLS, `${BASE_URL}/category/orchestrators`, `${BASE_URL}/tools/paperclip`].sort());
+  assert.deepEqual(
+    urls,
+    [
+      ...STATIC_URLS,
+      ...toolMediaUrls("paperclip"),
+      `${BASE_URL}/category/orchestrators`,
+      `${BASE_URL}/tools/paperclip`,
+    ].sort(),
+  );
 });
 
 test("tool rename and category move purge old and new tool and category URLs", async () => {
@@ -133,6 +167,8 @@ test("tool rename and category move purge old and new tool and category URLs", a
     urls,
     [
       ...STATIC_URLS,
+      ...toolMediaUrls("paperclip"),
+      ...toolMediaUrls("workflows"),
       `${BASE_URL}/category/orchestrators`,
       `${BASE_URL}/category/voice-multimodal-interfaces`,
       `${BASE_URL}/tools/paperclip`,
@@ -167,6 +203,7 @@ test("category rename purges the old and new category URLs", async () => {
     urls,
     [
       ...STATIC_URLS,
+      ...toolMediaUrls("paperclip"),
       `${BASE_URL}/category/orchestrators`,
       `${BASE_URL}/category/workflow-orchestration`,
       `${BASE_URL}/tools/paperclip`,
