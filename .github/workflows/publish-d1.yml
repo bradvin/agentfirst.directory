@@ -87,6 +87,7 @@ jobs:
 
       - name: Purge Cloudflare cache
         if: ${{ github.ref_name == 'main' || (github.event_name == 'workflow_dispatch' && inputs.run_purge) }}
+        continue-on-error: true
         run: node ./scripts/purge-cloudflare-cache.mjs /tmp/agentfirst-purge-urls.json
 
       - name: Submit changed URLs to IndexNow
