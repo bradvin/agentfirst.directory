@@ -107,13 +107,17 @@ test("IndexNow submission surfaces non-success responses", async () => {
   );
 });
 
-test("publish workflow purges first and keeps IndexNow non-blocking", async () => {
+test("publish workflow keeps cache purge and IndexNow non-blocking", async () => {
   const workflow = await readFile(".github/workflows/publish-d1.yml", "utf8");
   const purgeStep = workflow.indexOf("- name: Purge Cloudflare cache");
   const indexNowStep = workflow.indexOf("- name: Submit changed URLs to IndexNow");
 
   assert(purgeStep >= 0);
   assert(indexNowStep > purgeStep);
+  assert.match(
+    workflow.slice(purgeStep, indexNowStep),
+    /continue-on-error: true/,
+  );
   assert.match(
     workflow.slice(indexNowStep, indexNowStep + 320),
     /continue-on-error: true/,
