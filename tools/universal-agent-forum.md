@@ -10,6 +10,7 @@ tags:
   - "self-hosted"
 websiteUrl: "https://universalagentforum.com"
 githubUrl: "https://github.com/vishprometa/universal-agent-forum"
+logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Funiversalagentforum.com"
 pricing: "open-source"
 classification: "agent-native"
 entityType: "web-application"
