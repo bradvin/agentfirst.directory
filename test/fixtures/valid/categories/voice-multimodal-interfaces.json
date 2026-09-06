@@ -1,5 +1,16 @@
 {
   "slug": "voice-multimodal-interfaces",
   "label": "Voice & Multimodal",
-  "sortOrder": 90
+  "sortOrder": 90,
+  "seoTitle": "Voice and multimodal interfaces for AI agents",
+  "descriptionMd": "Platforms that let agents perceive, generate, or interact through voice, audio, images, video, and other modalities.",
+  "definitionMd": "This category covers agent-first interaction layers where real-time speech or another non-text modality is central to the agent's operation or user experience.",
+  "scopeMd": "Includes agent-first voice and multimodal runtimes with substantive turn handling, media events, or modality coordination.",
+  "inclusionMd": "- The product provides a documented runtime or interface for voice or multimodal agents.\n- Real-time interaction, turn handling, telephony, media events, or modality coordination is substantive.",
+  "exclusionMd": "- It is only a generic speech, image, or video model API.\n- It adds voice or media to a conventional app without a material agent interaction model.",
+  "selectionGuideMd": "- Which modalities and transport channels are supported?\n- How are latency, interruptions, state, and handoffs handled?",
+  "useCases": [
+    "Build real-time voice agents",
+    "Coordinate multimodal agent interactions"
+  ]
 }

@@ -3,11 +3,20 @@ import path from "node:path";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { parseCategoryFile, parseToolFile } from "./content.mjs";
+import { withoutGitRepositoryOverrides } from "./git-environment.mjs";
+import { parseRedirectManifest } from "./redirects.mjs";
 
 const execFileAsync = promisify(execFile);
 const DEFAULT_BASE_URL = "https://agentfirst.directory";
 const STATIC_PATHS = [
   "/",
+  "/api/tools.json",
+  "/data/agent-first-tools.csv",
+  "/feed.xml",
+  "/llms.txt",
+  "/llms-full.txt",
+  "/open-source-ai-agent-tools",
+  "/research/state-of-agent-first-infrastructure",
   "/sitemap-index.xml",
   "/sitemap-pages.xml",
   "/sitemap-tools.xml",
@@ -39,7 +48,9 @@ function parseNameStatus(stdout) {
 }
 
 async function runGit(repoDir, args) {
-  const { stdout } = await execFileAsync("git", args, { cwd: repoDir });
+  const { stdout } = await execFileAsync("git", ["-C", repoDir, ...args], {
+    env: withoutGitRepositoryOverrides(),
+  });
   return stdout;
 }
 
@@ -87,6 +98,23 @@ function parseToolPayload(raw, filePath) {
   return parseToolFile(raw, filePath);
 }
 
+function parseRedirectPayload(raw, filePath) {
+  if (!raw) {
+    return [];
+  }
+
+  const { redirects, errors } = parseRedirectManifest(raw, {
+    sourceName: filePath,
+    resolveDestinations: false,
+  });
+
+  if (errors.length > 0) {
+    throw new Error(`Cannot compute purge URLs:\n${errors.map((error) => `- ${error}`).join("\n")}`);
+  }
+
+  return redirects;
+}
+
 export async function computePurgeUrls({
   repoDir = process.cwd(),
   baseCommit,
@@ -113,10 +141,33 @@ export async function computePurgeUrls({
     headCommit,
     "--",
     "categories",
+    "redirects.json",
     "tools",
   ]);
 
   for (const entry of parseNameStatus(diffOutput)) {
+    if (entry.oldPath === "redirects.json" || entry.newPath === "redirects.json") {
+      const oldRedirects = entry.oldPath
+        ? parseRedirectPayload(
+          await readGitObject(repoDir, diffBase, entry.oldPath),
+          `${diffBase}:${entry.oldPath}`,
+        )
+        : [];
+      const newRedirects = entry.newPath
+        ? parseRedirectPayload(
+          await readGitObject(repoDir, headCommit, entry.newPath),
+          `${headCommit}:${entry.newPath}`,
+        )
+        : [];
+
+      for (const redirect of [...oldRedirects, ...newRedirects]) {
+        addPath(urls, normalizedBaseUrl, redirect.sourcePath);
+        if (redirect.destinationPath) {
+          addPath(urls, normalizedBaseUrl, redirect.destinationPath);
+        }
+      }
+    }
+
     if (entry.oldPath?.startsWith("categories/") || entry.newPath?.startsWith("categories/")) {
       const oldCategory = entry.oldPath
         ? parseCategoryPayload(await readGitObject(repoDir, diffBase, entry.oldPath), entry.oldPath)
@@ -145,6 +196,9 @@ export async function computePurgeUrls({
       for (const slug of [oldTool?.slug, newTool?.slug]) {
         if (slug) {
           addPath(urls, normalizedBaseUrl, `/tools/${slug}`);
+          addPath(urls, normalizedBaseUrl, `/media/tools/${slug}/card`);
+          addPath(urls, normalizedBaseUrl, `/media/tools/${slug}/hero-small`);
+          addPath(urls, normalizedBaseUrl, `/media/tools/${slug}/hero`);
         }
       }
 

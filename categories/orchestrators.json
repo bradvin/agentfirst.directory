@@ -1,5 +1,27 @@
 {
   "slug": "orchestrators",
   "label": "Orchestrators",
-  "sortOrder": 75
+  "sortOrder": 75,
+  "seoTitle": "Orchestration platforms for teams of AI agents",
+  "descriptionMd": "Control planes and runtimes that coordinate agents, tasks, schedules, state, governance, and human review.",
+  "definitionMd": "This category covers systems whose main purpose is coordinating agent work across multiple runs, roles, workers, or workflows rather than implementing one agent in isolation.",
+  "scopeMd": "Includes control planes and runtimes that coordinate multiple agents or runs through task assignment, shared state, scheduling, observability, budgets, approvals, or governance.",
+  "inclusionMd": "- The system assigns, schedules, routes, or supervises work across agents or agent runs.\n- Shared state, observability, budgets, approvals, or governance is a material capability.\n- Long-running or event-driven coordination is explicitly supported.",
+  "exclusionMd": "- It is a single-agent framework with no material coordination layer.\n- It is a generic workflow scheduler that can only launch an agent as an ordinary job.",
+  "selectionGuideMd": "- What unit of work is coordinated and how is ownership assigned?\n- How are state, failures, budgets, and approvals managed?\n- Which agent runtimes can participate?",
+  "useCases": [
+    "Assign and route work across agents or roles",
+    "Coordinate long-running and event-driven workflows",
+    "Enforce budgets, approvals, and human review",
+    "Recover from failed or interrupted runs"
+  ],
+  "sources": [
+    {
+      "title": "OpenAI Agents SDK agent orchestration guide",
+      "url": "https://openai.github.io/openai-agents-python/multi_agent/",
+      "claim": "The OpenAI Agents SDK documentation describes agent orchestration through manager-called specialist tools, handoffs, chains, loops, and parallel execution.",
+      "accessedAt": "2026-09-03",
+      "sourceType": "official-documentation"
+    }
+  ]
 }

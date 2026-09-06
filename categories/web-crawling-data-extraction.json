@@ -1,5 +1,34 @@
 {
   "slug": "web-crawling-data-extraction",
   "label": "Crawling & Extraction",
-  "sortOrder": 40
+  "sortOrder": 40,
+  "seoTitle": "Web crawling and data extraction tools for AI agents",
+  "descriptionMd": "Services and libraries that turn web pages into reliable text or structured data for agent research and workflows.",
+  "definitionMd": "This category covers agent-oriented crawling, page retrieval, parsing, and structured extraction where producing usable web data is the primary outcome.",
+  "scopeMd": "Includes agent-oriented page retrieval, crawling, rendering, parsing, pagination, change detection, and schema extraction whose primary output is usable text or structured web data.",
+  "inclusionMd": "- The product returns clean text, structured records, or documented extraction output for agents.\n- It materially handles crawling constraints such as rendering, pagination, change detection, or schema extraction.\n- Agent or tool-calling workflows are documented as a first-class use case.",
+  "exclusionMd": "- The primary capability is interactive browser operation rather than retrieval or extraction.\n- It is a generic HTTP client or scraper with no substantive agent-oriented capability.",
+  "selectionGuideMd": "- What output formats and extraction guarantees are provided?\n- How are JavaScript pages, pagination, and crawl failures handled?\n- Can sources and retrieval times be preserved with the extracted data?",
+  "useCases": [
+    "Collect clean text or structured records from web pages",
+    "Retrieve JavaScript-rendered or paginated content",
+    "Monitor pages for changes and refresh downstream agent data",
+    "Preserve source URLs and retrieval times with extracted data"
+  ],
+  "sources": [
+    {
+      "title": "Firecrawl scrape API reference",
+      "url": "https://docs.firecrawl.dev/api-reference/endpoint/scrape",
+      "claim": "Firecrawl's scrape endpoint documents programmatic page retrieval with Markdown and structured output formats, main-content filtering, file parsing, and pre-extraction page actions.",
+      "accessedAt": "2026-09-03",
+      "sourceType": "official-documentation"
+    },
+    {
+      "title": "Firecrawl crawl API reference",
+      "url": "https://docs.firecrawl.dev/api-reference/endpoint/crawl-post",
+      "claim": "Firecrawl's crawl endpoint documents multi-URL crawling from a base URL with path, depth, sitemap, domain, and per-page extraction controls.",
+      "accessedAt": "2026-09-03",
+      "sourceType": "official-documentation"
+    }
+  ]
 }

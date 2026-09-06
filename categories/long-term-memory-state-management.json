@@ -1,5 +1,26 @@
 {
   "slug": "long-term-memory-state-management",
   "label": "Memory & State",
-  "sortOrder": 50
+  "sortOrder": 50,
+  "seoTitle": "Long-term memory and state tools for AI agents",
+  "descriptionMd": "Memory and state systems that help agents retain, retrieve, reason over, and update context across sessions.",
+  "definitionMd": "This category covers durable memory or state layers built to support continuity in agent behavior, including conversation, entity, user, episodic, and workflow state.",
+  "scopeMd": "Includes durable conversation, entity, user, episodic, and workflow memory that supports continuity across agent sessions, tasks, or workers.",
+  "inclusionMd": "- The system models memory or evolving state for agents rather than only storing documents.\n- Retrieval, updates, or reasoning over past context is a documented core capability.\n- The product addresses persistence across sessions, tasks, or agents.",
+  "exclusionMd": "- It is a generic database, cache, or vector store without an agent memory abstraction.\n- It offers retrieval alone without maintaining meaningful agent state.",
+  "selectionGuideMd": "- What types of memory or state are represented?\n- How are memories created, retrieved, corrected, and deleted?\n- Can users inspect provenance and control retention?",
+  "useCases": [
+    "Recall relevant context across agent sessions",
+    "Maintain evolving user, entity, or workflow state",
+    "Inspect, correct, retain, or delete agent memories"
+  ],
+  "sources": [
+    {
+      "title": "LangChain memory overview",
+      "url": "https://docs.langchain.com/oss/python/concepts/memory",
+      "claim": "LangChain documents thread-scoped agent state for short-term memory and namespaced data shared across sessions for long-term memory.",
+      "accessedAt": "2026-09-03",
+      "sourceType": "official-documentation"
+    }
+  ]
 }

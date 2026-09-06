@@ -1,5 +1,26 @@
 {
   "slug": "agent-frameworks-standards",
   "label": "Frameworks & Standards",
-  "sortOrder": 65
+  "sortOrder": 65,
+  "seoTitle": "Frameworks and standards for building AI agents",
+  "descriptionMd": "Frameworks, SDKs, specifications, and interoperability standards used to define, build, or connect agents.",
+  "definitionMd": "This category covers reusable development abstractions and open standards in which agents, agent runtimes, or agent interactions are the central subject.",
+  "scopeMd": "Includes implementation frameworks, SDKs, specifications, and interoperability standards that define first-class agent abstractions, runtimes, messages, interfaces, or packaging.",
+  "inclusionMd": "- The framework provides first-class agent abstractions, execution, tools, state, or coordination.\n- The standard defines interoperable agent behavior, messages, interfaces, or packaging.\n- Removing the agent concept would fundamentally change the framework or specification.",
+  "exclusionMd": "- It is a general AI, machine-learning, or application framework with no first-class agent model.\n- It is an informal convention or thin wrapper without maintained documentation or specification.",
+  "selectionGuideMd": "- Is this an implementation framework, an SDK, or an interoperability standard?\n- Which agent concepts and extension points are defined?\n- What implementations, versioning, and compatibility evidence exist?",
+  "useCases": [
+    "Build agents with reusable tool, state, and execution abstractions",
+    "Connect agents and runtimes through interoperable interfaces",
+    "Evaluate compatibility across implementations and specification versions"
+  ],
+  "sources": [
+    {
+      "title": "Agent2Agent (A2A) Protocol specification",
+      "url": "https://a2a-protocol.org/v0.3.0/specification/",
+      "claim": "The A2A specification defines an open interaction model through which independent agent systems discover capabilities, exchange information, and manage collaborative tasks.",
+      "accessedAt": "2026-09-03",
+      "sourceType": "official-specification"
+    }
+  ]
 }

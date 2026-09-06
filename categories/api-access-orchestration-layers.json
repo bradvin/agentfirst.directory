@@ -1,5 +1,26 @@
 {
   "slug": "api-access-orchestration-layers",
   "label": "API Orchestration",
-  "sortOrder": 80
+  "sortOrder": 80,
+  "seoTitle": "API access and orchestration layers for AI agents",
+  "descriptionMd": "Layers that help agents discover, authenticate to, route, govern, and execute APIs or reusable tools.",
+  "definitionMd": "This category covers infrastructure between an agent and external APIs where discovery, credentials, policy, routing, or execution materially improves safe tool use.",
+  "scopeMd": "Includes reusable layers between agents and external APIs that handle tool discovery, credentials, permissions, policy, routing, execution, or recovery.",
+  "inclusionMd": "- The product gives agents a documented way to discover and invoke APIs, tools, or skills.\n- Credential protection, permissions, policy, or execution mediation is a core capability.\n- It provides a reusable orchestration layer rather than one isolated integration.",
+  "exclusionMd": "- It is a conventional API gateway or client with no substantive agent workflow.\n- Its agent support is limited to exposing an existing endpoint through a thin wrapper.",
+  "selectionGuideMd": "- How are tools discovered and described to the agent?\n- Where do credentials live and how is access constrained?\n- What approval, logging, retry, and error-handling controls exist?",
+  "useCases": [
+    "Expose a governed catalog of APIs or skills to agents",
+    "Mediate credentials and permissioned tool execution",
+    "Approve, log, retry, and recover agent API calls"
+  ],
+  "sources": [
+    {
+      "title": "Model Context Protocol tools specification",
+      "url": "https://modelcontextprotocol.io/specification/2025-06-18/server/tools",
+      "claim": "The MCP tools specification defines how models discover schema-described tools and invoke them, while recommending user visibility and confirmation for tool calls.",
+      "accessedAt": "2026-09-03",
+      "sourceType": "official-specification"
+    }
+  ]
 }
