@@ -5,6 +5,8 @@ description: "Agent action authorization with mandates, policy checks, human app
 category: "api-access-orchestration-layers"
 tags: ["authorization", "agent-governance", "human-approval", "mcp", "api"]
 websiteUrl: "https://provenant.identiqube.com/"
+logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Fprovenant.identiqube.com%2F"
+ogImageUrl: "https://provenant.identiqube.com/og-image.png"
 pricing: "freemium"
 classification: "agent-native"
 entityType: "service"
