@@ -28,17 +28,12 @@ evidenceSources:
     sourceType: "official-documentation"
 ---
 
-
 402cron is a hosted scheduler for signed HTTP requests. An agent can obtain prepaid delivery credits using x402 payments in USDC on Base, then manage recurring schedules through REST or a remote MCP server.
 
-
 ## So agents can...
-
 
 - Arrange later HTTP calls without keeping the initiating agent session alive.
 - Create and manage schedules through MCP or REST.
 - Deliver signed requests to verified HTTPS receivers and inspect delivery records.
 
-
 The service schedules HTTP delivery; the receiving application runs the actual workload. Prepaid capacity does not imply guaranteed downstream success, and receivers need duplicate handling.
-
