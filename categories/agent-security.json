@@ -1,0 +1,26 @@
+{
+  "slug": "agent-security",
+  "label": "Agent Security",
+  "sortOrder": 110,
+  "seoTitle": "Security tools for AI agents",
+  "descriptionMd": "Security controls and review systems designed for agent-driven work.",
+  "definitionMd": "Products whose core purpose is controlling or inspecting agent actions and access.",
+  "scopeMd": "First-class agent security workflows, not generic security APIs.",
+  "inclusionMd": "Include when documented controls materially govern agent permissions or actions.",
+  "exclusionMd": "Exclude conventional security products connected only through generic API access.",
+  "selectionGuideMd": "Compare policy scope, enforcement points, audit evidence, identity, and recovery.",
+  "useCases": [
+    "Constrain agent permissions",
+    "Audit agent actions"
+  ],
+  "sources": [
+    {
+      "title": "OWASP Agentic Security Initiative",
+      "url": "https://genai.owasp.org/initiatives/agentic-security-initiative/",
+      "claim": "OWASP documents security risks and controls that arise from autonomous agent workflows.",
+      "accessedAt": "2026-09-12",
+      "sourceType": "official-guidance"
+    }
+  ],
+  "isIndexable": true
+}
