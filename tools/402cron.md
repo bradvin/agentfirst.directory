@@ -5,6 +5,7 @@ description: "Hosted scheduled HTTP delivery for agents, with REST and MCP manag
 category: "api-access-orchestration-layers"
 tags: ["mcp", "x402", "scheduling", "webhooks"]
 websiteUrl: "https://402cron.com"
+logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2F402cron.com"
 pricing: "paid"
 classification: "agent-enabling"
 entityType: "web-api"
@@ -27,12 +28,17 @@ evidenceSources:
     sourceType: "official-documentation"
 ---
 
+
 402cron is a hosted scheduler for signed HTTP requests. An agent can obtain prepaid delivery credits using x402 payments in USDC on Base, then manage recurring schedules through REST or a remote MCP server.
 
+
 ## So agents can...
+
 
 - Arrange later HTTP calls without keeping the initiating agent session alive.
 - Create and manage schedules through MCP or REST.
 - Deliver signed requests to verified HTTPS receivers and inspect delivery records.
 
+
 The service schedules HTTP delivery; the receiving application runs the actual workload. Prepaid capacity does not imply guaranteed downstream success, and receivers need duplicate handling.
+
