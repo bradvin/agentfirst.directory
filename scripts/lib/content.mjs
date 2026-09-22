@@ -43,6 +43,7 @@ const VERIFICATION_LEVEL_VALUES = new Set([
   "hands-on-tested",
 ]);
 const ISO_DATE_PATTERN = /^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}(?::\d{2}(?:\.\d+)?)?(?:Z|[+-]\d{2}:\d{2}))?$/;
+const ISO_DATE_ONLY_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 
 function getCategoryDir(rootDir) {
   return path.join(rootDir, "categories");
@@ -147,13 +148,35 @@ function validateDate(value, fieldName, errors, sourcePath) {
   }
 }
 
-function validateEvidenceSources(value, fieldName, errors, sourcePath) {
+function validateIsoDate(value, fieldName, errors, sourcePath) {
+  const timestamp = isNonEmptyString(value) && ISO_DATE_ONLY_PATTERN.test(value)
+    ? Date.parse(`${value}T00:00:00Z`)
+    : Number.NaN;
+  const isCanonicalDate = !Number.isNaN(timestamp)
+    && new Date(timestamp).toISOString().slice(0, 10) === value;
+
+  if (!isCanonicalDate) {
+    errors.push(`${sourcePath}: ${fieldName} must be an ISO 8601 date (YYYY-MM-DD)`);
+  }
+}
+
+function validateEvidenceSources(value, fieldName, errors, sourcePath, { required = false } = {}) {
   if (value === undefined) {
+    if (required) {
+      errors.push(`${sourcePath}: ${fieldName} must be a non-empty array`);
+    }
     return;
   }
 
   if (!Array.isArray(value)) {
-    errors.push(`${sourcePath}: ${fieldName} must be an array when present`);
+    errors.push(
+      `${sourcePath}: ${fieldName} must be ${required ? "a non-empty array" : "an array when present"}`,
+    );
+    return;
+  }
+
+  if (required && value.length === 0) {
+    errors.push(`${sourcePath}: ${fieldName} must be a non-empty array`);
     return;
   }
 
@@ -176,21 +199,34 @@ function validateEvidenceSources(value, fieldName, errors, sourcePath) {
     if (!isNonEmptyString(source.url)) {
       errors.push(`${sourcePath}: ${itemField}.url is required`);
     } else {
-      validateUrl(source.url, `${itemField}.url`, errors, sourcePath);
+      validateUrl(
+        source.url,
+        `${itemField}.url`,
+        errors,
+        sourcePath,
+        required ? ["https:"] : ["http:", "https:"],
+      );
     }
 
     if (!isNonEmptyString(source.accessedAt)) {
       errors.push(`${sourcePath}: ${itemField}.accessedAt is required`);
+    } else if (required) {
+      validateIsoDate(source.accessedAt, `${itemField}.accessedAt`, errors, sourcePath);
     } else {
       validateDate(source.accessedAt, `${itemField}.accessedAt`, errors, sourcePath);
     }
-    validateOptionalEnum(
-      source.sourceType,
-      `${itemField}.sourceType`,
-      SOURCE_TYPE_VALUES,
-      errors,
-      sourcePath,
-    );
+
+    if (required && !isNonEmptyString(source.sourceType)) {
+      errors.push(`${sourcePath}: ${itemField}.sourceType is required`);
+    } else {
+      validateOptionalEnum(
+        source.sourceType,
+        `${itemField}.sourceType`,
+        SOURCE_TYPE_VALUES,
+        errors,
+        sourcePath,
+      );
+    }
   }
 }
 
@@ -203,15 +239,24 @@ function validateReviewProvenance(record, errors, sourcePath) {
   }
 }
 
-function validateUrl(value, fieldName, errors, sourcePath) {
+function validateUrl(
+  value,
+  fieldName,
+  errors,
+  sourcePath,
+  allowedProtocols = ["http:", "https:"],
+) {
   if (value === undefined || value === null || value === "") {
     return;
   }
 
   try {
     const parsed = new URL(value);
-    if (!["http:", "https:"].includes(parsed.protocol)) {
-      errors.push(`${sourcePath}: ${fieldName} must use http or https`);
+    if (!allowedProtocols.includes(parsed.protocol)) {
+      const protocolLabel = allowedProtocols.length === 1 && allowedProtocols[0] === "https:"
+        ? "HTTPS"
+        : "http or https";
+      errors.push(`${sourcePath}: ${fieldName} must use ${protocolLabel}`);
     }
   } catch {
     errors.push(`${sourcePath}: ${fieldName} must be a valid URL`);
@@ -438,7 +483,13 @@ export async function validateContent(rootDir = process.cwd()) {
     );
     validateStringArray(tool.interfaces, "interfaces", errors, tool.sourcePath);
     validateStringArray(tool.deploymentModes, "deploymentModes", errors, tool.sourcePath);
-    validateEvidenceSources(tool.evidenceSources, "evidenceSources", errors, tool.sourcePath);
+    validateEvidenceSources(
+      tool.evidenceSources,
+      "evidenceSources",
+      errors,
+      tool.sourcePath,
+      { required: true },
+    );
     validateDate(tool.reviewedAt, "reviewedAt", errors, tool.sourcePath);
     validateDate(tool.publishedAt, "publishedAt", errors, tool.sourcePath);
     validateReviewProvenance(tool, errors, tool.sourcePath);
