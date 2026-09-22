@@ -1,5 +1,27 @@
 {
   "slug": "agent-payment-financial-primitives",
   "label": "Payments",
-  "sortOrder": 60
+  "sortOrder": 60,
+  "seoTitle": "Payment and financial infrastructure for AI agents",
+  "descriptionMd": "Wallets, payment protocols, controls, and financial rails that let agents transact under explicit authority.",
+  "definitionMd": "This category covers infrastructure that enables agents to discover prices, hold or use payment credentials, transact, or operate within programmable financial controls.",
+  "scopeMd": "Includes wallets, payment protocols, delegated credentials, spend controls, and settlement rails designed for machine-to-machine or agent-mediated commerce.",
+  "inclusionMd": "- An agent can initiate, receive, or negotiate a payment through a documented machine interface.\n- Identity, delegated authority, spend controls, or settlement is a material capability.\n- The product or protocol is designed for machine-to-machine or agent-mediated commerce.",
+  "exclusionMd": "- It is a consumer wallet, payment processor, or fintech API with no substantive agent role.\n- The listing is supported only by a thin agent integration.",
+  "selectionGuideMd": "- Who authorizes spending and how are limits enforced?\n- Which assets, networks, or payment schemes are supported?\n- What audit, identity, reversal, and recovery controls exist?",
+  "useCases": [
+    "Authorize agent transactions within explicit spending limits",
+    "Initiate or receive machine-to-machine payments",
+    "Discover prices and execute payments programmatically",
+    "Audit and reconcile agent-mediated transactions"
+  ],
+  "sources": [
+    {
+      "title": "x402 protocol introduction",
+      "url": "https://docs.x402.org/introduction",
+      "claim": "x402 documents an HTTP-based payment standard through which clients, including AI agents, can programmatically pay for API or content access.",
+      "accessedAt": "2026-09-03",
+      "sourceType": "official-documentation"
+    }
+  ]
 }

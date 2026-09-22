@@ -1,5 +1,26 @@
 {
   "slug": "agent-compute-sandbox-environments",
   "label": "Compute & Sandboxes",
-  "sortOrder": 20
+  "sortOrder": 20,
+  "seoTitle": "Compute and sandbox environments for AI agents",
+  "descriptionMd": "Isolated computers, execution environments, and managed runtimes where agents can run code or operate software safely.",
+  "definitionMd": "This category covers compute that materially improves an agent's ability to execute, inspect, resume, or contain work across code, command-line, desktop, and remote-machine tasks.",
+  "scopeMd": "Includes isolated code, command-line, desktop, and remote-machine environments with agent-oriented provisioning, control, persistence, containment, or observability.",
+  "inclusionMd": "- Agents can provision, control, or resume an isolated execution environment programmatically.\n- The product provides meaningful containment, persistence, observability, or computer-use support.\n- Agent execution is a documented first-class workflow rather than an incidental use of generic hosting.",
+  "exclusionMd": "- It is ordinary cloud hosting or container infrastructure with no substantive agent workflow.\n- It only wraps a shell command without isolation, state, or control benefits.",
+  "selectionGuideMd": "- What can the agent execute or control?\n- What isolation and persistence boundaries are provided?\n- Can a person inspect, stop, or resume the environment?",
+  "useCases": [
+    "Run untrusted or generated code in an isolated environment",
+    "Preserve and resume an agent's execution state across tasks",
+    "Inspect, stop, or recover agent-operated computers"
+  ],
+  "sources": [
+    {
+      "title": "Cloudflare Sandbox SDK overview",
+      "url": "https://developers.cloudflare.com/sandbox/",
+      "claim": "The Sandbox SDK documentation describes isolated container environments for running untrusted code, with APIs for commands, files, background processes, and exposed services.",
+      "accessedAt": "2026-09-03",
+      "sourceType": "official-documentation"
+    }
+  ]
 }

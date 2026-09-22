@@ -1,5 +1,27 @@
 {
   "slug": "saas-tool-integration-platforms",
   "label": "SaaS Integrations",
-  "sortOrder": 70
+  "sortOrder": 70,
+  "seoTitle": "SaaS integration platforms for AI agents",
+  "descriptionMd": "Connector platforms that let agents authenticate with and take governed actions across third-party SaaS products.",
+  "definitionMd": "This category covers broad connector catalogs and integration platforms whose primary value is giving agents usable actions across external business applications.",
+  "scopeMd": "Includes broad, maintained connector catalogs and common agent interfaces that manage authentication, authorization, schema discovery, and actions across external business applications.",
+  "inclusionMd": "- The platform exposes maintained connectors or action catalogs designed for agent tool use.\n- Authentication, user authorization, and action execution are handled as substantive platform capabilities.\n- The agent can discover or invoke integrations through a documented common interface.",
+  "exclusionMd": "- It offers only one product integration or a thin connector wrapper.\n- It is a conventional automation platform with no material agent-first interaction model.",
+  "selectionGuideMd": "- Which applications and actions are covered?\n- How are user authorization and credential boundaries enforced?\n- Can agents discover schemas, errors, and required approvals programmatically?",
+  "useCases": [
+    "Give agents governed access to multiple SaaS applications",
+    "Discover available actions and schemas through one interface",
+    "Apply user authorization and approval boundaries to agent actions",
+    "Handle integration errors consistently across tools"
+  ],
+  "sources": [
+    {
+      "title": "Composio documentation overview",
+      "url": "https://docs.composio.dev/docs",
+      "claim": "Composio documents tool discovery, per-user authentication, and action execution across a broad catalog of application toolkits for agents.",
+      "accessedAt": "2026-09-03",
+      "sourceType": "official-documentation"
+    }
+  ]
 }

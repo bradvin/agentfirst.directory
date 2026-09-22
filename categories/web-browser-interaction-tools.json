@@ -1,5 +1,27 @@
 {
   "slug": "web-browser-interaction-tools",
   "label": "Browser Automation",
-  "sortOrder": 30
+  "sortOrder": 30,
+  "seoTitle": "Browser automation tools for AI agents",
+  "descriptionMd": "Browser runtimes and control layers that let agents navigate websites, maintain sessions, and complete multi-step web tasks.",
+  "definitionMd": "This category covers tools whose primary value is operating a browser or website interface on an agent's behalf, from low-level browser control to higher-level task execution.",
+  "scopeMd": "Includes low-level browser control and higher-level web task runtimes that let agents navigate, inspect, interact with, and maintain sessions in websites.",
+  "inclusionMd": "- The agent can navigate, click, type, inspect, or extract through a real or emulated browser.\n- Session state, browser infrastructure, or agent-oriented control is a core capability.\n- The workflow supports multi-step interaction rather than extraction alone.",
+  "exclusionMd": "- Its main purpose is crawling or structured extraction without browser interaction.\n- It is a general browser-testing library with no material agent workflow.",
+  "selectionGuideMd": "- Does it expose task-level automation, low-level browser control, or both?\n- Can sessions and authenticated state persist across runs?\n- What controls exist for observation, approval, and recovery?",
+  "useCases": [
+    "Complete multi-step web tasks through clicks, typing, and navigation",
+    "Operate authenticated browser sessions across runs",
+    "Let people observe, approve, or recover agent browser actions",
+    "Extract information as part of an interactive workflow"
+  ],
+  "sources": [
+    {
+      "title": "Browser Use task documentation",
+      "url": "https://docs.browser-use.com/cloud/agent/quickstart",
+      "claim": "Browser Use documents API-created browser-agent runs that create a live-browser session and persistent file workspace for a task.",
+      "accessedAt": "2026-09-03",
+      "sourceType": "official-documentation"
+    }
+  ]
 }

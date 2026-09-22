@@ -1,5 +1,27 @@
 {
   "slug": "voice-multimodal-interfaces",
   "label": "Voice & Multimodal",
-  "sortOrder": 90
+  "sortOrder": 90,
+  "seoTitle": "Voice and multimodal interfaces for AI agents",
+  "descriptionMd": "Platforms that let agents perceive, generate, or interact through voice, audio, images, video, and other modalities.",
+  "definitionMd": "This category covers agent-first interaction layers where real-time speech or another non-text modality is central to the agent's operation or user experience.",
+  "scopeMd": "Includes real-time voice and other non-text agent interaction layers that manage modalities, transports, turn-taking, interruptions, state, media events, or handoffs.",
+  "inclusionMd": "- The product provides a documented runtime or interface for voice or multimodal agents.\n- Real-time interaction, turn handling, telephony, media events, or modality coordination is substantive.\n- Agents are active participants rather than simple media-generation callers.",
+  "exclusionMd": "- It is only a generic speech, image, or video model API.\n- It adds voice or media to a conventional app without a material agent interaction model.",
+  "selectionGuideMd": "- Which modalities and transport channels are supported?\n- How are latency, interruptions, state, and handoffs handled?\n- What recording, consent, and data-retention controls exist?",
+  "useCases": [
+    "Build agents that hold real-time voice conversations",
+    "Connect agents to telephony or multimodal channels",
+    "Coordinate interruptions, turn-taking, and human handoffs",
+    "Manage consent, recordings, and retention for media interactions"
+  ],
+  "sources": [
+    {
+      "title": "OpenAI GPT-Realtime-2 model documentation",
+      "url": "https://developers.openai.com/api/docs/models/gpt-realtime-2",
+      "claim": "The GPT-Realtime-2 documentation describes speech-to-speech agent workflows with text, image, and audio inputs, audio output, and tool use.",
+      "accessedAt": "2026-09-03",
+      "sourceType": "official-documentation"
+    }
+  ]
 }

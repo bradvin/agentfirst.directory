@@ -1,5 +1,26 @@
 {
   "slug": "agent-identity-communication",
   "label": "Identity & Comms",
-  "sortOrder": 10
+  "sortOrder": 10,
+  "seoTitle": "AI agent identity and communication tools",
+  "descriptionMd": "Tools that give agents a durable identity or a practical channel for email, messaging, phone calls, and other communications.",
+  "definitionMd": "This category covers identity and communication capabilities designed for agents to be addressed, authenticated, contacted, or represented in an ongoing workflow.",
+  "scopeMd": "Includes persistent agent identities and agent-operated email, messaging, telephony, or related channels with programmatic authentication, permissions, and event handling.",
+  "inclusionMd": "- An agent can provision or operate its own inbox, number, account, or communication identity.\n- Inbound and outbound communication is exposed through an agent-usable API, protocol, CLI, SDK, or tool interface.\n- Identity, permissions, delivery, or event handling is a material part of the product.",
+  "exclusionMd": "- It is a conventional chat, CRM, or telecom product with only a generic API.\n- The agent capability is only a thin integration or marketing label.",
+  "selectionGuideMd": "- Which communication channels can an agent use?\n- Does the agent receive a persistent address or identity?\n- How are inbound events, authentication, and permissions handled?",
+  "useCases": [
+    "Give an agent a persistent inbox, phone number, or messaging identity",
+    "Send and receive communications through agent-usable interfaces",
+    "Route authenticated inbound events into ongoing agent workflows"
+  ],
+  "sources": [
+    {
+      "title": "Agent2Agent (A2A) Protocol specification",
+      "url": "https://a2a-protocol.org/v0.3.0/specification/",
+      "claim": "The A2A specification defines Agent Cards containing an agent server's identity, capabilities, service endpoint, and authentication requirements, plus messages for agent interaction.",
+      "accessedAt": "2026-09-03",
+      "sourceType": "official-specification"
+    }
+  ]
 }

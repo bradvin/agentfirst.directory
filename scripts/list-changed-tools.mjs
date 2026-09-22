@@ -1,6 +1,7 @@
 import { execFile } from "node:child_process";
 import path from "node:path";
 import { promisify } from "node:util";
+import { withoutGitRepositoryOverrides } from "./lib/git-environment.mjs";
 
 const execFileAsync = promisify(execFile);
 const [, , repoDirArg, baseSha, headSha, mode] = process.argv;
@@ -16,8 +17,8 @@ const diffArgs = mode === "--include-deleted"
   : ["diff", "--diff-filter=ACMR", "--name-only", baseSha, headSha, "--", "tools/*.md"];
 const { stdout } = await execFileAsync(
   "git",
-  diffArgs,
-  { cwd: repoDir },
+  ["-C", repoDir, ...diffArgs],
+  { env: withoutGitRepositoryOverrides() },
 );
 
 const slugs = stdout

@@ -1,5 +1,26 @@
 {
   "slug": "orchestrators",
   "label": "Orchestrators",
-  "sortOrder": 75
+  "sortOrder": 75,
+  "seoTitle": "AI agent orchestration platforms",
+  "descriptionMd": "Control planes and runtimes that coordinate agents, tasks, state, governance, and human review.",
+  "definitionMd": "Orchestrators coordinate agent work across multiple runs, roles, workers, or workflows.",
+  "scopeMd": "This category covers coordination rather than a single agent implementation.",
+  "inclusionMd": "Include products that assign, schedule, route, or supervise agent work.",
+  "exclusionMd": "Exclude generic workflow schedulers with no material agent coordination layer.",
+  "selectionGuideMd": "Compare supported runtimes, state, failure handling, budgets, and approvals.",
+  "useCases": [
+    "Coordinate long-running agent work",
+    "Apply budgets and approval controls"
+  ],
+  "sources": [
+    {
+      "title": "Paperclip repository",
+      "url": "https://github.com/paperclipai/paperclip",
+      "claim": "The repository documents an orchestration system for teams of AI agents.",
+      "accessedAt": "2026-09-03",
+      "sourceType": "official-repository"
+    }
+  ],
+  "isIndexable": true
 }

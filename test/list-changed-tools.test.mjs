@@ -5,12 +5,17 @@ import path from "node:path";
 import { mkdtemp, mkdir, rename, rm, writeFile } from "node:fs/promises";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
+import { withoutGitRepositoryOverrides } from "../scripts/lib/git-environment.mjs";
 
 const execFileAsync = promisify(execFile);
 const scriptPath = path.resolve("scripts/list-changed-tools.mjs");
 
 async function run(command, args, cwd) {
-  const { stdout } = await execFileAsync(command, args, { cwd });
+  const commandArgs = command === "git" ? ["-C", cwd, ...args] : args;
+  const { stdout } = await execFileAsync(command, commandArgs, {
+    cwd: command === "git" ? undefined : cwd,
+    env: command === "git" ? withoutGitRepositoryOverrides() : process.env,
+  });
   return stdout.trim();
 }
 

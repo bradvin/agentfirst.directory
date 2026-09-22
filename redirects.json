@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "redirects": [
+    {
+      "sourcePath": "/tools/agent-ci",
+      "destinationPath": "/tools/local-ci",
+      "statusCode": 301
+    }
+  ]
+}

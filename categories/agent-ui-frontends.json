@@ -1,5 +1,26 @@
 {
   "slug": "agent-ui-frontends",
   "label": "UI & Frontends",
-  "sortOrder": 35
+  "sortOrder": 35,
+  "seoTitle": "User interfaces and frontends for AI agents",
+  "descriptionMd": "Interfaces where agents present, generate, edit, or share work with people and other systems.",
+  "definitionMd": "This category covers frontend systems built around agent-generated interfaces, agent-user interaction, or shared human-agent work rather than conventional application UI alone.",
+  "scopeMd": "Includes agent-generated or agent-editable interfaces, shared human-agent workspaces, and frontends that expose structured state, events, review, or handoff.",
+  "inclusionMd": "- Agents can create or materially edit the interface or its content.\n- The interface exposes structured state, events, or collaboration designed for agent participation.\n- Human-agent review or handoff is a documented core workflow.",
+  "exclusionMd": "- It is a general component library or frontend framework with no agent-specific capability.\n- AI is limited to copy generation or a superficial chat widget.",
+  "selectionGuideMd": "- What can the agent create, change, or observe in the interface?\n- How is state shared between the person and the agent?\n- Can agent-originated changes be reviewed or attributed?",
+  "useCases": [
+    "Let agents generate or update interactive user interfaces",
+    "Share interface state between people and agents",
+    "Review and attribute agent-originated interface changes"
+  ],
+  "sources": [
+    {
+      "title": "Agent User Interaction Protocol overview",
+      "url": "https://docs.ag-ui.com/introduction",
+      "claim": "AG-UI documents a bidirectional, event-based protocol connecting agent backends to user-facing applications, including shared state and human-in-the-loop interrupts.",
+      "accessedAt": "2026-09-03",
+      "sourceType": "official-documentation"
+    }
+  ]
 }

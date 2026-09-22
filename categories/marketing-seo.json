@@ -1,5 +1,27 @@
 {
   "slug": "marketing-seo",
   "label": "Marketing & SEO",
-  "sortOrder": 110
+  "sortOrder": 110,
+  "seoTitle": "Marketing and SEO tools for AI agents",
+  "descriptionMd": "Research, optimisation, and measurement tools that let agents perform accountable marketing and search-visibility work.",
+  "definitionMd": "This category covers marketing and SEO capabilities designed for agent workflows, including demand research, search analysis, content planning, optimisation, and measurable follow-up actions.",
+  "scopeMd": "Includes agent-oriented demand research, search analysis, content planning, optimisation, and measurement workflows that expose reviewable data, metrics, and outputs.",
+  "inclusionMd": "- An agent can research, analyse, recommend, or execute a substantive marketing or SEO task through a documented interface.\n- The product exposes useful source data, metrics, constraints, or outputs rather than only generating promotional copy.\n- Agent use is a documented workflow with enough evidence for a person to review the result.",
+  "exclusionMd": "- It is a conventional marketing suite with only a generic API or superficial agent integration.\n- Its primary value is undifferentiated AI copy generation without source data, measurement, or an agent-specific workflow.",
+  "selectionGuideMd": "- Which marketing or search decision does the tool help an agent make?\n- What source data, metrics, and provenance accompany the output?\n- Which actions require human review and how can their effects be measured?",
+  "useCases": [
+    "Research search demand and prioritise opportunities",
+    "Build evidence-backed content and optimisation plans",
+    "Measure search visibility and marketing outcomes",
+    "Review source data and constraints before taking action"
+  ],
+  "sources": [
+    {
+      "title": "Google Search Console Search Analytics API",
+      "url": "https://developers.google.com/webmaster-tools/v1/searchanalytics/query",
+      "claim": "The Search Analytics API lets software query Google Search traffic with filters and group results by dimensions such as page, query, country, and device.",
+      "accessedAt": "2026-09-03",
+      "sourceType": "official-documentation"
+    }
+  ]
 }
