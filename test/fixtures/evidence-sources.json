@@ -1,0 +1,50 @@
+{
+  "valid": [
+    {
+      "title": "Paperclip documentation",
+      "url": "https://docs.paperclip.ing/",
+      "claim": "The documentation describes the supported agent orchestration workflow.",
+      "accessedAt": "2026-09-22",
+      "sourceType": "official-documentation"
+    }
+  ],
+  "missingFields": [
+    {}
+  ],
+  "invalidUrl": [
+    {
+      "title": "Paperclip documentation",
+      "url": "not-a-url",
+      "claim": "The documentation describes the supported agent orchestration workflow.",
+      "accessedAt": "2026-09-22",
+      "sourceType": "official-documentation"
+    }
+  ],
+  "nonHttpsUrl": [
+    {
+      "title": "Paperclip documentation",
+      "url": "http://docs.paperclip.ing/",
+      "claim": "The documentation describes the supported agent orchestration workflow.",
+      "accessedAt": "2026-09-22",
+      "sourceType": "official-documentation"
+    }
+  ],
+  "invalidAccessedAt": [
+    {
+      "title": "Paperclip documentation",
+      "url": "https://docs.paperclip.ing/",
+      "claim": "The documentation describes the supported agent orchestration workflow.",
+      "accessedAt": "2026-02-30",
+      "sourceType": "official-documentation"
+    }
+  ],
+  "invalidSourceType": [
+    {
+      "title": "Paperclip documentation",
+      "url": "https://docs.paperclip.ing/",
+      "claim": "The documentation describes the supported agent orchestration workflow.",
+      "accessedAt": "2026-09-22",
+      "sourceType": "vendor-blog"
+    }
+  ]
+}
