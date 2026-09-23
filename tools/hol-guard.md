@@ -21,7 +21,7 @@ evidenceSources:
     url: "https://hol.org/guard"
     claim: "HOL Guard documents local-first runtime controls for supported AI-agent actions including shell commands, secret access, MCP changes, and plugin or skill installation."
     accessedAt: "2026-09-12"
-    sourceType: "official-website"
+    sourceType: "official-product-page"
   - title: "HOL Guard repository"
     url: "https://github.com/hashgraph-online/hol-guard"
     claim: "The maintained repository documents the open-source Guard Local runtime, supported coding-agent integrations, runtime policy decisions, and Apache-2.0 license."
