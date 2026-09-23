@@ -11,6 +11,8 @@ tags:
   - "mcp"
 websiteUrl: "https://hol.org/guard"
 githubUrl: "https://github.com/hashgraph-online/hol-guard"
+logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Fhol.org%2Fguard"
+ogImageUrl: "https://hol.org/guard/og/landing"
 pricing: "freemium"
 classification: "agent-enabling"
 developerName: "HOL"
