@@ -19,7 +19,7 @@
       "url": "https://genai.owasp.org/initiatives/agentic-security-initiative/",
       "claim": "OWASP documents security risks and controls that arise from autonomous agent workflows.",
       "accessedAt": "2026-09-12",
-      "sourceType": "official-guidance"
+      "sourceType": "official-documentation"
     }
   ],
   "isIndexable": true
