@@ -2,6 +2,9 @@
 slug: "mem0"
 name: "Mem0"
 description: "Persistent memory layer for agents, copilots, and coding tools"
+agentSummary: "Mem0 adds durable memory to agents, copilots, and coding tools through hosted APIs, SDKs, a CLI, and an Apache-licensed open-source path. It is a fit when products need to remember user preferences, project context, or prior decisions across sessions without building the full memory layer from scratch."
+seoTitle: "Mem0 Persistent Memory for Agents and Copilots"
+seoDescription: "Use Mem0 to add persistent agent memory through hosted REST APIs, Python and JavaScript SDKs, CLI, open-source, or managed governance features."
 category: "long-term-memory-state-management"
 tags:
   - "memory"
@@ -55,6 +58,8 @@ classificationRationaleMd: "Mem0 is a memory layer that agents and applications 
 bestForMd: "Agents and AI applications that need reusable user preferences, project context, or other memories across conversations and sessions."
 limitationsMd: "The self-managed option makes the operator responsible for vector-database, model-provider, and hosting costs and for configuring and maintaining that infrastructure."
 verificationLevel: "documentation-reviewed"
+reviewedBy: "foo-bender"
+reviewedAt: "2026-09-25"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Fmem0.ai"
 ogImageUrl: "https://framerusercontent.com/images/Mm4DtRfHMURyBy4FmfV4AFt7OQ.png"
 sortOrder: 10

@@ -94,6 +94,9 @@ Example:
 slug: "coolapi"
 name: "CoolAPI"
 description: "An agent-first API for doing cool things"
+seoTitle: "CoolAPI: Controlled API Access for AI Agent Workflows"
+seoDescription: "Explore how CoolAPI gives AI agents controlled access to documented API operations. Review its supported interfaces, deployment model, pricing, and evidence."
+agentSummary: "CoolAPI provides API and MCP interfaces for agents that need to request approved operations. Its documented permission controls define which actions an agent can attempt, while the hosted deployment handles the execution path. Review the linked documentation and pricing page to confirm the current controls, supported operations, and limits before relying on it."
 category: "api-access-orchestration-layers"
 tags:
   - "mcp"
@@ -155,6 +158,10 @@ Required tool fields:
 
 Optional tool fields:
 
+- `seoTitle`, `seoDescription`, and `agentSummary` are optional, non-empty plain-text strings. Contributors may suggest them; the editorial reviewer owns the final wording. Existing listings need no changes.
+- Surrounding whitespace is trimmed before validation and publishing; whitespace-only values are invalid.
+- `seoTitle` overrides only the tool page title; `seoDescription` overrides only its meta and social description. Each falls back independently to the current generated text when omitted. `agentSummary` adds a paragraph before the existing visible description and does not replace it.
+- Draft a specific, factual title around the tool and its agent use (usually about 50–60 characters). Write a description that helps a reader decide whether to open the profile (usually about 140–160 characters). Summarize the practical agent-facing outcome in one short paragraph (roughly 40–70 words). These are editorial drafting targets, not hard validation limits or automatic truncation rules. Avoid unsupported claims, keyword repetition, promotional language, and markdown or HTML.
 - `githubUrl`
 - `logoUrl`
 - `ogImageUrl`
@@ -169,6 +176,8 @@ Optional tool fields:
 - `reviewedBy`, `reviewedAt`, and `publishedAt`
 - `isIndexable`, which defaults to `true`
 - `sortOrder`
+
+The [tool review guide](docs/tool-review-guide.md) gives the reviewer the acceptance checklist and rollout behavior for SEO suggestions.
 
 Do not add `contentModifiedAt` to a tool file. D1 sets it when the record is first published and advances it only when authored or visible data changes. `synced_at` is a separate operational timestamp that advances on every sync.
 

@@ -2,6 +2,9 @@
 slug: "paperclip"
 name: "Paperclip"
 description: "Open-source orchestration for teams of AI agents"
+agentSummary: "Paperclip gives teams a self-hosted operating model for multiple bring-your-own agent runtimes. Instead of treating agents as isolated chats, it organizes them around members, managers, goals, tickets, budgets, approvals, governance, and scheduled heartbeats so work ownership and costs are easier to follow."
+seoTitle: "Paperclip Self-Hosted Team Orchestration for AI Agents"
+seoDescription: "Coordinate multiple external agent runtimes with Paperclip’s self-hosted org charts, goals, tickets, budgets, approvals, and scheduled heartbeats."
 category: "orchestrators"
 tags:
   - "orchestration"
@@ -50,6 +53,8 @@ evidenceSources:
     accessedAt: "2026-09-03"
     sourceType: "official-license"
 verificationLevel: "documentation-reviewed"
+reviewedBy: "foo-bender"
+reviewedAt: "2026-09-25"
 classificationRationaleMd: "Paperclip is designed around persistent agent identities, reporting lines, goals, delegated tickets, budgets, and scheduled work cycles; those operating primitives make it agent-native even though the actual model runtimes are supplied separately."
 bestForMd: "Teams coordinating several bring-your-own agent runtimes that need an auditable work queue, organizational ownership, budgets, governance, and a shared control surface."
 limitationsMd: "Paperclip is explicitly not an agent framework and does not provide models or agent subscriptions. Operators must supply and secure the runtimes, credentials, prompts, and deployment; remote access requires an authenticated network mode rather than the trusted loopback default."

@@ -275,8 +275,14 @@ export function parseCategoryFile(raw, sourcePath) {
 export function parseToolFile(raw, sourcePath) {
   const parsed = matter(raw);
   const slugFromPath = path.basename(sourcePath, ".md");
+  const data = { ...parsed.data };
+  for (const fieldName of ["seoTitle", "seoDescription", "agentSummary"]) {
+    if (typeof data[fieldName] === "string") {
+      data[fieldName] = data[fieldName].trim();
+    }
+  }
   return {
-    ...parsed.data,
+    ...data,
     body: parsed.content.trim(),
     sourcePath,
     slugFromPath,
@@ -452,6 +458,9 @@ export async function validateContent(rootDir = process.cwd()) {
     }
 
     for (const fieldName of [
+      "seoTitle",
+      "seoDescription",
+      "agentSummary",
       "developerName",
       "classificationRationaleMd",
       "inclusionRationaleMd",

@@ -2,6 +2,9 @@
 slug: "sixtyfour"
 name: "Sixtyfour"
 description: "Enrichment workflows and intelligence-grade profiles for people and companies"
+agentSummary: "Sixtyfour supplies agent builders with structured people and company intelligence through APIs, workflows, webhooks, and MCP search tools. Use it when an agent needs identity resolution, relationship context, contact discovery, or organization research before recruiting, sales, due-diligence, trust, or risk actions."
+seoTitle: "Sixtyfour People and Company Intelligence for Agents"
+seoDescription: "Add people and company enrichment to agents with Sixtyfour APIs for contact discovery, filter search, webhooks, workflows, and MCP tools."
 category: "specialized-search-discovery-engines"
 tags:
   - "enrichment"
@@ -49,6 +52,8 @@ evidenceSources:
     accessedAt: "2026-09-03"
     sourceType: "official-legal"
 verificationLevel: "documentation-reviewed"
+reviewedBy: "foo-bender"
+reviewedAt: "2026-09-25"
 classificationRationaleMd: "Sixtyfour's APIs, searches, MCP tools, and enrichment workflows supply external agents and applications with researched people and company context; although it also includes an in-product agent, its directory role is primarily agent-enabling."
 bestForMd: "Due-diligence, KYC/KYB, recruiting, sales-intelligence, trust, and risk workflows that need structured people or organization research, contact discovery, filtering, or batch enrichment."
 limitationsMd: "Use requires an account and API key, most operations consume credits, and high-tier intelligence is enterprise-only. Personal and company intelligence can be incomplete or inaccurate, so consequential decisions need source review, lawful data handling, and independent verification."

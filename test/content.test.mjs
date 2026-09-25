@@ -113,6 +113,37 @@ test("valid required tool evidence is accepted", async () => {
   assert.deepEqual(result.errors, []);
 });
 
+test("optional tool SEO fields accept omission and non-empty strings", async () => {
+  const result = await withFixture(async (rootDir) => {
+    const filePath = path.join(rootDir, "tools/paperclip.md");
+    const original = await readFile(filePath, "utf8");
+    await writeFile(filePath, original.replace(
+      'name: "Paperclip"',
+      'name: "Paperclip"\nseoTitle: "  Paperclip for AI agent teams  "\nseoDescription: "  Coordinate agent teams with Paperclip.  "\nagentSummary: "  Paperclip helps agents coordinate long-running work.  "',
+    ), "utf8");
+  });
+  assert.deepEqual(result.errors, []);
+  const paperclip = result.tools.find((tool) => tool.slug === "paperclip");
+  assert.equal(paperclip.seoTitle, "Paperclip for AI agent teams");
+  assert.equal(paperclip.seoDescription, "Coordinate agent teams with Paperclip.");
+  assert.equal(paperclip.agentSummary, "Paperclip helps agents coordinate long-running work.");
+  assert.equal(result.tools.find((tool) => tool.slug === "vapi").seoTitle, undefined);
+});
+
+test("optional tool SEO fields reject empty and non-string values", async () => {
+  const result = await withFixture(async (rootDir) => {
+    const filePath = path.join(rootDir, "tools/paperclip.md");
+    const original = await readFile(filePath, "utf8");
+    await writeFile(filePath, original.replace(
+      'name: "Paperclip"',
+      'name: "Paperclip"\nseoTitle: "   "\nseoDescription: 42\nagentSummary: null',
+    ), "utf8");
+  });
+  for (const field of ["seoTitle", "seoDescription", "agentSummary"]) {
+    assert(result.errors.some((error) => error.includes(`${field} must be a non-empty string when present`)));
+  }
+});
+
 test("all real categories have complete authored editorial profiles", async () => {
   const categoryDir = path.resolve("categories");
   const categoryFiles = (await readdir(categoryDir))
