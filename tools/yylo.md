@@ -2,6 +2,9 @@
 slug: "yylo"
 name: "YYLO"
 description: "Command-line orchestrator for coding agents with typed task, validation, merge, and release-readiness boundaries and receipt-backed repository changes"
+agentSummary: "YYLO is for developers and project operators who want coding agents to work through explicit repository boundaries. It creates exact-base task worktrees, collects receipt-backed validation evidence, and routes completed changes through a fenced merge queue with review depth based on risk. Agent providers and release or deployment authority remain external."
+seoTitle: "YYLO: Typed Task Orchestration for Coding Agents"
+seoDescription: "Explore YYLO's CLI workflow for isolated coding-agent worktrees, receipt-backed validation, and risk-based merge review before repository changes land."
 category: "orchestrators"
 tags:
   - "coding-agents"
@@ -38,6 +41,8 @@ evidenceSources:
     accessedAt: "2026-09-25"
     sourceType: "official-documentation"
 verificationLevel: "documentation-reviewed"
+reviewedBy: "foo-bender"
+reviewedAt: "2026-09-26"
 classificationRationaleMd: "YYLO is agent-native because coding agents are the actors it coordinates: it launches agent runs, routes typed tasks into dedicated worktrees, and gates protected merges behind a queued, risk-based review process."
 inclusionRationaleMd: "Agents work on assigned tasks in isolated exact-base worktrees, produce receipt-backed commits with bounded logs, and land changes through a fenced merge queue, keeping agent-built repository changes reviewable and recoverable."
 bestForMd: "Developers and project operators who want coding agents to work in isolated task worktrees with a typed lifecycle, validation evidence, and risk-based merge review."
