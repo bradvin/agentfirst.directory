@@ -2,6 +2,9 @@
 slug: "mission-control"
 name: "Mission Control"
 description: "Self-hosted control plane for operating AI agent fleets"
+agentSummary: "Mission Control is a self-hosted control plane for running agent fleets across multiple runtimes. Operators can dispatch tasks, inspect runs, review failures, track spend, set schedules and approvals, and expose Web UI, CLI, MCP, REST, WebSocket, or SSE interfaces from the same repository."
+seoTitle: "Mission Control for Self-Hosted Agent Fleets"
+seoDescription: "Run self-hosted agent fleets with Mission Control task dispatch, run and failure review, schedules, approvals, spend tracking, MCP, and APIs."
 category: "orchestrators"
 tags:
   - "multi-agent-orchestration"
@@ -52,6 +55,8 @@ classificationRationaleMd: "Mission Control directly coordinates agent identitie
 bestForMd: "Operators coordinating multiple agents or runtimes who need shared task ownership, run inspection, approval and quality gates, scheduling, and spend or failure visibility."
 limitationsMd: "Mission Control is alpha software with APIs, schemas, and configuration that may change; it is self-hosted rather than a managed multi-tenant service, and adapter depth varies by runtime."
 verificationLevel: "documentation-reviewed"
+reviewedBy: "foo-bender"
+reviewedAt: "2026-09-25"
 ---
 
 Mission Control is an MIT-licensed, self-hosted control plane for coordinating agents and runtimes through shared tasks, run visibility, approvals, schedules, alerts, and cost tracking.
