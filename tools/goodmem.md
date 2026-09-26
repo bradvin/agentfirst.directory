@@ -1,0 +1,86 @@
+---
+slug: "goodmem"
+name: "GoodMem"
+description: "Persistent, access-controlled memory and retrieval for AI agents"
+agentSummary: "GoodMem gives agent builders persistent memory spaces for storing and semantically retrieving task history, research, and shared context across sessions. It supports scoped service identities and API keys for unattended workloads, plus REST, SDK, framework, and MCP access. The native HTTP MCP surface is early access and retrieval-only; ingestion uses other interfaces."
+seoTitle: "GoodMem: Persistent Memory and Retrieval for AI Agents"
+seoDescription: "Explore GoodMem's persistent memory spaces, semantic retrieval, scoped workload access, and REST, SDK, framework, and MCP interfaces for agent workflows."
+category: "long-term-memory-state-management"
+tags:
+  - "agent-memory"
+  - "semantic-search"
+  - "mcp"
+  - "rag"
+websiteUrl: "https://goodmem.ai/"
+logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Fgoodmem.ai%2F"
+ogImageUrl: "https://goodmem.ai/og-image.png"
+pricing: "freemium"
+classification: "agent-enabling"
+entityType: "service"
+developerName: "PAIR Systems"
+docsUrl: "https://docs.goodmem.ai/"
+pricingUrl: "https://goodmem.ai/pricing"
+licenseUrl: "https://goodmem.ai/license"
+interfaces:
+  - "REST API"
+  - "SDKs"
+  - "Streamable HTTP MCP"
+  - "stdio MCP adapter"
+  - "agent framework integrations"
+deploymentModes:
+  - "self-hosted"
+  - "hosted"
+evidenceSources:
+  - title: "GoodMem integrations"
+    url: "https://docs.goodmem.ai/docs/integrations/"
+    claim: "GoodMem integrations expose persistent memory spaces, memory storage, semantic retrieval, optional reranking, and agent tools for frameworks including LangChain and LlamaIndex."
+    accessedAt: "2026-09-15"
+    sourceType: "official-documentation"
+  - title: "GoodMem native MCP reference"
+    url: "https://docs.goodmem.ai/docs/reference/mcp/"
+    claim: "The GoodMem REST server includes an authenticated Streamable HTTP MCP endpoint at /mcp with read-only memory retrieval and diagnostic tools; the interface is early access."
+    accessedAt: "2026-09-15"
+    sourceType: "official-documentation"
+  - title: "GoodMem service identity setup"
+    url: "https://docs.goodmem.ai/docs/how-to/access-control/service-identities/"
+    claim: "Humans provision workload service identities, space-scoped grants, and API keys so an unattended agent can access its permitted memories."
+    accessedAt: "2026-09-15"
+    sourceType: "official-documentation"
+  - title: "GoodMem API keys and ceilings"
+    url: "https://docs.goodmem.ai/docs/concepts/api-keys-and-ceilings/"
+    claim: "Scoped API keys restrict requests to the intersection of the subject's current authority and the key's immutable permission ceiling."
+    accessedAt: "2026-09-15"
+    sourceType: "official-documentation"
+  - title: "GoodMem Claude Code plugin"
+    url: "https://github.com/PAIR-Systems-Inc/goodmem-claude-code-plugin"
+    claim: "The official plugin supplies agent skills and configuration for a separate stdio MCP adapter with storage, retrieval, and management operations."
+    accessedAt: "2026-09-15"
+    sourceType: "official-repository"
+  - title: "GoodMem pricing"
+    url: "https://goodmem.ai/pricing"
+    claim: "Self-hosting is free under the binary license; GoodMem Cloud is a paid managed service with a limited free trial. The freemium label refers to ongoing free self-hosting alongside the paid cloud option."
+    accessedAt: "2026-09-15"
+    sourceType: "official-pricing"
+  - title: "GoodMem Free Binary License"
+    url: "https://goodmem.ai/license"
+    claim: "The proprietary server is distributed under a free binary license that permits commercial application use subject to its terms and does not grant source-code rights."
+    accessedAt: "2026-09-15"
+    sourceType: "official-license"
+verificationLevel: "documentation-reviewed"
+reviewedBy: "foo-bender"
+reviewedAt: "2026-09-25"
+classificationRationaleMd: "GoodMem provides persistent memory spaces, retrieval tools, and scoped workload access that agents integrate into their own workflows. It also serves conventional RAG applications, so agent-enabling describes its role."
+inclusionRationaleMd: "Agents can retain task history and findings in durable memory spaces, retrieve them in later sessions, and share context with other authorized workloads. The service supplies memory storage and access controls as well as retrieval."
+bestForMd: "Agent builders who need searchable task history, research findings, or shared knowledge across sessions, with scoped access and a choice of self-hosted or managed deployment."
+limitationsMd: "The built-in MCP endpoint is early access and read-only; ingestion and management use REST, an SDK, or the separate stdio adapter. Humans provision identities and credentials. The server core is proprietary. Free self-hosting still requires infrastructure and model-provider resources; the cloud trial is time-limited."
+---
+
+GoodMem stores agent findings, task history, and documents in persistent memory spaces, with semantic retrieval and optional reranking. Authorized workloads can reuse those spaces across sessions or share them with other agents. The same service also supports conventional RAG and document search.
+
+## So agents can...
+
+- Store findings through REST, SDKs, or framework tools and recall relevant context in later sessions.
+- Search permitted memory spaces through the built-in HTTP MCP endpoint at `<REST base>/mcp` with an API key.
+- Share selected context between workloads while keeping other spaces isolated through service identities, grants, and scoped keys.
+
+The application or agent chooses what to store and when to retrieve it. This listing does not assume automatic conversation-fact extraction, conflict resolution, or forgetting. The [public plugin](https://github.com/PAIR-Systems-Inc/goodmem-claude-code-plugin) and [LlamaIndex integration](https://github.com/PAIR-Systems-Inc/goodmem-llamaindex) are separate from the proprietary server core.
