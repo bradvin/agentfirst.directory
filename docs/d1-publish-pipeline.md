@@ -36,6 +36,10 @@ Schema migrations are staged before the full content sync. `0003_add_tool_classi
 
 `0004_add_editorial_seo_metadata.sql` adds category definitions, tool evidence and entity metadata, review provenance, indexability, content-specific modification timestamps, and redirect storage. Authored `reviewed_at` and `published_at` values remain nullable; the pipeline must not synthesize a review date. `content_modified_at` is pipeline-managed and changes only when authored or visible record data changes, while `synced_at` records every sync.
 
+`0005_add_tool_seo_metadata.sql` adds nullable `seo_title`, `seo_description`, and `agent_summary` columns. Tool authors may propose these fields in frontmatter, but the editorial reviewer accepts or revises the public wording. Omission remains valid for existing tools. The full sync writes supplied values, clears removed values to `NULL`, and advances `content_modified_at` when any of the three changes. The site resolves title and description independently; `agent_summary` appears before the existing visible description.
+
+See [tool review guide](tool-review-guide.md) for wording and acceptance criteria.
+
 ## CI And Merge Behavior
 
 On `pull_request`:
@@ -82,6 +86,7 @@ Validation must fail on any of the following:
 - missing required category SEO and scope guidance
 - malformed evidence items or evidence without an access date
 - invalid entity, verification, image-dimension, date, array, or indexability metadata
+- an empty or non-string tool `seoTitle`, `seoDescription`, or `agentSummary` when supplied
 - an author-supplied `contentModifiedAt` field
 - a missing or unsupported redirect-manifest version
 - invalid redirect status/path combinations, duplicate sources, chains, or cycles
@@ -105,6 +110,7 @@ The D1 sync step must:
 - preserve a redirect's `updated_at` on no-op syncs and advance it when its authored fields change
 - set `is_active = 0` for redirect rows missing from the current manifest
 - publish authored category scope, evidence, tool entity, comparison, and provenance fields
+- publish optional tool SEO title, SEO description, and agent summary, including removal of previously approved values
 - initialize `content_modified_at` for a new or migrated record and advance it only when substantive fields change
 - advance `synced_at` on every sync without using it as a public content modification date
 
@@ -156,6 +162,9 @@ tools(
   slug,
   name,
   description,
+  seo_title,
+  seo_description,
+  agent_summary,
   body_md,
   category_slug,
   tags_json,

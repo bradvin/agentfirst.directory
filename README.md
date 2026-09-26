@@ -78,7 +78,7 @@ Rules:
 - `sortOrder` is optional, but helps place the category in the list
 - `seoTitle`, `descriptionMd`, `definitionMd`, `scopeMd`, `inclusionMd`, `exclusionMd`, and `selectionGuideMd` are required authored editorial fields
 - `useCases` is a required non-empty array of concrete category-specific uses
-- `sources` is an optional claim-level evidence array using the source format below
+- `sources` is an optional claim-level evidence array. When present, each item requires `title`, `url` (HTTP or HTTPS first-party), `claim`, and `accessedAt`; `sourceType` is optional but must use the controlled list below when present
 - `reviewedBy`, `reviewedAt`, and `publishedAt` are optional provenance fields and must only be added when known
 - `isIndexable` is an optional boolean and defaults to `true`
 - do not add `contentModifiedAt`; the publishing pipeline manages it from substantive changes
@@ -94,6 +94,9 @@ Example:
 slug: "coolapi"
 name: "CoolAPI"
 description: "An agent-first API for doing cool things"
+seoTitle: "CoolAPI: Controlled API Access for AI Agent Workflows"
+seoDescription: "Explore how CoolAPI gives AI agents controlled access to documented API operations. Review its supported interfaces, deployment model, pricing, and evidence."
+agentSummary: "CoolAPI provides API and MCP interfaces for agents that need to request approved operations. Its documented permission controls define which actions an agent can attempt, while the hosted deployment handles the execution path. Review the linked documentation and pricing page to confirm the current controls, supported operations, and limits before relying on it."
 category: "api-access-orchestration-layers"
 tags:
   - "mcp"
@@ -151,9 +154,14 @@ Required tool fields:
 - `websiteUrl`
 - `pricing`
 - `classification`
+- `evidenceSources` — a non-empty array of first-party evidence using the required format below
 
 Optional tool fields:
 
+- `seoTitle`, `seoDescription`, and `agentSummary` are optional, non-empty plain-text strings. Contributors may suggest them; the editorial reviewer owns the final wording. Existing listings need no changes.
+- Surrounding whitespace is trimmed before validation and publishing; whitespace-only values are invalid.
+- `seoTitle` overrides only the tool page title; `seoDescription` overrides only its meta and social description. Each falls back independently to the current generated text when omitted. `agentSummary` adds a paragraph before the existing visible description and does not replace it.
+- Draft a specific, factual title around the tool and its agent use (usually about 50–60 characters). Write a description that helps a reader decide whether to open the profile (usually about 140–160 characters). Summarize the practical agent-facing outcome in one short paragraph (roughly 40–70 words). These are editorial drafting targets, not hard validation limits or automatic truncation rules. Avoid unsupported claims, keyword repetition, promotional language, and markdown or HTML.
 - `githubUrl`
 - `logoUrl`
 - `ogImageUrl`
@@ -162,13 +170,14 @@ Optional tool fields:
 - `developerName`
 - `docsUrl`, `pricingUrl`, and `licenseUrl`
 - `interfaces` and `deploymentModes` as arrays of non-empty strings
-- `evidenceSources`
 - `verificationLevel`
 - `classificationRationaleMd` and `inclusionRationaleMd`
 - `bestForMd`, `notBestForMd`, `limitationsMd`, and `unknownsMd`
 - `reviewedBy`, `reviewedAt`, and `publishedAt`
 - `isIndexable`, which defaults to `true`
 - `sortOrder`
+
+The [tool review guide](docs/tool-review-guide.md) gives the reviewer the acceptance checklist and rollout behavior for SEO suggestions.
 
 Do not add `contentModifiedAt` to a tool file. D1 sets it when the record is first published and advances it only when authored or visible data changes. `synced_at` is a separate operational timestamp that advances on every sync.
 
@@ -207,14 +216,15 @@ Use `hands-on-tested` only when the listing records what was tested, when it was
 
 ### Evidence sources and provenance
 
-Each item in a category's `sources` or a tool's `evidenceSources` must include:
+Every tool **must** include a non-empty `evidenceSources` array. This is required for every new tool submission; a missing or empty array fails content validation. Category `sources` remain optional and are separate from this tool-submission requirement.
+
+Each item in a tool's `evidenceSources` array must include all of these required fields:
 
 - `title` — the source's descriptive title
-- `url` — an HTTP or HTTPS first-party URL
+- `url` — an HTTPS first-party URL
 - `claim` — the specific directory claim this source supports
-- `accessedAt` — the ISO 8601 date or timestamp when the source was checked
-
-`sourceType` is optional, but when present must use one of these controlled values:
+- `accessedAt` — the ISO 8601 date (`YYYY-MM-DD`) when the source was checked
+- `sourceType` — one of these controlled values:
 
 - `official-documentation`
 - `official-repository`
@@ -226,7 +236,7 @@ Each item in a category's `sources` or a tool's `evidenceSources` must include:
 - `official-legal`
 - `official-release-notes`
 
-One broad homepage link should not be used to support unrelated claims.
+One broad homepage link should not be used to support unrelated claims. The controlled `official-*` `sourceType` records the submitter's declaration that a source is first-party; reviewers must still confirm that the URL is owned or maintained by the product, project, or protocol authority.
 
 `reviewedBy` and `reviewedAt` describe a real editorial review, not submission or sync time. Add both only after that review occurs. `publishedAt` should only be supplied when the publication date is known. Quote dates in YAML frontmatter so they remain strings.
 
@@ -235,14 +245,16 @@ One broad homepage link should not be used to support unrelated claims.
 1. Fork this repo or create a branch.
 2. Pick the closest existing category in `categories/`.
 3. Add a new file in `tools/<slug>.md`.
-4. Fill in the required frontmatter fields.
-5. Add a short body description.
-6. Open a pull request to `main`.
+4. Fill in every required frontmatter field, including a non-empty `evidenceSources` array.
+5. Check that every evidence item has a title, HTTPS first-party URL, specific claim, ISO 8601 access date, and controlled `sourceType`.
+6. Add a short body description.
+7. Open a pull request to `main`.
 
 What you need to provide:
 
 - a valid tool file in `tools/<slug>.md`
 - the required frontmatter fields
+- a non-empty `evidenceSources` array with complete first-party evidence for the listing's claims
 - a short factual description of the tool
 - useful, specific tags
 - `githubUrl` when the tool is open source

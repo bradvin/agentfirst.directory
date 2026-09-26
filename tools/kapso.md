@@ -2,6 +2,9 @@
 slug: "kapso"
 name: "Kapso"
 description: "WhatsApp Cloud API toolkit with storage, flows, and conversation APIs"
+agentSummary: "Kapso connects agents to WhatsApp through Meta-compatible APIs, webhooks, a TypeScript SDK, and a hosted project MCP endpoint. Builders can use it for support replies, onboarding flows, reminders, template messages, and shared-inbox handoff while keeping conversation history queryable through Kapso storage."
+seoTitle: "Kapso WhatsApp APIs and Hosted MCP for Agents"
+seoDescription: "Build WhatsApp agents with Kapso templates, webhooks, stored conversation history, shared inbox handoff, TypeScript SDK, and hosted MCP."
 category: "agent-identity-communication"
 tags:
   - "whatsapp"
@@ -52,6 +55,8 @@ classificationRationaleMd: "Kapso is a programmable WhatsApp platform used by ag
 bestForMd: "Products and agent workflows that need two-way WhatsApp messaging, stored conversation history, templates, flows, webhooks, or a shared operational inbox."
 limitationsMd: "Meta message charges are billed separately from Kapso plans. The included sandbox is for testing only and omits templates, WhatsApp synchronization, and multiple-recipient use."
 verificationLevel: "documentation-reviewed"
+reviewedBy: "foo-bender"
+reviewedAt: "2026-09-25"
 logoUrl: "https://kapso.com/favicon-32x32.png"
 ogImageUrl: "https://kapso.com/og-image.png"
 sortOrder: 30

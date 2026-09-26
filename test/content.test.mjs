@@ -3,9 +3,13 @@ import assert from "node:assert/strict";
 import os from "node:os";
 import path from "node:path";
 import { cp, mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
+import matter from "gray-matter";
 import { validateContent } from "../scripts/lib/content.mjs";
 
 const fixturesRoot = path.resolve("test/fixtures/valid");
+const evidenceCases = JSON.parse(
+  await readFile(new URL("./fixtures/evidence-sources.json", import.meta.url), "utf8"),
+);
 
 async function createFixtureCopy() {
   const tempRoot = await mkdtemp(path.join(os.tmpdir(), "agentfirst-content-"));
@@ -26,12 +30,118 @@ async function withFixture(mutator) {
   }
 }
 
+async function setPaperclipEvidence(rootDir, evidenceSources) {
+  const filePath = path.join(rootDir, "tools/paperclip.md");
+  const parsed = matter(await readFile(filePath, "utf8"));
+
+  if (evidenceSources === undefined) {
+    delete parsed.data.evidenceSources;
+  } else {
+    parsed.data.evidenceSources = evidenceSources;
+  }
+
+  await writeFile(filePath, matter.stringify(parsed.content, parsed.data), "utf8");
+}
+
 test("valid content fixture passes validation", async () => {
   const result = await withFixture();
 
   assert.equal(result.errors.length, 0);
   assert.equal(result.categories.length, 2);
   assert.equal(result.tools.length, 2);
+});
+
+test("tool evidenceSources is required", async () => {
+  const result = await withFixture((rootDir) => setPaperclipEvidence(rootDir, undefined));
+
+  assert(result.errors.some((error) => error.includes("evidenceSources must be a non-empty array")));
+});
+
+test("tool evidenceSources must not be empty", async () => {
+  const result = await withFixture((rootDir) => setPaperclipEvidence(rootDir, []));
+
+  assert(result.errors.some((error) => error.includes("evidenceSources must be a non-empty array")));
+});
+
+test("tool evidence source fields are required", async () => {
+  const result = await withFixture((rootDir) =>
+    setPaperclipEvidence(rootDir, evidenceCases.missingFields));
+
+  for (const fieldName of ["title", "url", "claim", "accessedAt", "sourceType"]) {
+    assert(
+      result.errors.some((error) => error.includes(`evidenceSources[0].${fieldName} is required`)),
+      `missing required-field error for ${fieldName}`,
+    );
+  }
+});
+
+test("tool evidence source URL must be valid", async () => {
+  const result = await withFixture((rootDir) =>
+    setPaperclipEvidence(rootDir, evidenceCases.invalidUrl));
+
+  assert(result.errors.some((error) => error.includes("evidenceSources[0].url must be a valid URL")));
+});
+
+test("tool evidence source URL must use HTTPS", async () => {
+  const result = await withFixture((rootDir) =>
+    setPaperclipEvidence(rootDir, evidenceCases.nonHttpsUrl));
+
+  assert(result.errors.some((error) => error.includes("evidenceSources[0].url must use HTTPS")));
+});
+
+test("tool evidence source accessedAt must be a real ISO date", async () => {
+  const result = await withFixture((rootDir) =>
+    setPaperclipEvidence(rootDir, evidenceCases.invalidAccessedAt));
+
+  assert(
+    result.errors.some((error) =>
+      error.includes("evidenceSources[0].accessedAt must be an ISO 8601 date (YYYY-MM-DD)")),
+  );
+});
+
+test("tool evidence sourceType must use the controlled list", async () => {
+  const result = await withFixture((rootDir) =>
+    setPaperclipEvidence(rootDir, evidenceCases.invalidSourceType));
+
+  assert(result.errors.some((error) => error.includes("evidenceSources[0].sourceType must be one of")));
+});
+
+test("valid required tool evidence is accepted", async () => {
+  const result = await withFixture((rootDir) =>
+    setPaperclipEvidence(rootDir, evidenceCases.valid));
+
+  assert.deepEqual(result.errors, []);
+});
+
+test("optional tool SEO fields accept omission and non-empty strings", async () => {
+  const result = await withFixture(async (rootDir) => {
+    const filePath = path.join(rootDir, "tools/paperclip.md");
+    const original = await readFile(filePath, "utf8");
+    await writeFile(filePath, original.replace(
+      'name: "Paperclip"',
+      'name: "Paperclip"\nseoTitle: "  Paperclip for AI agent teams  "\nseoDescription: "  Coordinate agent teams with Paperclip.  "\nagentSummary: "  Paperclip helps agents coordinate long-running work.  "',
+    ), "utf8");
+  });
+  assert.deepEqual(result.errors, []);
+  const paperclip = result.tools.find((tool) => tool.slug === "paperclip");
+  assert.equal(paperclip.seoTitle, "Paperclip for AI agent teams");
+  assert.equal(paperclip.seoDescription, "Coordinate agent teams with Paperclip.");
+  assert.equal(paperclip.agentSummary, "Paperclip helps agents coordinate long-running work.");
+  assert.equal(result.tools.find((tool) => tool.slug === "vapi").seoTitle, undefined);
+});
+
+test("optional tool SEO fields reject empty and non-string values", async () => {
+  const result = await withFixture(async (rootDir) => {
+    const filePath = path.join(rootDir, "tools/paperclip.md");
+    const original = await readFile(filePath, "utf8");
+    await writeFile(filePath, original.replace(
+      'name: "Paperclip"',
+      'name: "Paperclip"\nseoTitle: "   "\nseoDescription: 42\nagentSummary: null',
+    ), "utf8");
+  });
+  for (const field of ["seoTitle", "seoDescription", "agentSummary"]) {
+    assert(result.errors.some((error) => error.includes(`${field} must be a non-empty string when present`)));
+  }
 });
 
 test("all real categories have complete authored editorial profiles", async () => {

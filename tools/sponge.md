@@ -2,6 +2,9 @@
 slug: "sponge"
 name: "Sponge"
 description: "Wallets, agent spending controls, and payment gateways for the agent economy"
+agentSummary: "Sponge is built for agents that need controlled access to money, from hosted stablecoin wallets and virtual cards to ACH, wires, swaps, and x402 or MPP purchases. It also gives API providers a gateway for charging machine clients, making it relevant to both spending agents and payable agent-facing services."
+seoTitle: "Sponge Agent Wallets and x402 Payment Gateway"
+seoDescription: "Give agents wallet, card, transfer, swap, and x402 or MPP payment actions, or expose paid API routes through Sponge’s managed gateway."
 category: "agent-payment-financial-primitives"
 tags:
   - "payments"
@@ -49,6 +52,8 @@ evidenceSources:
     accessedAt: "2026-09-03"
     sourceType: "official-legal"
 verificationLevel: "documentation-reviewed"
+reviewedBy: "foo-bender"
+reviewedAt: "2026-09-25"
 classificationRationaleMd: "Sponge gives agents their own programmable financial accounts and payment actions, and lets merchants expose machine-payable endpoints, making autonomous agent transactions the product's primary design rather than an add-on."
 bestForMd: "Agents that need controlled wallets, card or bank payment capabilities, x402/MPP purchases, transfers, swaps, or markets, and API businesses that want to sell metered endpoints to agents through a managed gateway."
 limitationsMd: "Financial actions involve real funds, credentials, supported chains, third-party providers, and in some cases card onboarding or KYC. Operators must apply conservative limits, protect sensitive card and API-key data, review every published gateway route, and account for legal, tax, compliance, counterparty, and market risk."

@@ -102,12 +102,41 @@ test("editorial SEO migration adds constrained content and provenance columns", 
   );
 });
 
+test("tool SEO migration adds nullable columns without values on existing tools", async () => {
+  const db = new DatabaseSync(":memory:");
+  for (const migration of [
+    "0001_initial.sql",
+    "0002_add_tool_submitter.sql",
+    "0003_add_tool_classification.sql",
+    "0004_add_editorial_seo_metadata.sql",
+  ]) {
+    db.exec(await readMigration(migration));
+  }
+  db.exec(`
+    INSERT INTO categories (slug, label, source_path)
+    VALUES ('orchestrators', 'Orchestrators', 'categories/orchestrators.json');
+    INSERT INTO tools (slug, name, description, body_md, category_slug, tags_json, website_url, pricing, source_path)
+    VALUES ('paperclip', 'Paperclip', 'Description', 'Body', 'orchestrators', '[]', 'https://example.com', 'free', 'tools/paperclip.md');
+  `);
+  db.exec(await readMigration("0005_add_tool_seo_metadata.sql"));
+  const columns = db.prepare("PRAGMA table_info(tools)").all();
+  for (const name of ["seo_title", "seo_description", "agent_summary"]) {
+    const column = columns.find((candidate) => candidate.name === name);
+    assert.deepEqual(
+      { type: column.type, notnull: column.notnull, defaultValue: column.dflt_value },
+      { type: "TEXT", notnull: 0, defaultValue: null },
+    );
+    assert.equal(db.prepare(`SELECT ${name} FROM tools WHERE slug = 'paperclip'`).get()[name], null);
+  }
+});
+
 test("sync SQL upserts repo content and retires missing rows", async () => {
   const db = new DatabaseSync(":memory:");
   db.exec(await readMigration("0001_initial.sql"));
   db.exec(await readMigration("0002_add_tool_submitter.sql"));
   db.exec(await readMigration("0003_add_tool_classification.sql"));
   db.exec(await readMigration("0004_add_editorial_seo_metadata.sql"));
+  db.exec(await readMigration("0005_add_tool_seo_metadata.sql"));
 
   db.exec(`
     INSERT INTO categories (slug, label, sort_order, source_path, is_active, synced_at)
@@ -262,6 +291,7 @@ test("no-op sync preserves content modification timestamps while visible edits a
     "0002_add_tool_submitter.sql",
     "0003_add_tool_classification.sql",
     "0004_add_editorial_seo_metadata.sql",
+    "0005_add_tool_seo_metadata.sql",
   ]) {
     db.exec(await readMigration(migration));
   }
@@ -314,6 +344,58 @@ test("no-op sync preserves content modification timestamps while visible edits a
   assert.notEqual(changedCategory.content_modified_at, oldTimestamp);
 });
 
+test("tool SEO sync inserts, escapes, updates, clears, and tracks changes", async () => {
+  const db = new DatabaseSync(":memory:");
+  for (const migration of [
+    "0001_initial.sql",
+    "0002_add_tool_submitter.sql",
+    "0003_add_tool_classification.sql",
+    "0004_add_editorial_seo_metadata.sql",
+    "0005_add_tool_seo_metadata.sql",
+  ]) {
+    db.exec(await readMigration(migration));
+  }
+
+  const tempRoot = await mkdtemp(path.join(os.tmpdir(), "agentfirst-tool-seo-"));
+  try {
+    await cp(fixtureRoot, tempRoot, { recursive: true });
+    const toolPath = path.join(tempRoot, "tools/paperclip.md");
+    const original = await readFile(toolPath, "utf8");
+    const withSeo = original.replace('name: "Paperclip"',
+      'name: "Paperclip"\nseoTitle: "  Paperclip agent teams  "\nseoDescription: "  Paperclip handles agents\' work.  "\nagentSummary: "  Coordinate agents\' tasks.  "');
+    await writeFile(toolPath, withSeo, "utf8");
+    db.exec(await generateSyncSql(tempRoot));
+    const readSeo = () => db.prepare("SELECT seo_title, seo_description, agent_summary, content_modified_at FROM tools WHERE slug = 'paperclip'").get();
+    assert.deepEqual({ ...readSeo(), content_modified_at: Boolean(readSeo().content_modified_at) }, {
+      seo_title: "Paperclip agent teams",
+      seo_description: "Paperclip handles agents' work.",
+      agent_summary: "Coordinate agents' tasks.",
+      content_modified_at: true,
+    });
+
+    const oldTimestamp = "2000-01-01 00:00:00";
+    db.prepare("UPDATE tools SET content_modified_at = ? WHERE slug = 'paperclip'").run(oldTimestamp);
+    db.exec(await generateSyncSql(tempRoot));
+    assert.equal(readSeo().content_modified_at, oldTimestamp);
+
+    await writeFile(toolPath, withSeo.replace("Paperclip agent teams", "Paperclip for agent teams"), "utf8");
+    db.exec(await generateSyncSql(tempRoot));
+    assert.equal(readSeo().seo_title, "Paperclip for agent teams");
+    assert.notEqual(readSeo().content_modified_at, oldTimestamp);
+
+    db.prepare("UPDATE tools SET content_modified_at = ? WHERE slug = 'paperclip'").run(oldTimestamp);
+    await writeFile(toolPath, original, "utf8");
+    db.exec(await generateSyncSql(tempRoot));
+    const cleared = readSeo();
+    assert.equal(cleared.seo_title, null);
+    assert.equal(cleared.seo_description, null);
+    assert.equal(cleared.agent_summary, null);
+    assert.notEqual(cleared.content_modified_at, oldTimestamp);
+  } finally {
+    await rm(tempRoot, { recursive: true, force: true });
+  }
+});
+
 test("sync SQL publishes optional provenance without synthesizing review dates", async () => {
   const db = new DatabaseSync(":memory:");
   for (const migration of [
@@ -321,6 +403,7 @@ test("sync SQL publishes optional provenance without synthesizing review dates",
     "0002_add_tool_submitter.sql",
     "0003_add_tool_classification.sql",
     "0004_add_editorial_seo_metadata.sql",
+    "0005_add_tool_seo_metadata.sql",
   ]) {
     db.exec(await readMigration(migration));
   }

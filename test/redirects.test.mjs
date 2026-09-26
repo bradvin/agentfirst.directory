@@ -79,6 +79,7 @@ async function applyMigrations(db) {
     "0002_add_tool_submitter.sql",
     "0003_add_tool_classification.sql",
     "0004_add_editorial_seo_metadata.sql",
+    "0005_add_tool_seo_metadata.sql",
   ]) {
     db.exec(await readMigration(migration));
   }

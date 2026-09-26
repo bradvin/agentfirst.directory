@@ -71,6 +71,9 @@ const CATEGORY_CONTENT_COLUMNS = [
 const TOOL_CONTENT_COLUMNS = [
   "name",
   "description",
+  "seo_title",
+  "seo_description",
+  "agent_summary",
   "body_md",
   "category_slug",
   "tags_json",
@@ -188,7 +191,8 @@ ON CONFLICT(slug) DO UPDATE SET
     .map(
       (tool) => `
 INSERT INTO tools (
-  slug, name, description, body_md, category_slug, tags_json, website_url,
+  slug, name, description, seo_title, seo_description, agent_summary,
+  body_md, category_slug, tags_json, website_url,
   github_url, pricing, classification, submitted_by_github, logo_url, og_image_url,
   logo_width, logo_height, og_image_width, og_image_height, entity_type,
   developer_name, docs_url, pricing_url, license_url, interfaces_json,
@@ -199,7 +203,9 @@ INSERT INTO tools (
   content_modified_at, synced_at
 )
 VALUES (
-  ${sqlString(tool.slug)}, ${sqlString(tool.name)}, ${sqlString(tool.description)}, ${sqlString(tool.body)},
+  ${sqlString(tool.slug)}, ${sqlString(tool.name)}, ${sqlString(tool.description)},
+  ${sqlString(tool.seoTitle)}, ${sqlString(tool.seoDescription)}, ${sqlString(tool.agentSummary)},
+  ${sqlString(tool.body)},
   ${sqlString(tool.category)}, ${sqlJson(tool.tags)}, ${sqlString(tool.websiteUrl)},
   ${sqlString(tool.githubUrl)}, ${sqlString(tool.pricing)}, ${sqlString(tool.classification)},
   ${sqlString(tool.submittedBy)}, ${sqlString(tool.logoUrl)}, ${sqlString(tool.ogImageUrl)},
@@ -217,6 +223,9 @@ VALUES (
 ON CONFLICT(slug) DO UPDATE SET
   name = excluded.name,
   description = excluded.description,
+  seo_title = excluded.seo_title,
+  seo_description = excluded.seo_description,
+  agent_summary = excluded.agent_summary,
   body_md = excluded.body_md,
   category_slug = excluded.category_slug,
   tags_json = excluded.tags_json,
