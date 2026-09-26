@@ -24,7 +24,6 @@ interfaces:
   - "MCP server"
   - "Agent Skill"
   - "Python SDK"
-  - "Node.js SDK"
   - "webhooks"
   - "WebSocket relay"
 deploymentModes:
@@ -33,39 +32,39 @@ deploymentModes:
 evidenceSources:
   - title: "AgentLine introduction"
     url: "https://docs.agentline.cloud/introduction"
-    claim: "AgentLine documents persistent phone numbers for AI agents, inbound and outbound voice calls, SMS, transcripts, REST endpoints, MCP, and Python and Node.js SDKs."
-    accessedAt: "2026-09-25"
+    claim: "AgentLine documents persistent US phone numbers for AI agents, inbound and outbound voice calls, inbound SMS, transcripts, REST, MCP, and its Python SDK; it says the Node SDK is not yet on npm and directs Node users to REST."
+    accessedAt: "2026-09-26"
     sourceType: "official-documentation"
   - title: "AgentLine calls guide"
     url: "https://docs.agentline.cloud/guides/calls"
     claim: "The calls guide documents outbound calling, saved transcripts, call control, and turn-bound context delivery to live calls."
-    accessedAt: "2026-09-25"
+    accessedAt: "2026-09-26"
     sourceType: "official-documentation"
   - title: "AgentLine Agent Skill"
     url: "https://agentline.cloud/skill.md"
     claim: "The official skill describes agent setup, inbound call and SMS events, signed webhooks, a persistent WebSocket relay, REST operations, MCP tools, transcripts, and current channel limitations."
-    accessedAt: "2026-09-25"
+    accessedAt: "2026-09-26"
     sourceType: "official-documentation"
   - title: "AgentLine pricing"
     url: "https://agentline.cloud/pricing"
-    claim: "AgentLine publishes usage-based pricing for its hosted phone-number, voice-call, and SMS service."
-    accessedAt: "2026-09-25"
+    claim: "AgentLine publishes $2/month pricing for US phone numbers and usage pricing for voice calls and inbound SMS; outbound SMS is disabled."
+    accessedAt: "2026-09-26"
     sourceType: "official-pricing"
   - title: "AgentLine source repository"
     url: "https://github.com/AgentLineHQ/AgentLine"
     claim: "The official repository provides the MIT-licensed AgentLine API source and documents hosted and self-hosted operation."
-    accessedAt: "2026-09-25"
+    accessedAt: "2026-09-26"
     sourceType: "official-repository"
-classificationRationaleMd: "AgentLine is designed around an AI agent as the owner and operator of a persistent phone identity, with agent-oriented MCP, skill, relay, API, and SDK interfaces as core product surfaces."
-bestForMd: "Agents that need a programmable phone number for inbound and outbound voice, inbound SMS, saved transcripts, and event-driven follow-up through REST, MCP, a skill, SDKs, webhooks, or a persistent relay."
-limitationsMd: "Current first-party sources conflict over whether number fees are one-time or monthly, whether number availability is US-only or includes Canada, and whether outbound SMS is enabled. Verify current coverage, channel support, and billing terms before integrating."
-unknownsMd: "The homepage's Python install command conflicts with the Python SDK documentation, which names the distribution as agentline-ai. The documented npm package returned 404 from the registry when reviewed, and the hosted service was not hands-on tested for this listing."
+classificationRationaleMd: "AgentLine is designed around an AI agent as the owner and operator of a persistent phone identity, with agent-oriented MCP, skill, relay, REST, and Python SDK interfaces as core product surfaces."
+bestForMd: "Agents that need a programmable phone number for inbound and outbound voice, inbound SMS, saved transcripts, and event-driven follow-up through REST, MCP, a skill, the Python SDK, webhooks, or a persistent relay."
+limitationsMd: "Hosted phone numbers are currently US-only and cost $2/month each. SMS is inbound-only, with outbound SMS disabled. The Node SDK is not yet on npm, so Node.js users should currently use REST."
+unknownsMd: "The hosted service and call quality were not hands-on tested for this listing, so provisioning reliability, real-world latency, audio quality, and event delivery remain unverified."
 verificationLevel: "documentation-reviewed"
 ---
 
-AgentLine provides phone identities for AI agents, combining inbound and outbound voice calls, inbound SMS, stored transcripts, and real-time event delivery. Builders can use the hosted service or deploy the MIT-licensed source, then integrate through REST, MCP, an Agent Skill, SDKs, signed webhooks, or a persistent WebSocket relay.
+AgentLine provides phone identities for AI agents, combining inbound and outbound voice calls, inbound SMS, stored transcripts, and real-time event delivery. Builders can use the hosted service or deploy the MIT-licensed source, then integrate through REST, MCP, an Agent Skill, the Python SDK, signed webhooks, or a persistent WebSocket relay.
 
-Hosted access is usage-based. Because current first-party pages disagree on some number, geography, SMS, and package details, the linked documentation and pricing page should be checked before implementation.
+Hosted US phone numbers cost $2/month each. SMS is inbound-only and outbound SMS is disabled. Python users can install `agentline-ai`; Node.js users should use REST until the Node SDK is published to npm.
 
 ## So agents can...
 
