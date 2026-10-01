@@ -11,6 +11,8 @@ tags:
   - "agent-sdk"
 websiteUrl: "https://agentel.tech"
 githubUrl: "https://github.com/agentel-tech/agentel-connection-kit"
+logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Fagentel.tech"
+ogImageUrl: "https://agentel.tech/brand/logo-transparent.png"
 pricing: "free"
 classification: "agent-native"
 entityType: "web-application"
