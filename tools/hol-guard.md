@@ -18,6 +18,15 @@ logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https%3A%2F%2Fhol.
 ogImageUrl: "https://hol.org/guard/og/landing"
 pricing: "freemium"
 classification: "agent-enabling"
+entityType: "software-application"
+interfaces:
+  - "CLI"
+  - "Local dashboard"
+  - "Native agent hooks"
+  - "Managed MCP proxies"
+deploymentModes:
+  - "local"
+  - "managed cloud"
 developerName: "HOL"
 docsUrl: "https://hol.org/guard"
 licenseUrl: "https://github.com/hashgraph-online/hol-guard/blob/main/LICENSE"
