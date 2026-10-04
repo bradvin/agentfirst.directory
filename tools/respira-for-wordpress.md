@@ -1,10 +1,10 @@
 ---
 slug: "respira-for-wordpress"
 name: "Respira for WordPress"
-description: "WordPress plugin and MCP server that lets AI agents read and edit live sites in their page builder's own format, with draft copies and human approval."
+description: "WordPress plugin and MCP server that lets AI agents read and edit live sites in their page builder's own format, staging page and post edits on draft copies by default."
 seoTitle: "Respira for WordPress: MCP Access to WordPress Page Builders"
-seoDescription: "See how Respira for WordPress lets MCP agents read and edit WordPress pages in 17 page builders, with draft copies, human approval, snapshots and plan mode."
-agentSummary: "Respira for WordPress gives MCP clients such as Claude, ChatGPT, Cursor and Codex read and write access to a WordPress site in the format of its page builder. Edits to published pages land on a draft duplicate that a person approves, each write is snapshotted for rollback, and plan mode returns proposed steps before anything runs. A paid licence is required after a seven-day trial."
+seoDescription: "See how Respira for WordPress lets MCP agents read and edit WordPress pages in 17 page builders, with draft copies by default, snapshots and plan mode."
+agentSummary: "Respira for WordPress gives MCP clients such as Claude, ChatGPT, Cursor and Codex read and write access to a WordPress site in the format of its page builder. By default an edit to a published page or post lands on a draft duplicate that a person publishes in WordPress, unless the owner has turned on direct editing; page and post writes are snapshotted for rollback; and plan mode (plugin 9.1.0 and MCP server 8.4.0 or later) returns proposed steps, which the client applies with one call. A separate owner-approval gate for a few high-risk actions is opt-in. A paid licence is required after a seven-day trial."
 category: "agent-ui-frontends"
 tags:
   - "wordpress"
@@ -12,9 +12,8 @@ tags:
   - "webmcp"
   - "page-builders"
   - "cms"
-  - "human-approval"
+  - "draft-copies"
 websiteUrl: "https://www.respira.press"
-githubUrl: "https://github.com/respira-press/respira-wordpress-mcp"
 ogImageUrl: "https://www.respira.press/og/respira-home-og.jpg"
 pricing: "paid"
 classification: "agent-enabling"
@@ -33,17 +32,18 @@ deploymentModes:
   - "self-hosted WordPress plugin"
   - "local MCP server and CLI"
   - "hosted respira.press account for licensing and OAuth authorization"
+  - "commercial WordPress plugin; MIT-licensed local MCP bridge (npm) and CLI"
 verificationLevel: "documentation-reviewed"
-classificationRationaleMd: "Respira for WordPress materially extends what an agent can do on a WordPress site: it gives MCP clients builder-native read and write tools and wraps agent writes in draft duplicates, human approval, snapshots, plan mode and per-tool governance. Its core entities are WordPress sites, pages and builder elements rather than agents, so it enables agent work instead of acting as an agent."
-inclusionRationaleMd: "The qualifying capability sits in the WordPress plugin, not in the MCP wrapper: the plugin reads and writes each page builder's own data format and applies the duplicate, approval, snapshot, plan and tool-switch controls on every connection path."
-bestForMd: "Site owners, freelancers and agencies who want Claude, ChatGPT, Cursor, Codex or another MCP client to edit existing WordPress sites built with page builders, with a person approving changes before they go live."
+classificationRationaleMd: "Respira for WordPress materially extends what an agent can do on a WordPress site: it gives MCP clients builder-native read and write tools, stages page and post edits on draft duplicates by default, snapshots those writes, and adds plan mode, per-tool switches and an opt-in owner-approval gate. Its core entities are WordPress sites, pages and builder elements rather than agents, so it enables agent work instead of acting as an agent."
+inclusionRationaleMd: "The qualifying capability sits in the commercial WordPress plugin, not in the MCP wrapper: the plugin reads and writes each page builder's own data format, and its duplicate-first default for page and post edits, snapshots, plan mode and tool switches apply on every connection path. These are safeguards the owner configures, not an independent human gate on every write: direct editing can be turned on, and plan steps run when the client applies the plan."
+bestForMd: "Site owners, freelancers and agencies who want Claude, ChatGPT, Cursor, Codex or another MCP client to edit existing WordPress sites built with page builders, with page and post edits staged on draft copies for a person to publish."
 notBestForMd: "Teams that need a fully open-source WordPress agent stack with no commercial dependency. The repository README states that the plugin is commercially licensed and that the MIT-licensed MCP server is a client for it."
-limitationsMd: "Ongoing use requires a paid Respira licence. The seven-day trial without a card applies to the one-site Maker plan; Builder and Studio bill immediately. The plugin must be installed on each WordPress site and connected to a respira.press account. Browser OAuth sign-in needs a site reachable over HTTPS. WebMCP needs Chrome 146 or later. The local MCP server and the CLI need Node.js. WooCommerce tools are a paid add-on below the Studio plan."
+limitationsMd: "The duplicate-first workflow covers page and post edits by default; with direct editing turned on, or a forced live edit, an edit lands on the live item, and plugin, user and settings actions are not staged copies. Plan mode needs plugin 9.1.0 and MCP server 8.4.0 or later; applying a plan is the client's call, and it counts as the approval for steps that ask for one, so a person must be the one who asks for it. The wp-admin owner approval, which holds plugin installs and deletions, user deletion and option deletion until an administrator approves, needs plugin 9.1.10 or later and is off until the owner switches it on. Ongoing use requires a paid Respira licence. The seven-day trial without a card applies to the one-site Maker plan; Builder and Studio bill immediately. The plugin must be installed on each WordPress site and connected to a respira.press account. Browser OAuth sign-in needs a site reachable over HTTPS. WebMCP needs Chrome 146 or later. The local MCP server and the CLI need Node.js. WooCommerce tools are a paid add-on below the Studio plan."
 unknownsMd: "First-party pages give different tool and ability totals (the documentation pages and the MCP page do not match), so this listing states no count. No independent hands-on test was performed for this submission."
 evidenceSources:
   - title: "Respira WordPress MCP server page"
     url: "https://www.respira.press/mcp"
-    claim: "Describes an MCP server that lets Claude, ChatGPT, Cursor or Codex read and edit a live WordPress site in 17 page builders and the Site Editor, writing in each builder's own format; three connection paths (browser sign-in by URL, URL plus API key, local npx bridge); duplicate-first writes with approval and 90 days of undo; plan mode; tool switches and Observe, Content and Everything profiles that hold on the npm server, the REST API and the site's own MCP endpoint; owner-gated search and invocation of other plugins' abilities; site AI Skills in session context; WebMCP and WordPress Abilities; and names Mihai Dragomirescu as founder."
+    claim: "Describes an MCP server that lets Claude, ChatGPT, Cursor or Codex read and edit a live WordPress site in 17 page builders and the Site Editor, writing in each builder's own format; three connection paths (browser sign-in by URL, URL plus API key, local npx bridge); duplicate-first page and post writes and 90 days of undo; plan mode; tool switches and Observe, Content and Everything profiles that hold on the npm server, the REST API and the site's own MCP endpoint; owner-gated search and invocation of other plugins' abilities; site AI Skills in session context; WebMCP and WordPress Abilities; and names Mihai Dragomirescu as founder."
     accessedAt: "2026-10-03"
     sourceType: "official-product-page"
   - title: "Connect Claude Desktop (OAuth)"
@@ -63,13 +63,28 @@ evidenceSources:
     sourceType: "official-documentation"
   - title: "Duplicate-Before-Edit Workflow"
     url: "https://www.respira.press/docs/duplicate-before-edit-workflow"
-    claim: "Explains that an agent's page edit is written to a linked duplicate post, the agent receives the duplicate's ID and preview URL, and the original stays unchanged until a person approves in WordPress, with snapshots underneath."
+    claim: "Explains the default workflow for page and post edits: the edit is written to a linked duplicate post, the agent receives the duplicate's ID and preview URL, and the original stays unchanged until a person approves in WordPress, with snapshots underneath. It does not apply when the owner has turned on direct editing."
     accessedAt: "2026-10-03"
     sourceType: "official-documentation"
   - title: "Plan mode for MCP clients"
     url: "https://www.respira.press/docs/guides/plan-mode-for-mcp-clients"
-    claim: "Documents respira_begin_session with mode plan, where every write returns a proposed step instead of changing the site and the plan is applied only after the person agrees, in any MCP client."
+    claim: "Documents respira_begin_session with mode plan, where every write returns a proposed step instead of changing the site, in any MCP client. Waiting for the person to agree before applying is an instruction to the client; the apply call itself is what runs the plan."
     accessedAt: "2026-10-03"
+    sourceType: "official-documentation"
+  - title: "Apply plan"
+    url: "https://www.respira.press/docs/tools/other/apply-plan"
+    claim: "Runs the planned steps in order through the same checks as direct calls and returns one receipt; the apply call is treated as the approval for steps whose tool asks for one."
+    accessedAt: "2026-10-04"
+    sourceType: "official-documentation"
+  - title: "Update page"
+    url: "https://www.respira.press/docs/tools/pages/update-page"
+    claim: "Edits a page; by default a published page is edited on a draft duplicate, and a live edit is possible when the owner has turned on direct editing."
+    accessedAt: "2026-10-04"
+    sourceType: "official-documentation"
+  - title: "Owner approval"
+    url: "https://www.respira.press/docs/security/owner-approval"
+    claim: "An opt-in setting, off by default, that holds a defined set of high-risk actions (plugin installs and deletions, user deletion, option deletion) until an administrator approves in wp-admin."
+    accessedAt: "2026-10-04"
     sourceType: "official-documentation"
   - title: "Audit Logging"
     url: "https://www.respira.press/docs/security/audit-logging"
@@ -86,14 +101,14 @@ evidenceSources:
     claim: "Lists paid Maker (EUR 9 a month or EUR 71 a year for one site), Builder, Studio, Enterprise and lifetime plans; the seven-day free trial without a card is Maker only, Builder and Studio bill immediately, every paid plan has a 14-day refund, and no ongoing free plan is listed."
     accessedAt: "2026-10-03"
     sourceType: "official-pricing"
-  - title: "Respira WordPress MCP server repository"
+  - title: "Respira WordPress MCP server repository (README)"
     url: "https://github.com/respira-press/respira-wordpress-mcp"
-    claim: "The README describes element-level find, update, move and remove, full page builds from a declarative structure, and snapshot and duplicate-before-edit safety, and states that the MIT-licensed npm server is a client for the commercially licensed Respira plugin and needs a licensed API key."
+    claim: "Documentation only: the repository holds a README and the licence, not the plugin or the server source. The README states that the MIT-licensed npm server is a client for the commercially licensed Respira plugin and needs a licensed API key."
     accessedAt: "2026-10-03"
     sourceType: "official-repository"
   - title: "Respira WordPress MCP server licence"
     url: "https://github.com/respira-press/respira-wordpress-mcp/blob/main/LICENSE"
-    claim: "The MCP server wrapper code is published under the MIT License, copyright Respira."
+    claim: "The MIT License covers the npm MCP server client, not the commercially licensed WordPress plugin."
     accessedAt: "2026-10-03"
     sourceType: "official-license"
 ---
@@ -103,10 +118,10 @@ Respira for WordPress is a WordPress plugin with an MCP server that lets AI agen
 ## So agents can...
 
 - Find an element on a page and update, move or remove it, or build a full page, in the builder's own format so the page still opens in its editor.
-- Stage edits to a published page on a draft duplicate, return its preview link, and leave the approval to a person in WordPress.
-- Propose every write as a plan step and run the plan only after the person accepts it.
+- Stage edits to a published page or post on a draft duplicate by default, return its preview link, and leave publishing to a person in WordPress.
+- Propose every write as a plan step (plugin 9.1.0 and MCP server 8.4.0 or later) and apply the plan with one call when the person asks for it.
 - Roll a change back from the snapshot taken before the write, for up to 90 days.
 - Search abilities that other plugins register on the site and invoke the ones the site owner allows.
 - Read the site-specific instructions the owner keeps in Respira AI Skills before starting work.
 
-Site owners keep control of access: tool switches and the Observe, Content and Everything profiles apply on the npm server, the REST API and the site's MCP endpoint alike, and an OAuth token works only on the one site it was approved for. The plugin is commercial software; the npm MCP server and the CLI are MIT licensed.
+Site owners keep control of access: tool switches and the Observe, Content and Everything profiles apply on the npm server, the REST API and the site's MCP endpoint alike, and an OAuth token works only on the one site it was approved for. Owners who want a hard gate can switch on owner approval (plugin 9.1.10 or later), which holds plugin installs and deletions, user deletion and option deletion until an administrator approves in wp-admin. The plugin is commercial software; the local npm MCP bridge and the CLI are MIT licensed, and the hosted OAuth sign-in runs through a respira.press account.
