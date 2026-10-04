@@ -28,7 +28,7 @@ The manifest currently uses schema version `1`. Each entry has `sourcePath`, `de
 
 Manifest paths are canonical absolute same-site paths, not full URLs, and cannot contain a query or hash. Sources must be unique and cannot shadow a current tool or category. Redirect chains and cycles are invalid. A `/tools/<slug>` or `/category/<slug>` destination must resolve to a current source record; any future static destination must be added to the explicit validator allowlist.
 
-Submitter attribution is stored in `tool-submitters.json`, not in tool frontmatter. The approval workflow must derive each changed tool's submitter from the PR author and write that mapping back to the PR branch before merge.
+Submitter attribution is stored in `tool-submitters.json`, not in tool frontmatter. The preflight derives new tools' submitters from the PR author and preserves existing attribution from the trusted base. Contributors must commit the generated mapping before merge; the workflow never commits or pushes to PR branches. See the README for the internal pre-PR generation commands.
 
 This repo is the only authoring source of truth. D1 is a published runtime mirror, not the place where content is edited.
 
@@ -47,12 +47,15 @@ On `pull_request`:
 - validate content only
 - fail on invalid schema or invalid references
 
-On approved tool PRs:
+On all tool PRs (same-repository and fork):
 
-- sync changed tool slugs into `tool-submitters.json` using the PR author login
-- enrich missing `logoUrl` and `ogImageUrl` values
-- commit those generated changes back to same-repo PR branches
-- comment with the exact commands for fork PRs when the workflow cannot push
+- preflight changed tool slugs in a disposable checkout using trusted-base scripts and attribution; new tools use the PR author login
+- only after an approved review, enrich missing `logoUrl` and `ogImageUrl` values
+- never commit or push generated changes; contents permission is read-only
+- create or update a bot-owned correction comment with exact local generation and `--require-submitters` validation commands
+- fail clearly while generated changes still need to be committed by the contributor
+
+The required `validate` check remains on `pull_request`, including normal fork workflow approvals. Privileged enrichment executes only the existing trusted-base automation, never PR-provided scripts.
 
 On `push` to `main` with category, tool, or redirect-manifest changes:
 
