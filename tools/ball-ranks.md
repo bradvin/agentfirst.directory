@@ -34,7 +34,7 @@ evidenceSources:
     sourceType: "official-pricing"
 ---
 
-Ball Ranks exposes current fantasy football and basketball rankings and player projections through a public REST API and a hosted MCP server. The interfaces are read-only and return model version and freshness metadata with the ranking data.
+Ball Ranks exposes current fantasy football and basketball rankings and player projections through a public REST API and a hosted MCP server. Both interfaces are read-only.
 
 ## So agents can...
 
