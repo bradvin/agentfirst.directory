@@ -2,6 +2,11 @@
 slug: "ball-ranks"
 name: "Ball Ranks"
 description: "NFL and NBA fantasy rankings and player projections exposed through REST and MCP"
+agentSummary: "Ball Ranks supplies structured NFL and NBA fantasy rankings and player projections for assistants and automated research. Builders can retrieve season boards, football weekly rankings, and individual player projections through REST or four read-only MCP tools. Model Zero supports free access; Model One requires Premium. Responses include player identifiers and model-data versions for reviewing results."
+seoTitle: "Ball Ranks: NFL and NBA Fantasy Data for Agent Workflows"
+seoDescription: "Inspect Ball Ranks' read-only REST and MCP access to fantasy rankings and player projections, including supported sports, model access, and request limits."
+reviewedBy: "foo-bender"
+reviewedAt: "2026-10-08"
 category: "specialized-search-discovery-engines"
 tags: ["fantasy-sports", "nfl", "nba", "rankings", "mcp", "api"]
 websiteUrl: "https://ballranks.com"
