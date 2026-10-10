@@ -8,7 +8,6 @@ agentSummary: "SAVER Verifier gives autonomous agents an independent verificatio
 category: "agent-verification-trust"
 tags: ["verification", "x402", "evidence", "agents"]
 websiteUrl: "https://saververify.com"
-githubUrl: "https://github.com/SAVER-SI/saver-verifier"
 pricing: "paid"
 classification: "agent-enabling"
 entityType: "web-api"
@@ -18,9 +17,9 @@ interfaces: ["REST API", "x402"]
 deploymentModes: ["hosted"]
 verificationLevel: "documentation-reviewed"
 classificationRationaleMd: "SAVER Verifier provides a documented verification step that agents can invoke before taking downstream actions. Its output is designed to support agent decisions with cited web evidence rather than serving only as generic search."
-bestForMd: "Autonomous agents that need to verify external factual claims before acting, paying, or making a consequential decision."
-notBestForMd: "General-purpose web search, software testing, or deterministic validation of private data."
-limitationsMd: "Verification is limited to claims that can be assessed from available web evidence. The service requires payment of 0.20 USDC per verification through x402 on Base."
+bestForMd: "Autonomous agents that need an independent, source-backed evidence signal when assessing external factual claims before making downstream decisions."
+notBestForMd: "General-purpose web search, software testing, deterministic validation of private data, wallet-policy enforcement, transaction simulation, token-contract security analysis, sanctions screening, or use as an automatic authorization to act or pay."
+limitationsMd: "Verification can return supported, contradicted, mixed, or insufficient_evidence outcomes. Confidence, citations, and underlying evidence should be evaluated before downstream use; a SAVER result is an evidence signal, not definitive permission to act or pay. SAVER does not enforce wallet policy, simulate transactions, analyze token-contract security, or perform sanctions screening. The service requires payment of 0.20 USDC per verification through x402 on Base."
 unknownsMd: "No independent benchmark of verification accuracy, latency, or production-scale reliability is included in this submission."
 evidenceSources:
   - title: "SAVER Verifier public repository"
@@ -41,6 +40,7 @@ SAVER Verifier is a hosted verification service for autonomous AI agents. An age
 
 - Verify external claims before acting or making a decision.
 - Attach cited web evidence to downstream agent reasoning.
-- Insert an independent verification gate before payments or other consequential actions.
+- Use an independent evidence check as one input before payments or other consequential actions.
+
 
 
