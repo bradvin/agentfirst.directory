@@ -1,0 +1,26 @@
+{
+  "slug": "agent-verification-trust",
+  "label": "Agent Verification & Trust",
+  "sortOrder": 55,
+  "seoTitle": "Verification and trust tools for AI agents",
+  "descriptionMd": "Tools that help agents verify external claims, evidence, provenance, or factual inputs before taking consequential actions.",
+  "definitionMd": "This category covers systems that provide independent verification or evidence-backed trust signals that materially improve an agent's ability to assess external information before acting.",
+  "scopeMd": "Includes claim verification, evidence-backed factual checking, provenance assessment, and trust gates designed for autonomous or agent-driven workflows.",
+  "inclusionMd": "- The tool provides a documented machine interface for agents to verify claims, evidence, provenance, or factual inputs.\n- Verification produces reviewable evidence, citations, provenance, confidence, or another substantive trust signal.\n- The verification step materially informs an agent decision or action rather than serving only as generic search.",
+  "exclusionMd": "- It is primarily a generic search, crawling, or data-retrieval product.\n- It evaluates software tests rather than external claims or evidence.\n- Trust or verification is only a marketing claim without a documented agent-facing workflow.",
+  "selectionGuideMd": "- What information can the agent verify?\n- What evidence or provenance accompanies the result?\n- How does the verification result affect downstream agent decisions or actions?\n- What confidence, coverage, latency, and limitations are disclosed?",
+  "useCases": [
+    "Verify external claims before an agent acts",
+    "Attach cited evidence to agent decisions",
+    "Gate payments or consequential actions on independent verification"
+  ],
+  "sources": [
+    {
+      "title": "SAVER Verifier public documentation",
+      "url": "https://github.com/SAVER-SI/saver-verifier",
+      "claim": "Documents a source-backed factual verification workflow for autonomous AI agents, including cited evidence and x402-paid verification.",
+      "accessedAt": "2026-10-09",
+      "sourceType": "official-repository"
+    }
+  ]
+}
