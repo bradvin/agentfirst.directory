@@ -25,16 +25,16 @@ evidenceSources:
   - title: "SAVER Verifier public repository"
     url: "https://github.com/SAVER-SI/saver-verifier"
     claim: "Documents SAVER Verifier as source-backed factual claim verification for autonomous AI agents, including the verification endpoint, x402 payment flow, pricing, and cited evidence workflow."
-    accessedAt: "2026-10-09"
+    accessedAt: "2026-10-18"
     sourceType: "official-repository"
   - title: "SAVER Verifier x402 discovery"
     url: "https://api.saververify.com/.well-known/x402"
-    claim: "Publishes the paid POST /verify resource, 0.20 USDC price, Base Mainnet network, and x402 payment metadata."
-    accessedAt: "2026-10-09"
+    claim: "Publishes the recommended POST /v2/verify and compatible POST /verify resources, 0.20 USDC price, Base Mainnet network, and x402 payment metadata."
+    accessedAt: "2026-10-18"
     sourceType: "official-documentation"
 ---
 
-SAVER Verifier is a hosted verification service for autonomous AI agents. An agent submits an external factual claim to the `/verify` endpoint and receives a source-backed result with cited web evidence.
+SAVER Verifier is a hosted verification service for autonomous AI agents. An agent submits an external factual claim to the recommended `POST https://api.saververify.com/v2/verify` endpoint and receives linked evidence objects with source IDs and cited URLs. The original `POST /verify` remains available for clients requiring evidence strings. Both use the same 0.20 USDC Base payment policy.
 
 ## So agents can...
 
@@ -44,3 +44,5 @@ SAVER Verifier is a hosted verification service for autonomous AI agents. An age
 
 
 
+
+Example: `POST /v2/verify` with `Content-Type: application/json` and `{"claim":"The Ethereum mainnet launched on July 30, 2015."}`. Invalid or empty claims return 400 before payment; valid unpaid requests return 402 with a `PAYMENT-REQUIRED` header. [Actual paid examples](https://saververify.com/examples/) are operator-funded demonstrations, not an accuracy benchmark.
