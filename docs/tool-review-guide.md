@@ -7,3 +7,11 @@ Review each field against the tool's cited first-party evidence and the existing
 `seoTitle` replaces the generated page title only. `seoDescription` replaces the generated meta, Open Graph, Twitter, and WebPage description only. These two fields fall back independently, so reviewers can approve one without the other. `agentSummary` appears as a paragraph before the existing short description; it does not replace the description used in tool entities, exports, feeds, or LLM summaries.
 
 During rollout, approve these fields one tool at a time when the wording is ready. An omitted or removed field is published as `NULL`, and the site retains its established fallback or layout. A change to any field counts as a substantive tool edit for the content modification timestamp.
+
+## Optional announcement tag
+
+`announcementXHandle` is a separate, opt-in announcement-tagging value. Do not require it for acceptance or substitute a GitHub submitter, repository owner, product name, or scraped social account. Confirm it was explicitly supplied for tagging; existing tools need no backfill.
+
+Accept outer whitespace and one optional leading `@`; publish the bare, case-preserved handle matching ASCII `[A-Za-z0-9_]{1,15}`. Omission and empty/whitespace-only strings mean no tag. Reject URLs (even X/Twitter profile URLs), `null`, other non-string types, extra `@` signs, punctuation, embedded whitespace, non-ASCII characters, and overlength handles. A lone `@` is invalid, not blank. Quote numeric-looking handles in YAML to keep them strings.
+
+The D1 value is nullable `announcement_x_handle`; removing or blanking the source clears it to `NULL`. Changes, including case-only edits or removal, advance `content_modified_at`; equivalent `@`/bare inputs do not. Metadata generation must preserve the field independently of `submittedBy`. No announcement-posting implementation exists in this repository: downstream posting must consume this explicit field and omit a tag when it is absent, never fall back to GitHub attribution. This field does not itself authorize or trigger a post.

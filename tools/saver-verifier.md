@@ -42,7 +42,4 @@ SAVER Verifier is a hosted verification service for autonomous AI agents. An age
 - Attach cited web evidence to downstream agent reasoning.
 - Use an independent evidence check as one input before payments or other consequential actions.
 
-
-
-
 Example: `POST /v2/verify` with `Content-Type: application/json` and `{"claim":"The Ethereum mainnet launched on July 30, 2015."}`. Invalid or empty claims return 400 before payment; valid unpaid requests return 402 with a `PAYMENT-REQUIRED` header. [Actual paid examples](https://saververify.com/examples/) are operator-funded demonstrations, not an accuracy benchmark.

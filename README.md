@@ -106,6 +106,8 @@ tags:
   - "api"
 websiteUrl: "https://coolapi.dev"
 githubUrl: "https://github.com/cooldev/coolapi"
+# Optional: only include when explicitly supplied for announcement tagging.
+announcementXHandle: "CoolAPI_Team"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://coolapi.dev"
 ogImageUrl: "https://coolapi.dev/og-image.png"
 logoWidth: 64
@@ -160,8 +162,9 @@ Required tool fields:
 
 Optional tool fields:
 
+- `announcementXHandle` — an explicitly supplied X account to tag in a listing announcement, not GitHub submitter attribution. Accept a bare handle or one leading `@`, with outer whitespace trimmed. The canonical published value is bare and preserves case; it must match ASCII `[A-Za-z0-9_]{1,15}`. Omit it when no tag is requested; empty or whitespace-only strings also mean no tag. URLs (including X/Twitter profile URLs), `null`, numbers, booleans, arrays, objects, and other invalid values are rejected. Never infer it from `submittedBy`, `tool-submitters.json`, `githubUrl`, website social metadata, or a product name; do not backfill existing listings.
 - `seoTitle`, `seoDescription`, and `agentSummary` are optional, non-empty plain-text strings. Contributors may suggest them; the editorial reviewer owns the final wording. Existing listings need no changes.
-- Surrounding whitespace is trimmed before validation and publishing; whitespace-only values are invalid.
+- For these three SEO fields, surrounding whitespace is trimmed before validation and publishing; whitespace-only values are invalid.
 - `seoTitle` overrides only the tool page title; `seoDescription` overrides only its meta and social description. Each falls back independently to the current generated text when omitted. `agentSummary` adds a paragraph before the existing visible description and does not replace it.
 - Draft a specific, factual title around the tool and its agent use (usually about 50–60 characters). Write a description that helps a reader decide whether to open the profile (usually about 140–160 characters). Summarize the practical agent-facing outcome in one short paragraph (roughly 40–70 words). These are editorial drafting targets, not hard validation limits or automatic truncation rules. Avoid unsupported claims, keyword repetition, promotional language, and markdown or HTML.
 - `githubUrl`
@@ -180,6 +183,8 @@ Optional tool fields:
 - `sortOrder`
 
 The [tool review guide](docs/tool-review-guide.md) gives the reviewer the acceptance checklist and rollout behavior for SEO suggestions.
+
+The announcement handle is retained by the source reader and published to D1 as nullable `announcement_x_handle`. Omission or blank input writes `NULL`, and removal clears any previous value. Existing attribution and asset generators preserve the authored field. This repository does not post announcements: a downstream announcement consumer must explicitly read this field, add `@` only when formatting a tag, and omit tagging when it is absent. Supplying it does not itself trigger or guarantee a post.
 
 Do not add `contentModifiedAt` to a tool file. D1 sets it when the record is first published and advances it only when authored or visible data changes. `synced_at` is a separate operational timestamp that advances on every sync.
 
@@ -261,6 +266,7 @@ What you need to provide:
 - useful, specific tags
 - `githubUrl` when the tool is open source
 - `logoUrl` and `ogImageUrl` when you already have the canonical values, but these are optional
+- optionally, `announcementXHandle` if you explicitly want that X account tagged in a listing announcement; a handle is never required to submit a tool
 
 What you do not need to worry about:
 

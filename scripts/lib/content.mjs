@@ -281,6 +281,11 @@ export function parseToolFile(raw, sourcePath) {
       data[fieldName] = data[fieldName].trim();
     }
   }
+  if (typeof data.announcementXHandle === "string") {
+    const trimmed = data.announcementXHandle.trim();
+    // Only an actually blank input is absent; a lone @ must fail validation.
+    data.announcementXHandle = trimmed === "" ? undefined : trimmed.replace(/^@/, "");
+  }
   return {
     ...data,
     body: parsed.content.trim(),
@@ -455,6 +460,14 @@ export async function validateContent(rootDir = process.cwd()) {
 
     if (!isOptionalInteger(tool.sortOrder)) {
       errors.push(`${tool.sourcePath}: sortOrder must be an integer when present`);
+    }
+
+    if (tool.announcementXHandle !== undefined
+      && (typeof tool.announcementXHandle !== "string"
+        || !/^[A-Za-z0-9_]{1,15}$/.test(tool.announcementXHandle))) {
+      errors.push(
+        `${tool.sourcePath}: announcementXHandle must be 1–15 ASCII letters, digits, or underscores, optionally prefixed with @; URLs are not supported`,
+      );
     }
 
     for (const fieldName of [

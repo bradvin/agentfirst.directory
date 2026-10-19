@@ -137,6 +137,7 @@ test("sync SQL upserts repo content and retires missing rows", async () => {
   db.exec(await readMigration("0003_add_tool_classification.sql"));
   db.exec(await readMigration("0004_add_editorial_seo_metadata.sql"));
   db.exec(await readMigration("0005_add_tool_seo_metadata.sql"));
+  db.exec(await readMigration("0007_add_announcement_x_handle.sql"));
 
   db.exec(`
     INSERT INTO categories (slug, label, sort_order, source_path, is_active, synced_at)
@@ -292,6 +293,7 @@ test("no-op sync preserves content modification timestamps while visible edits a
     "0003_add_tool_classification.sql",
     "0004_add_editorial_seo_metadata.sql",
     "0005_add_tool_seo_metadata.sql",
+    "0007_add_announcement_x_handle.sql",
   ]) {
     db.exec(await readMigration(migration));
   }
@@ -352,6 +354,7 @@ test("tool SEO sync inserts, escapes, updates, clears, and tracks changes", asyn
     "0003_add_tool_classification.sql",
     "0004_add_editorial_seo_metadata.sql",
     "0005_add_tool_seo_metadata.sql",
+    "0007_add_announcement_x_handle.sql",
   ]) {
     db.exec(await readMigration(migration));
   }
@@ -404,6 +407,7 @@ test("sync SQL publishes optional provenance without synthesizing review dates",
     "0003_add_tool_classification.sql",
     "0004_add_editorial_seo_metadata.sql",
     "0005_add_tool_seo_metadata.sql",
+    "0007_add_announcement_x_handle.sql",
   ]) {
     db.exec(await readMigration(migration));
   }
