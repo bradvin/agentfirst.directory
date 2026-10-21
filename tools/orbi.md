@@ -1,0 +1,76 @@
+---
+slug: "orbi"
+name: "Orbi"
+description: "Self-hostable orchestrator that turns labeled GitHub Issues into coding-agent runs in isolated worktrees, opens a tested PR, and merges only after an independent AI review and a CI-aware merge gate"
+agentSummary: "Orbi is for maintainers who want coding agents to work from GitHub Issues. A scheduler tick claims an Issue labeled ai-ready, creates a branch and worktree from a frozen base SHA, and runs a coding agent that plans, implements, and tests. The runner opens the PR; a separate review session checks the exact base and head SHAs, and a merge gate checks CI and mergeability before merging."
+seoTitle: "Orbi: GitHub Issue Orchestration for Coding Agents"
+seoDescription: "Explore how Orbi assigns labeled GitHub Issues to coding-agent runs in isolated worktrees, records test evidence, and merges only after an independent review and merge gate."
+category: "orchestrators"
+tags:
+  - "coding-agents"
+  - "github-issues"
+  - "git-worktrees"
+  - "code-review"
+  - "self-hosted"
+websiteUrl: "https://orbi.build/?ref=dir-agentfirst"
+githubUrl: "https://github.com/orbi-build/orbi"
+pricing: "open-source"
+classification: "agent-native"
+entityType: "software-application"
+developerName: "Orbi"
+docsUrl: "https://docs.orbi.build/"
+pricingUrl: "https://orbi.build/pricing"
+licenseUrl: "https://github.com/orbi-build/orbi/blob/main/LICENSE"
+interfaces:
+  - "CLI"
+  - "GitHub Issues"
+deploymentModes:
+  - "self-hosted"
+  - "hosted"
+evidenceSources:
+  - title: "Orbi repository README"
+    url: "https://github.com/orbi-build/orbi"
+    claim: "The README describes Orbi as an open-source software delivery system for GitHub: an Issue labeled ai-ready is implemented in an isolated worktree, tested, opened as a PR, and taken through independent review, fixes, and merge, with GitHub Issues as the only state store and a systemd or launchd timer triggering a tick every five minutes."
+    accessedAt: "2026-10-21"
+    sourceType: "official-repository"
+  - title: "Orbi workflow documentation — claim, PR, independent review, merge"
+    url: "https://docs.orbi.build/workflow"
+    claim: "The workflow documentation describes the delivery state machine: the runner claims an ai-ready Issue and creates a worktree from the frozen origin base SHA; one task maps to one run, branch, worktree, and PR; an independent review session reviews the exact base and head SHAs, fixes findings with the full test suite and coverage gate, and emits a verdict; merge requires a clean verdict for the current head plus a merge gate (latest base, concluded CI, mergeable PR, unchanged remote head), and unrecoverable failures mark the Issue ai-blocked for a human."
+    accessedAt: "2026-10-21"
+    sourceType: "official-documentation"
+  - title: "Orbi Issue #1367 — example delivery record"
+    url: "https://github.com/orbi-build/orbi/issues/1367"
+    claim: "The Issue carries the ai-ready and ai-merged labels and the runner's progress comments for one run_id, including the recorded base SHA and branch, plan ready, tests passed, review role, and the merged result with review_rounds and merge commit."
+    accessedAt: "2026-10-21"
+    sourceType: "official-repository"
+  - title: "Orbi PR #1370 — PR opened by the runner for Issue #1367"
+    url: "https://github.com/orbi-build/orbi/pull/1370"
+    claim: "The PR body contains the run marker and Fixes #1367, its tests and macos-compatibility CI checks concluded successfully, and it was merged, closing the Issue."
+    accessedAt: "2026-10-21"
+    sourceType: "official-repository"
+  - title: "Orbi release v0.5.47 notes"
+    url: "https://github.com/orbi-build/orbi/releases/tag/v0.5.47"
+    claim: "The release notes list Issue #1367 and PR #1370 among the changes shipped in v0.5.47."
+    accessedAt: "2026-10-21"
+    sourceType: "official-release-notes"
+  - title: "Orbi license"
+    url: "https://github.com/orbi-build/orbi/blob/main/LICENSE"
+    claim: "The repository is licensed under the GNU AGPL-3.0; the README names the Sustainable Use License v1.0 as an optional alternative."
+    accessedAt: "2026-10-21"
+    sourceType: "official-license"
+verificationLevel: "documentation-reviewed"
+classificationRationaleMd: "Orbi is agent-native because coding-agent runs are the work it schedules and gates: it claims Issues, gives each run its own branch, worktree, and run_id, starts a separate review session per round, and decides whether the result can merge."
+inclusionRationaleMd: "Orbi owns the lifecycle across agent runs rather than merely invoking an agent: task assignment and isolation (labeled Issue to frozen-base worktree), validation evidence (test results and CI recorded on the Issue and PR), and a separate review and landing gate (independent review verdict for the current head plus a merge gate on base freshness, CI, and mergeability)."
+bestForMd: "Maintainers of GitHub repositories who want coding agents to take scoped Issues through implementation, tests, review, and merge with the record kept in Issues and PRs."
+notBestForMd: "Teams not using GitHub, teams that want interactive pair-programming in an editor, or orchestration of non-coding business agents."
+limitationsMd: "Self-hosting needs Python 3.14+, GitHub CLI 2.94+, a coding agent (Pi) with a model provider, and a Linux systemd user session or macOS launchd session; macOS support is not yet verified on real hardware. Releases are only published when a maintainer requests one."
+unknownsMd: "No independent benchmark of delivery reliability or review quality has been reviewed for this listing. Pricing details for the hosted Orbi Cloud are on the first-party pricing page and may change."
+---
+
+Orbi is a self-hostable orchestrator for coding agents that works from GitHub Issues. Label an Issue `ai-ready` and a scheduled runner claims it, creates a branch and worktree from a frozen base SHA, and runs a coding agent to plan, implement, and test. The runner opens the PR, a separate review session checks and fixes it, and a merge gate merges it only when the reviewed head, CI, and mergeability checks pass. The engine is open source under AGPL-3.0; a hosted Orbi Cloud is also offered.
+
+## So agents can...
+
+- Work on an assigned GitHub Issue in a dedicated worktree created from a frozen base SHA
+- Leave plan, test, review, and merge evidence on the Issue and PR under one run_id
+- Have their changes reviewed by a separate agent session and landed only through a merge gate that checks the reviewed head, latest base, CI, and mergeability
