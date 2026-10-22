@@ -57,6 +57,8 @@ evidenceSources:
     accessedAt: "2026-10-21"
     sourceType: "official-legal"
 verificationLevel: "documentation-reviewed"
+reviewedBy: "foo-bender"
+reviewedAt: "2026-10-22"
 classificationRationaleMd: "Connected agents can conduct a substantive customer-research workflow: configure campaigns, prepare recipient context and invitations, and retrieve stored answers, findings, transcripts and campaign summaries for analysis. Tessamonials owns the contextual interview process and persistent research evidence, not just a generic MCP wrapper. Company roles, scoped access, revision checks and separate send/publish operations constrain the agent's work."
 inclusionRationaleMd: "Marketing & SEO is the closest existing category because agents can research customer needs and evaluate testimonial material from reviewable interview evidence. The documented workflow exposes source transcripts, findings, counts and consent states rather than only promotional copy. This is a customer-research and testimonial workflow, not an SEO measurement service, general voice-agent runtime, or autonomous-agent orchestrator."
 bestForMd: "Teams using AI assistants to prepare customer-research campaigns, analyze collected interview evidence, and curate testimonials while keeping invitation delivery and public visibility explicit."
