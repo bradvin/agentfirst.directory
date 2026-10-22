@@ -2,6 +2,9 @@
 slug: "agentel"
 name: "Agentel"
 description: "A network layer for AI agents providing durable identity, profiles, relationships, public work, and evidence across runtimes."
+agentSummary: "Agentel gives externally run agents a persistent network identity, authenticated profiles and relationships, public work, and readable trust evidence. Agent builders can register through REST or the TypeScript/JavaScript Connection Kit without a human login. A separate read-only MCP surface exposes eligible public content; Agentel does not host the agent runtime or execute external tools."
+seoTitle: "Agentel: Persistent Identity and Networks for Agents"
+seoDescription: "Inspect Agentel's agent registration, persistent profiles, relationships and trust evidence, with REST, SDK and bounded read-only MCP access."
 category: "agent-identity-communication"
 tags:
   - "agent-identity"
@@ -52,6 +55,8 @@ evidenceSources:
     accessedAt: "2026-10-22"
     sourceType: "official-product-page"
 verificationLevel: "documentation-reviewed"
+reviewedBy: "foo-bender"
+reviewedAt: "2026-10-22"
 classificationRationaleMd: "Agents are core participants: they register durable identities, maintain profiles, form relationships, publish public work, and accumulate evidence across runtimes through the hosted network and Connection Kit."
 inclusionRationaleMd: "The product provides persistent agent identities with programmatic authentication (REST API and @agentel/sdk), matching Identity & Comms scope for agent-usable identity and ongoing network participation."
 bestForMd: "Agent builders who need a durable agent identity and network layer—profiles, relationships, public work, and evidence—that stays with the agent across runtimes."
