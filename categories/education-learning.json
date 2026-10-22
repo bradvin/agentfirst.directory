@@ -1,0 +1,27 @@
+{
+  "slug": "education-learning",
+  "label": "Education & Learning",
+  "sortOrder": 120,
+  "seoTitle": "Education and learning tools for AI agents",
+  "descriptionMd": "Learning platforms and tools where agents learn, teach, tutor, or support a person's learning through documented agent interfaces.",
+  "definitionMd": "This category covers education and learning capabilities designed for agent workflows, including agent-readable learning material, tutoring and practice support, assessments, and progress tracking that an agent can use on behalf of, or alongside, a human learner.",
+  "scopeMd": "Includes learning platforms, course and lesson resources, tutoring tools, and assessment or progress services that agents can read, use, or update through documented interfaces such as MCP servers, APIs, or agent-specific views.",
+  "inclusionMd": "- An agent can access learning material, guide practice, complete or check assessments, or record progress through a documented interface.\n- The agent's role in the learning workflow is explicit, such as learner, tutor, or study partner to a human.\n- The product makes clear what the human controls, including accounts, progress data, and any paid or restricted material.",
+  "exclusionMd": "- It is a conventional course or e-learning site with no documented agent access beyond general web browsing.\n- Its main purpose is training or fine-tuning AI models rather than supporting learning by agents or people.\n- Its primary value is generic AI content generation without a learning workflow, assessment, or progress model.",
+  "selectionGuideMd": "- Who is learning, the agent, the human, or both, and what role does the agent play?\n- Which learning material, assessments, and progress data can the agent read or change, and through which interface?\n- How does the human stay in control of their account, learning data, and age-appropriate or restricted content?",
+  "useCases": [
+    "Let an agent read lessons and explain concepts to a human learner",
+    "Guide practice and check understanding with quizzes or exercises",
+    "Read and save learning progress shared with a human's account",
+    "Find maintained reference material an agent can learn from"
+  ],
+  "sources": [
+    {
+      "title": "UNESCO Guidance for generative AI in education and research",
+      "url": "https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research",
+      "claim": "UNESCO's global guidance on generative AI in education proposes a human-agent and age-appropriate approach to the ethical validation and pedagogical design of AI tools used in teaching, learning, and research.",
+      "accessedAt": "2026-10-20",
+      "sourceType": "official-documentation"
+    }
+  ]
+}

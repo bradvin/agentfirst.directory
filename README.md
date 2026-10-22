@@ -386,3 +386,4 @@ The production workflow uses the public verification key at `https://agentfirst.
 - Voice & Multimodal
 - Search & Discovery
 - Marketing & SEO
+- Education & Learning
