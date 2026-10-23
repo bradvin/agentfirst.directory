@@ -54,6 +54,8 @@ evidenceSources:
     accessedAt: "2026-10-23"
     sourceType: "official-license"
 verificationLevel: "documentation-reviewed"
+reviewedBy: "foo-bender"
+reviewedAt: "2026-10-23"
 classificationRationaleMd: "The skill materially enables agent-led product review through maintained review contracts, deterministic validators and bounded context-pack handoffs. Its value is the review and permission contract that the agent follows, rather than a generic integration badge."
 inclusionRationaleMd: "An agent can turn a feature, experiment, launch or feedback decision into a validated verdict and a restricted next action, while preserving explicit evidence gaps and human-owned controls across a handoff."
 bestForMd: "Product teams using an existing AI agent to assess whether a feature, experiment or launch has enough evidence for its next bounded action."
