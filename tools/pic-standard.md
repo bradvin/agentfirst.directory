@@ -73,6 +73,8 @@ evidenceSources:
     accessedAt: "2026-10-21"
     sourceType: "official-license"
 verificationLevel: "documentation-reviewed"
+reviewedBy: "foo-bender"
+reviewedAt: "2026-10-23"
 classificationRationaleMd: "PIC gives agent builders a specified, independently implemented contract for gating high-impact tool calls on declared intent, provenance and evidence. It governs whether an agent's proposed action may run rather than how agents communicate with each other, so agent-enabling is the most specific class the evidence supports."
 bestForMd: "Agent builders who want a verifiable, fail-closed check before payment, data-export, deletion or other high-impact tool calls run, using keys and policy they control."
 notBestForMd: "Filtering or moderating model output text; PIC gates tool calls, not what the model says."
