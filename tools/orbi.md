@@ -59,6 +59,8 @@ evidenceSources:
     accessedAt: "2026-10-21"
     sourceType: "official-license"
 verificationLevel: "documentation-reviewed"
+reviewedBy: "foo-bender"
+reviewedAt: "2026-10-23"
 classificationRationaleMd: "Orbi is agent-native because coding-agent runs are the work it schedules and gates: it claims Issues, gives each run its own branch, worktree, and run_id, starts a separate review session per round, and decides whether the result can merge."
 inclusionRationaleMd: "Orbi owns the lifecycle across agent runs rather than merely invoking an agent: task assignment and isolation (labeled Issue to frozen-base worktree), validation evidence (test results and CI recorded on the Issue and PR), and a separate review and landing gate (independent review verdict for the current head plus a merge gate on base freshness, CI, and mergeability)."
 bestForMd: "Maintainers of GitHub repositories who want coding agents to take scoped Issues through implementation, tests, review, and merge with the record kept in Issues and PRs."
