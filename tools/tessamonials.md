@@ -19,7 +19,7 @@ logoHeight: 48
 ogImageUrl: "https://tessamonials.com/images/og-image-7d2d306a588fac6a94066dd5635c7a5f.png?vsn=d"
 ogImageWidth: 1200
 ogImageHeight: 630
-pricing: "free"
+pricing: "freemium"
 classification: "agent-enabling"
 entityType: "web-api"
 developerName: "Second Coffee, LLC"
@@ -33,18 +33,18 @@ deploymentModes:
 evidenceSources:
   - title: "Tessamonials MCP connector documentation"
     url: "https://tessamonials.com/docs/mcp"
-    claim: "Documents the hosted endpoint, OAuth/PKCE, 21 tools, company roles and scopes, paused campaign creation, revision-checked updates, separate invitation creation/email and testimonial approval/publication, and retrieval of stored interview evidence without new Tessa model calls."
-    accessedAt: "2026-10-21"
+    claim: "Documents the hosted endpoint, OAuth/PKCE, 21 tools, company roles and scopes, paused campaign creation, revision-checked updates, separate invitation creation/email and testimonial approval/publication, retrieval of stored interview evidence without new Tessa model calls, and the Pro-plan requirement for making a campaign's testimonials page public."
+    accessedAt: "2026-10-31"
     sourceType: "official-documentation"
   - title: "Tessamonials product overview"
     url: "https://tessamonials.com/"
-    claim: "Describes customer interviews by voice or text, contextual follow-up questions, customer feedback and testimonial drafts, and the lifetime allowance of 25 connected voice interviews per Company excluding text chats and member tests."
-    accessedAt: "2026-10-21"
+    claim: "Describes customer interviews by voice or text, contextual follow-up questions, customer feedback and testimonial drafts, and a Free plan with 15 lifetime voice or text interviews per Company."
+    accessedAt: "2026-10-31"
     sourceType: "official-product-page"
   - title: "Tessamonials terms of service"
     url: "https://tessamonials.com/terms"
-    claim: "Identifies Second Coffee, LLC as operator; says the hosted service is currently without charge, limits each Company to 25 lifetime connected voice interviews, and prohibits fabricated testimonials and certain sensitive-data uses."
-    accessedAt: "2026-10-21"
+    claim: "Identifies Second Coffee, LLC as operator; specifies 15 lifetime Free-plan interviews per Company, with voice and text both counting after three answers or more than two minutes and shorter visits/member tests excluded; describes paid monthly plans and plan-dependent branding/public pages; and prohibits fabricated testimonials and certain sensitive-data uses."
+    accessedAt: "2026-10-31"
     sourceType: "official-legal"
   - title: "Tessamonials participant consent notice"
     url: "https://tessamonials.com/consent"
@@ -63,7 +63,7 @@ classificationRationaleMd: "Connected agents can conduct a substantive customer-
 inclusionRationaleMd: "Marketing & SEO is the closest existing category because agents can research customer needs and evaluate testimonial material from reviewable interview evidence. The documented workflow exposes source transcripts, findings, counts and consent states rather than only promotional copy. This is a customer-research and testimonial workflow, not an SEO measurement service, general voice-agent runtime, or autonomous-agent orchestrator."
 bestForMd: "Teams using AI assistants to prepare customer-research campaigns, analyze collected interview evidence, and curate testimonials while keeping invitation delivery and public visibility explicit."
 notBestForMd: "Teams seeking a general telephony or voice-agent runtime, recorded audio/video testimonials, an SEO ranking monitor, or unlimited free voice interviewing."
-limitationsMd: "OAuth scopes and company membership/roles apply on every call; write access is not universally subject to human approval. Owners/admins can launch or pause campaigns, researchers can otherwise change data and send invitations, and viewers are read-only. Creating an invitation does not send email; queued email is not confirmed delivery. Saved in-interview testimonials and revisions are approved for use by default; participants can unapprove them, with that choice persisting until reapproval. The MCP approval tool can approve the exact current draft on a participant's behalf; approval starts hidden and publication is separate. The team chooses which approved testimonials and pages to show. The service is currently without charge, but each Company has only 25 connected voice interviews for its lifetime; text chats and member tests do not count and the allowance does not reset. Interview content is processed by voice/AI providers and connected assistants may retain their own copies. Runtime-side audio is deleted after transcript import, not retained as an audio testimonial; provider deletion timing can differ. New campaigns default to 90-day interview retention, but active testimonial consent retains associated sensitive interview data until withdrawal or authorized deletion. Withdrawal removes active public display and sensitive data, not necessarily external copies or backups immediately. Terms restrict regulated health/payment-card data and place responsibility for consent and truthful endorsements on customers."
+limitationsMd: "OAuth scopes and company membership/roles apply on every call; write access is not universally subject to human approval. Owners/admins can launch or pause campaigns, researchers can otherwise change data and send invitations, and viewers are read-only. Creating an invitation does not send email; queued email is not confirmed delivery. Saved in-interview testimonials and revisions are approved for use by default; participants can unapprove them, with that choice persisting until reapproval. The MCP approval tool can approve the exact current draft on a participant's behalf; approval starts hidden and publication is separate. The team chooses which approved testimonials and pages to show. The Free plan includes 15 interviews per Company for its lifetime, not a resetting allowance; voice and text both count once the participant gives three answers or the interview runs for more than two minutes. Shorter visits and member test interviews do not count. Interviews counted on a paid plan do not use the Free allowance. Paid plans have monthly allowances; unused interviews do not carry over. Branding removal is plan-dependent, and making a campaign's testimonials page public requires Pro. Interview content is processed by voice/AI providers and connected assistants may retain their own copies. Runtime-side audio is deleted after transcript import, not retained as an audio testimonial; provider deletion timing can differ. New campaigns default to 90-day interview retention, but active testimonial consent retains associated sensitive interview data until withdrawal or authorized deletion. Withdrawal removes active public display and sensitive data, not necessarily external copies or backups immediately. Terms restrict regulated health/payment-card data and place responsibility for consent and truthful endorsements on customers."
 unknownsMd: "No authenticated MCP session, tool execution, end-to-end interview, invitation delivery, publication, independent security audit, or participation/performance benchmark was tested for this listing. Public documentation and an unauthenticated OAuth challenge do not establish those outcomes. No public backend source license or self-hosted feature parity was established."
 ---
 
