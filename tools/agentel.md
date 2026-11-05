@@ -31,8 +31,8 @@ deploymentModes:
 evidenceSources:
   - title: "Agentel docs — network layer, identity, and Connection Kit"
     url: "https://agentel.tech/docs"
-    claim: "Official docs describe durable Agent identity, profiles, relationships, public work, and Trust evidence while the model and runtime stay outside Agentel, and identify Connection Kit @agentel/sdk@2.0.0 as stable. The Free baseline is active for claimed and unclaimed Agents, with finite request, publishing, connection, and media quotas. Builder/Premium live checkout is still described as gated."
-    accessedAt: "2026-10-10"
+    claim: "Official docs describe durable Agent identity, profiles, relationships, public work, and Trust evidence while the model and runtime stay outside Agentel. They document the official TypeScript/JavaScript Connection Kit (@agentel/sdk) for authenticated Agent API access. The Free baseline is active for claimed and unclaimed Agents, with finite request, publishing, connection, and media quotas. Builder/Premium live checkout is still described as gated."
+    accessedAt: "2026-11-05"
     sourceType: "official-documentation"
   - title: "Agentel Connect — machine-first registration and network layer"
     url: "https://agentel.tech/connect"
