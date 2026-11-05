@@ -14,7 +14,7 @@ on:
       - submitted
 
 permissions:
-  contents: write
+  contents: read
   pull-requests: write
 
 concurrency:
@@ -28,8 +28,6 @@ jobs:
 
     env:
       PR_NUMBER: ${{ github.event.pull_request.number }}
-      PR_HEAD_REF: ${{ github.event.pull_request.head.ref }}
-      PR_HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
       PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
       PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
       PR_AUTHOR: ${{ github.event.pull_request.user.login }}
@@ -131,21 +129,12 @@ jobs:
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Commit enrichment to PR branch
-        if: ${{ steps.tool-diff.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name == github.repository }}
-        run: |
-          git -C pr config user.name "github-actions[bot]"
-          git -C pr config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git -C pr add tools tool-submitters.json
-          git -C pr commit -m "Auto-fill tool media and submitter metadata"
-          git -C pr remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${PR_HEAD_REPO}.git"
-          git -C pr push origin "HEAD:${PR_HEAD_REF}"
-
-      - name: Comment when fork PR needs enrichment
-        if: ${{ steps.tool-diff.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name != github.repository }}
+      - name: Comment when PR needs enrichment
+        if: ${{ steps.tool-diff.outputs.changed == 'true' }}
         env:
           CHANGED_TOOLS_JSON: ${{ steps.changed-tools.outputs.json }}
           SUBMITTER_TOOLS_JSON: ${{ steps.submitter-tools.outputs.json }}
+          REVIEW_DECISION: ${{ steps.review-decision.outputs.decision }}
         run: |
           node --input-type=module <<'NODE'
           import { writeFileSync } from "node:fs";
@@ -155,26 +144,35 @@ jobs:
           const baseRoot = `../agentfirst-base-${process.env.PR_NUMBER}`;
           const upstreamUrl = `https://github.com/${process.env.GITHUB_REPOSITORY}.git`;
           const submitterFlags = flags(process.env.SUBMITTER_TOOLS_JSON);
-          const enrichmentFlags = flags(process.env.CHANGED_TOOLS_JSON);
+          const enrichmentFlags = process.env.REVIEW_DECISION === "APPROVED"
+            ? flags(process.env.CHANGED_TOOLS_JSON)
+            : "";
           const enrichmentCommand = enrichmentFlags
             ? `npm run enrich:tool-assets -- --write ${enrichmentFlags}\n`
             : "";
-          const body = `I found missing media metadata and/or repo-managed submitter metadata that should be written back to the PR branch. I can't push directly to forked PR branches, but you can generate the same changes locally with:
+          const body = `<!-- agentfirst-enrichment-preflight -->
+          I found missing media metadata and/or repo-managed submitter metadata. This preflight never commits or pushes to same-repository and fork PRs. Generate the changes locally with:
 
           \`\`\`bash
           git fetch ${shellQuote(upstreamUrl)} ${shellQuote(process.env.PR_BASE_SHA)}
           git worktree add --detach ${shellQuote(baseRoot)} FETCH_HEAD
           npm run sync:tool-submitters -- --base-root-dir ${shellQuote(baseRoot)} --submitted-by ${shellQuote(process.env.PR_AUTHOR)} ${submitterFlags}
           ${enrichmentCommand}git worktree remove ${shellQuote(baseRoot)}
+          npm run validate:content -- --require-submitters
           \`\`\`
 
           Then commit the updated files to this PR branch.`;
           writeFileSync("/tmp/enrichment-comment.md", body);
           NODE
-          gh pr comment "${PR_NUMBER}" --repo "${GITHUB_REPOSITORY}" --body-file /tmp/enrichment-comment.md
+          mapfile -t COMMENT_IDS < <(gh api --paginate "repos/${GITHUB_REPOSITORY}/issues/${PR_NUMBER}/comments" --jq '.[] | select(.user.type == "Bot" and (.body | contains("<!-- agentfirst-enrichment-preflight -->"))) | .id')
+          if (( ${#COMMENT_IDS[@]} > 0 )); then
+            gh api --method PATCH "repos/${GITHUB_REPOSITORY}/issues/comments/${COMMENT_IDS[0]}" -f body="$(cat /tmp/enrichment-comment.md)" --silent
+          else
+            gh pr comment "${PR_NUMBER}" --repo "${GITHUB_REPOSITORY}" --body-file /tmp/enrichment-comment.md
+          fi
 
-      - name: Require fork PR enrichment changes
-        if: ${{ steps.tool-diff.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name != github.repository }}
+      - name: Require PR enrichment changes
+        if: ${{ steps.tool-diff.outputs.changed == 'true' }}
         run: |
-          echo "::error::Commit the generated enrichment and submitter metadata changes to the fork PR branch."
+          echo "::error::Commit the generated enrichment and submitter metadata changes to this PR branch; see the preflight comment for commands."
           exit 1

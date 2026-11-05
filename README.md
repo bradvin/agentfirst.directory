@@ -11,39 +11,47 @@ The website code lives separately in [bradvin/agentfirst.directory-site](https:/
 
 ## Editorial Policy
 
-**Agent First is intentionally opinionated, but agent-first infrastructure is broader than agent-only software.** The directory includes products and protocols that meet at least one of these classifications:
+**Only tools built for agents belong in this directory.** Decide product fit before reviewing evidence or assigning a classification. A human-first app with an API, MCP server, SDK, or embedded AI agent does not become a tool built for agents through integration depth or tool count.
 
-- **`agent-native`** — agents are a core actor, runtime, entity, or participant in the product. Examples include agent orchestration, agent identity and communications, agent-operated interfaces, and human-agent collaboration systems.
-- **`agent-enabling`** — the product materially empowers an agent-first workflow through substantive capabilities such as execution, memory, data access, communication, testing, or safe interaction. Agents do not need to be the product's exclusive or primary users.
-- **`agent-internet-protocol`** — an open protocol or interaction standard lets agents participate in internet communication, commerce, identity, coordination, or other machine-to-machine interaction.
+Agent-oriented infrastructure, protocols, and agent-builder tools can qualify when their operating model is designed for agent operation. They need not serve agents exclusively or have originated as agent-only products. An AI agent serving human customers is not, by itself, a tool built for agents.
 
-Classification explains *how* each listing qualifies; it is not a quality tier.
+### Product-fit gate (before evidence)
+
+Use only the product description and operating model, plus canonical homepage positioning if necessary. Do not inspect evidence arrays, documentation, MCP details, implementation, pricing, licence, or validation results to make or rescue this decision.
+
+Record one bounded semantic decision for each proposed listing:
+
+- **`pass-fit`** — record the intended user, core job, and why the product is built for agents. Only then proceed to evidence, schema, and contradiction review.
+- **`fail-fit`** — record the intended user, core job, and why it is not built for agents. Stop with nonacceptance; do not review evidence, enrich metadata, or commit listing changes.
+- **`unclear-fit`** — record the intended user, core job, and what prevents a built-for-agents decision. Hold for product-positioning clarification; do not review evidence or proceed with metadata or listing commits.
+
+A classification cannot bypass this gate. Category guidance suggesting that internal autonomous agents alone establish eligibility is superseded by this rule. Historical reassessments and public corrections require separate owner approval; this policy update does not authorize changes to existing listings.
+
+### Classifications (after `pass-fit`)
+
+- **`agent-native`** — the product is built for agent operation, with agents as core actors, runtimes, entities, or participants; for example, agent orchestration, identity, communication, or agent-operated interfaces.
+- **`agent-enabling`** — infrastructure or builder tooling designed for agent operation materially enables execution, memory, data access, communication, testing, or safe interaction. General-purpose usefulness or a secondary API/MCP integration cannot rescue a human-first product.
+- **`agent-internet-protocol`** — an open protocol or interaction standard designed for agent participation in communication, commerce, identity, coordination, or other machine-to-machine interaction.
+
+Classification explains *how* an eligible listing qualifies; it is not a quality tier.
 
 ## Inclusion Test
 
-A listing must pass all of these checks:
+After `pass-fit`, a listing must pass all of these checks:
 
-1. **Identify one classification.** Which of the three definitions does the product satisfy?
+1. **Identify one classification.** Which of the three definitions does the eligible product satisfy?
 2. **Name the concrete agent outcome.** What can an agent or agent builder materially do because this product or protocol exists?
 3. **Verify the claim from first-party evidence.** Product documentation, source repositories, protocol specifications, or first-party pages must describe the relevant capability.
-4. **Check that the capability is substantive.** The qualifying value must come from the product or protocol itself, not a thin wrapper or an integration badge.
-5. **Keep the directory defensible.** The listing and its classification must remain accurate without stretching generic technical compatibility into an agent-first claim.
+4. **Check that the capability is substantive.** The qualifying value must come from the product or protocol itself, not an integration badge.
+5. **Check schema and contradictions.** Validate the submission and resolve conflicting claims without treating a schema pass as proof of product fit.
 
 ## What Does Not Qualify
 
-A listing should be rejected when its only support is:
+Reject products not built for agents, including human-first apps with secondary REST, MCP, or SDK access, however extensive. Internal AI agents completing a human customer's task do not establish product fit. Generic compatibility, integration depth, tool count, and unsupported agent marketing cannot establish eligibility.
 
-- generic technical compatibility with software an agent could call;
-- a thin MCP, API, or command wrapper over an otherwise unrelated product;
-- vague or unsupported marketing language about agents;
-- a general-purpose primitive with no material agent-first workflow or agent-internet role;
-- third-party claims that cannot be confirmed from an authoritative first-party source.
+For coding-agent orchestrators, the product must own a material lifecycle across agent runs rather than merely invoke an agent. After product fit passes, evidence should show lifecycle controls such as task assignment and isolation, retained or shared state or validation evidence, and a separate gate that determines completion, review, or landing. Merely launching one agent, supplying prompts, wrapping an API or MCP server, advertising agent compatibility, or automating an ordinary developer task does not satisfy this boundary.
 
-General-purpose products can qualify as `agent-enabling` when their documented capabilities materially empower agent-first workflows. Conversely, adding an agent integration does not automatically qualify a product.
-
-For coding-agent orchestrators, the product must own a material lifecycle across agent runs rather than merely invoke an agent. Evidence should show lifecycle controls such as task assignment and isolation, retained or shared state or validation evidence, and a separate gate that determines completion, review, or landing. Merely launching one agent, supplying prompts, wrapping an API or MCP server, advertising agent compatibility, or automating an ordinary developer task does not satisfy this boundary.
-
-When evidence is ambiguous, do not invent a rationale: request stronger first-party evidence or reject the listing.
+When evidence is ambiguous after `pass-fit`, do not invent a rationale: request stronger first-party evidence or reject the listing.
 
 ## Structure
 
@@ -106,6 +114,8 @@ tags:
   - "api"
 websiteUrl: "https://coolapi.dev"
 githubUrl: "https://github.com/cooldev/coolapi"
+# Optional: only include when explicitly supplied for announcement tagging.
+announcementXHandle: "CoolAPI_Team"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://coolapi.dev"
 ogImageUrl: "https://coolapi.dev/og-image.png"
 logoWidth: 64
@@ -160,8 +170,9 @@ Required tool fields:
 
 Optional tool fields:
 
+- `announcementXHandle` — an explicitly supplied X account to tag in a listing announcement, not GitHub submitter attribution. Accept a bare handle or one leading `@`, with outer whitespace trimmed. The canonical published value is bare and preserves case; it must match ASCII `[A-Za-z0-9_]{1,15}`. Omit it when no tag is requested; empty or whitespace-only strings also mean no tag. URLs (including X/Twitter profile URLs), `null`, numbers, booleans, arrays, objects, and other invalid values are rejected. Never infer it from `submittedBy`, `tool-submitters.json`, `githubUrl`, website social metadata, or a product name; do not backfill existing listings.
 - `seoTitle`, `seoDescription`, and `agentSummary` are optional, non-empty plain-text strings. Contributors may suggest them; the editorial reviewer owns the final wording. Existing listings need no changes.
-- Surrounding whitespace is trimmed before validation and publishing; whitespace-only values are invalid.
+- For these three SEO fields, surrounding whitespace is trimmed before validation and publishing; whitespace-only values are invalid.
 - `seoTitle` overrides only the tool page title; `seoDescription` overrides only its meta and social description. Each falls back independently to the current generated text when omitted. `agentSummary` adds a paragraph before the existing visible description and does not replace it.
 - Draft a specific, factual title around the tool and its agent use (usually about 50–60 characters). Write a description that helps a reader decide whether to open the profile (usually about 140–160 characters). Summarize the practical agent-facing outcome in one short paragraph (roughly 40–70 words). These are editorial drafting targets, not hard validation limits or automatic truncation rules. Avoid unsupported claims, keyword repetition, promotional language, and markdown or HTML.
 - `githubUrl`
@@ -180,6 +191,8 @@ Optional tool fields:
 - `sortOrder`
 
 The [tool review guide](docs/tool-review-guide.md) gives the reviewer the acceptance checklist and rollout behavior for SEO suggestions.
+
+The announcement handle is retained by the source reader and published to D1 as nullable `announcement_x_handle`. Omission or blank input writes `NULL`, and removal clears any previous value. Existing attribution and asset generators preserve the authored field. This repository does not post announcements: a downstream announcement consumer must explicitly read this field, add `@` only when formatting a tag, and omit tagging when it is absent. Supplying it does not itself trigger or guarantee a post.
 
 Do not add `contentModifiedAt` to a tool file. D1 sets it when the record is first published and advances it only when authored or visible data changes. `synced_at` is a separate operational timestamp that advances on every sync.
 
@@ -244,7 +257,7 @@ One broad homepage link should not be used to support unrelated claims. The cont
 
 ## How To Add A Tool
 
-1. Fork this repo or create a branch.
+1. Record `pass-fit` using the product-fit gate above before researching evidence or creating listing changes; otherwise stop. Fork this repo or create a branch only for a passing candidate.
 2. Pick the closest existing category in `categories/`.
 3. Add a new file in `tools/<slug>.md`.
 4. Fill in every required frontmatter field, including a non-empty `evidenceSources` array.
@@ -261,6 +274,7 @@ What you need to provide:
 - useful, specific tags
 - `githubUrl` when the tool is open source
 - `logoUrl` and `ogImageUrl` when you already have the canonical values, but these are optional
+- optionally, `announcementXHandle` if you explicitly want that X account tagged in a listing announcement; a handle is never required to submit a tool
 
 What you do not need to worry about:
 
@@ -305,9 +319,23 @@ This section should usually be a short bullet list of concrete agent outcomes. A
 
 ## Behind The Scenes
 
+Before opening an internal tool PR, generate repo-managed submitter metadata using the actual GitHub PR author and the exact new tool slug (repeat `--slug` for multiple tools):
+
+```bash
+git fetch origin main
+git worktree add --detach ../agentfirst-base origin/main
+npm run sync:tool-submitters -- --base-root-dir ../agentfirst-base --submitted-by ACTUAL_PR_AUTHOR --slug EXACT_NEW_SLUG
+git worktree remove ../agentfirst-base
+npm run validate:content -- --require-submitters
+```
+
+Commit `tool-submitters.json` along with the tool file before opening the PR. Do not put `submittedBy` in tool frontmatter. The trusted base preserves attribution for existing tools; new tools are attributed to the actual PR author.
+
+For both same-repository and fork PRs, enrichment is a branch-read-only preflight: it never commits or pushes. Missing generated metadata produces one updated correction comment and a failing preflight until the contributor commits the changes. Media generation runs only after an approved review; use the comment's exact local commands, validate, and commit any generated media changes. Fork validation still uses GitHub's normal workflow-approval rules.
+
 After a tool PR is approved, the repo handles a few things automatically:
 
-- author attribution is derived from the PR author
+- author attribution is checked against the trusted base and the PR author
 - missing `logoUrl` defaults to a Google favicon URL based on `websiteUrl`
 - missing `ogImageUrl` is discovered from the tool website's social metadata when available
 - D1 receives authored editorial, evidence, entity, and provenance fields
@@ -366,3 +394,4 @@ The production workflow uses the public verification key at `https://agentfirst.
 - Voice & Multimodal
 - Search & Discovery
 - Marketing & SEO
+- Education & Learning

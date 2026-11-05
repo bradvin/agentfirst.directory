@@ -28,7 +28,7 @@ The manifest currently uses schema version `1`. Each entry has `sourcePath`, `de
 
 Manifest paths are canonical absolute same-site paths, not full URLs, and cannot contain a query or hash. Sources must be unique and cannot shadow a current tool or category. Redirect chains and cycles are invalid. A `/tools/<slug>` or `/category/<slug>` destination must resolve to a current source record; any future static destination must be added to the explicit validator allowlist.
 
-Submitter attribution is stored in `tool-submitters.json`, not in tool frontmatter. The approval workflow must derive each changed tool's submitter from the PR author and write that mapping back to the PR branch before merge.
+Submitter attribution is stored in `tool-submitters.json`, not in tool frontmatter. The preflight derives new tools' submitters from the PR author and preserves existing attribution from the trusted base. Contributors must commit the generated mapping before merge; the workflow never commits or pushes to PR branches. See the README for the internal pre-PR generation commands.
 
 This repo is the only authoring source of truth. D1 is a published runtime mirror, not the place where content is edited.
 
@@ -37,6 +37,10 @@ Schema migrations are staged before the full content sync. `0003_add_tool_classi
 `0004_add_editorial_seo_metadata.sql` adds category definitions, tool evidence and entity metadata, review provenance, indexability, content-specific modification timestamps, and redirect storage. Authored `reviewed_at` and `published_at` values remain nullable; the pipeline must not synthesize a review date. `content_modified_at` is pipeline-managed and changes only when authored or visible record data changes, while `synced_at` records every sync.
 
 `0005_add_tool_seo_metadata.sql` adds nullable `seo_title`, `seo_description`, and `agent_summary` columns. Tool authors may propose these fields in frontmatter, but the editorial reviewer accepts or revises the public wording. Omission remains valid for existing tools. The full sync writes supplied values, clears removed values to `NULL`, and advances `content_modified_at` when any of the three changes. The site resolves title and description independently; `agent_summary` appears before the existing visible description.
+
+`0007_add_announcement_x_handle.sql` adds nullable `announcement_x_handle TEXT` with no default or backfill. Its filename and SQL match the companion website migration (the content repository has no `0006` migration); keep this shared migration identity aligned. Apply it before deploying the updated full-sync publisher. The publish workflow already applies migrations before sync. Do not apply the `ALTER TABLE` twice manually if the website has already applied this migration to the same D1 database; inspect migration history during rollout.
+
+Tool frontmatter may optionally supply `announcementXHandle`. The parser trims outer whitespace and removes one optional leading `@`, preserving case. The canonical nonblank value must match ASCII `[A-Za-z0-9_]{1,15}`; URLs and non-string values, including `null`, are invalid. Omission or blank strings publish `NULL`, and removing a value clears it. Insert, update, and change detection all include this column. GitHub `submittedBy`/`submitted_by_github` remains entirely separate: do not infer, backfill, or substitute it as an announcement handle. Source readers expose the canonical camelCase field to downstream announcement consumers, which must add `@` only for display and omit tagging when absent. Neither repository currently implements announcement posting; this persistence contract alone does not create or trigger a post.
 
 See [tool review guide](tool-review-guide.md) for wording and acceptance criteria.
 
@@ -47,12 +51,15 @@ On `pull_request`:
 - validate content only
 - fail on invalid schema or invalid references
 
-On approved tool PRs:
+On all tool PRs (same-repository and fork):
 
-- sync changed tool slugs into `tool-submitters.json` using the PR author login
-- enrich missing `logoUrl` and `ogImageUrl` values
-- commit those generated changes back to same-repo PR branches
-- comment with the exact commands for fork PRs when the workflow cannot push
+- preflight changed tool slugs in a disposable checkout using trusted-base scripts and attribution; new tools use the PR author login
+- only after an approved review, enrich missing `logoUrl` and `ogImageUrl` values
+- never commit or push generated changes; contents permission is read-only
+- create or update a bot-owned correction comment with exact local generation and `--require-submitters` validation commands
+- fail clearly while generated changes still need to be committed by the contributor
+
+The required `validate` check remains on `pull_request`, including normal fork workflow approvals. Privileged enrichment executes only the existing trusted-base automation, never PR-provided scripts.
 
 On `push` to `main` with category, tool, or redirect-manifest changes:
 
@@ -87,6 +94,7 @@ Validation must fail on any of the following:
 - malformed evidence items or evidence without an access date
 - invalid entity, verification, image-dimension, date, array, or indexability metadata
 - an empty or non-string tool `seoTitle`, `seoDescription`, or `agentSummary` when supplied
+- an invalid tool `announcementXHandle` (only omitted/blank or a 1–15-character ASCII handle, optionally prefixed with `@`, is accepted; URLs and `null` are rejected)
 - an author-supplied `contentModifiedAt` field
 - a missing or unsupported redirect-manifest version
 - invalid redirect status/path combinations, duplicate sources, chains, or cycles
@@ -111,6 +119,7 @@ The D1 sync step must:
 - set `is_active = 0` for redirect rows missing from the current manifest
 - publish authored category scope, evidence, tool entity, comparison, and provenance fields
 - publish optional tool SEO title, SEO description, and agent summary, including removal of previously approved values
+- publish explicitly supplied `announcementXHandle` as nullable `announcement_x_handle`, clearing omitted/blank values and tracking edits independently of GitHub attribution
 - initialize `content_modified_at` for a new or migrated record and advance it only when substantive fields change
 - advance `synced_at` on every sync without using it as a public content modification date
 
@@ -173,6 +182,7 @@ tools(
   pricing,
   classification,
   submitted_by_github,
+  announcement_x_handle,
   logo_url,
   og_image_url,
   logo_width,
