@@ -13,13 +13,13 @@ tags:
 websiteUrl: "https://hronaut.dev"
 githubUrl: "https://github.com/hronaut/hronaut"
 logoUrl: "https://www.google.com/s2/favicons?sz=64&domain_url=https://hronaut.dev"
-ogImageUrl: "https://hronaut.dev/hronaut-social-card-v1-11-56.png"
+ogImageUrl: "https://hronaut.dev/hronaut-social-card-20261029.png"
 pricing: "paid"
 classification: "agent-enabling"
 entityType: "software-application"
 developerName: "Hronom"
 docsUrl: "https://hronaut.dev/setup"
-pricingUrl: "https://hronaut.dev/#pricing"
+pricingUrl: "https://hronaut.dev/pricing"
 licenseUrl: "https://github.com/hronaut/hronaut/blob/main/LICENSE"
 interfaces:
   - "Streamable HTTP MCP"
@@ -30,27 +30,27 @@ evidenceSources:
   - title: "Hronaut official website"
     url: "https://hronaut.dev/"
     claim: "Hronaut describes a local visible browser workspace for coding agents, with a 10-day trial followed by paid named-user plans and no automatic conversion from the trial."
-    accessedAt: "2026-09-17"
+    accessedAt: "2026-11-16"
     sourceType: "official-product-page"
   - title: "Hronaut public repository — browser and MCP boundaries"
-    url: "https://github.com/hronaut/hronaut/blob/v2.4.21/README.md"
+    url: "https://github.com/hronaut/hronaut/blob/v3.14.29/README.md"
     claim: "The public repository documents a visible persistent Electron browser, durable agent workspaces over MCP, named local browser context, human takeover, and authoritative postcondition read-back."
-    accessedAt: "2026-09-17"
+    accessedAt: "2026-11-16"
     sourceType: "official-repository"
-  - title: "Hronaut v2.4.21 release"
-    url: "https://github.com/hronaut/hronaut/releases/tag/v2.4.21"
-    claim: "This release documents workspace metadata repairs, retryable Memory Saver and page recovery, and partitioned-cookie isolation during workspace data copies. The desktop artifacts are not platform code-signed or Apple-notarized."
-    accessedAt: "2026-09-17"
+  - title: "Hronaut v3.14.29 release"
+    url: "https://github.com/hronaut/hronaut/releases/tag/v3.14.29"
+    claim: "This release adds default site permissions in Settings: a Defaults tab sets what every website gets, such as blocking location or camera requests or muting sound, while saved per-site decisions still take precedence."
+    accessedAt: "2026-11-16"
     sourceType: "official-release-notes"
   - title: "Hronaut subscription and trial license"
     url: "https://github.com/hronaut/hronaut/blob/main/LICENSE"
     claim: "The source-available license permits one 10-day trial starting with the first agent tool call, then requires $4/month or $24/year per named user for up to three active devices. The trial requires no payment card and does not automatically convert to paid use."
-    accessedAt: "2026-09-17"
+    accessedAt: "2026-11-16"
     sourceType: "official-license"
   - title: "Hronaut setup guide"
     url: "https://hronaut.dev/setup"
     claim: "The guide explains starting the desktop app, copying the current client configuration from Home, connecting over loopback Streamable HTTP MCP, and verifying a first task in an isolated workspace."
-    accessedAt: "2026-09-17"
+    accessedAt: "2026-11-16"
     sourceType: "official-documentation"
 verificationLevel: "documentation-reviewed"
 classificationRationaleMd: "Hronaut materially empowers an external coding agent by supplying a persistent local visible browser workspace, MCP execution boundary, scoped browser context, and human takeover controls; it is not itself the planning agent."
@@ -75,7 +75,7 @@ Hronaut is a visible, persistent Electron browser that exposes durable local age
 
 Start Hronaut, copy the configuration for a compatible local MCP client from Home, then ask the agent to create an isolated workspace named `first-check`, open `https://example.com`, take a semantic snapshot and report the page heading. Keep the task within that workspace. This is a suggested first check from the setup documentation, not an independently benchmarked integration.
 
-For authenticated work, a person signs in inside the Hronaut workspace and handles any 2FA or consequential step. The caller checks the live context and result before continuing. See the [setup guide](https://hronaut.dev/setup) and [starter workflows](https://github.com/hronaut/hronaut/blob/v2.4.21/STARTER_WORKFLOWS.md).
+For authenticated work, a person signs in inside the Hronaut workspace and handles any 2FA or consequential step. The caller checks the live context and result before continuing. See the [setup guide](https://hronaut.dev/setup) and [starter workflows](https://github.com/hronaut/hronaut/blob/v3.14.29/STARTER_WORKFLOWS.md).
 
 ## Trial and subscription
 
