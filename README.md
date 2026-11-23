@@ -11,47 +11,39 @@ The website code lives separately in [bradvin/agentfirst.directory-site](https:/
 
 ## Editorial Policy
 
-**Only tools built for agents belong in this directory.** Decide product fit before reviewing evidence or assigning a classification. A human-first app with an API, MCP server, SDK, or embedded AI agent does not become a tool built for agents through integration depth or tool count.
+The [canonical editorial policy](docs/editorial-policy.md) defines **v0.3: Run, Equip and Enable**. Agent First lists maintained offerings specifically designed for agents or people building, running and working with agents. Agent workflows must be a defining purpose, not merely a possible use.
 
-Agent-oriented infrastructure, protocols, and agent-builder tools can qualify when their operating model is designed for agent operation. They need not serve agents exclusively or have originated as agent-only products. An AI agent serving human customers is not, by itself, a tool built for agents.
+- **Run:** run agents with meaningful customer control over execution, state or authority. Approving finished output alone is insufficient.
+- **Equip:** provide a concrete agent task or improvement through named, purpose-built agent-workflow features. Human-operated feedback/context tools, maintained libraries, connectors, catalogues and data services can qualify; they need not own infrastructure or run the agent.
+- **Enable:** define a maintained shared protocol/standard with first-class agents, a concrete interaction or portable representation and a defined contract. Implementing a protocol does not itself qualify a product through Enable.
 
 ### Product-fit gate (before evidence)
 
-Use only the product description and operating model, plus canonical homepage positioning if necessary. Do not inspect evidence arrays, documentation, MCP details, implementation, pricing, licence, or validation results to make or rescue this decision.
+Use the bounded positioning packet in the canonical policy: identity/unit/mode, a short workflow explanation and submitted overview, plus at most two short first-party positioning excerpts if needed. Introductory docs/repository overviews are allowed; detailed API/MCP docs, claim-evidence arrays, code, pricing, licensing and validators cannot make or rescue fit.
 
-Record one bounded semantic decision for each proposed listing:
+- **`pass-fit`:** record the primary route, unit/mode and route-specific rationale. Only now review claim evidence, listing accuracy/classification and technical validation. Fit is eligibility, not acceptance.
+- **`fail-fit`:** state the exact exclusion and stop with **evidence not reviewed**; no evidence review, enrichment or listing commits.
+- **`unclear-fit`:** name the material missing fact or contradiction and ask a bounded clarification. Stop with **evidence not reviewed**; no evidence review, enrichment or listing commits. Unknown is not negative.
 
-- **`pass-fit`** — record the intended user, core job, and why the product is built for agents. Only then proceed to evidence, schema, and contradiction review.
-- **`fail-fit`** — record the intended user, core job, and why it is not built for agents. Stop with nonacceptance; do not review evidence, enrich metadata, or commit listing changes.
-- **`unclear-fit`** — record the intended user, core job, and what prevents a built-for-agents decision. Hold for product-positioning clarification; do not review evidence or proceed with metadata or listing commits.
-
-A classification cannot bypass this gate. Category guidance suggesting that internal autonomous agents alone establish eligibility is superseded by this rule. Historical reassessments and public corrections require separate owner approval; this policy update does not authorize changes to existing listings.
+Availability is separate from fit. A failed page fetch alone is not rejection. Generic compatibility, integration depth, tool count, AI labels or internal agents returning finished outcomes do not establish fit. Standalone prompt/skill packs, templates and one-off scripts remain excluded. Category rules cannot bypass this gate or impose a Run-only boundary on Equip/Enable.
 
 ### Classifications (after `pass-fit`)
 
-- **`agent-native`** — the product is built for agent operation, with agents as core actors, runtimes, entities, or participants; for example, agent orchestration, identity, communication, or agent-operated interfaces.
-- **`agent-enabling`** — infrastructure or builder tooling designed for agent operation materially enables execution, memory, data access, communication, testing, or safe interaction. General-purpose usefulness or a secondary API/MCP integration cannot rescue a human-first product.
-- **`agent-internet-protocol`** — an open protocol or interaction standard designed for agent participation in communication, commerce, identity, coordination, or other machine-to-machine interaction.
-
-Classification explains *how* an eligible listing qualifies; it is not a quality tier.
+Run/Equip/Enable are review-record inclusion routes, **not** listing fields or classification replacements. The existing `agent-native`, `agent-enabling` and `agent-internet-protocol` classifications and evidence schema remain unchanged; see the canonical policy for their meanings. Classification is not a quality tier or an automatic one-to-one route mapping.
 
 ## Inclusion Test
 
-After `pass-fit`, a listing must pass all of these checks:
+After `pass-fit`, verify material claims against current first-party evidence, resolve contradictions and listing accuracy/taxonomy, and run content/schema/generated-data checks against the exact candidate. For Enable, verify the public specification and distinguish it from reference implementations; do not infer conformance from positioning.
 
-1. **Identify one classification.** Which of the three definitions does the eligible product satisfy?
-2. **Name the concrete agent outcome.** What can an agent or agent builder materially do because this product or protocol exists?
-3. **Verify the claim from first-party evidence.** Product documentation, source repositories, protocol specifications, or first-party pages must describe the relevant capability.
-4. **Check that the capability is substantive.** The qualifying value must come from the product or protocol itself, not an integration badge.
-5. **Check schema and contradictions.** Validate the submission and resolve conflicting claims without treating a schema pass as proof of product fit.
+Use `eligible — corrections required`, `hold — evidence unresolved`, `meets policy`, or `does not meet policy` with exact blockers and stage. Evidence uncertainty is a hold, not a guessed capability or an automatic rejection. Validation proves neither fit nor capability. `meets policy` is not approval to merge/deploy.
 
 ## What Does Not Qualify
 
-Reject products not built for agents, including human-first apps with secondary REST, MCP, or SDK access, however extensive. Internal AI agents completing a human customer's task do not establish product fit. Generic compatibility, integration depth, tool count, and unsupported agent marketing cannot establish eligibility.
+Apply the canonical policy's exclusions to the exact offering, not its vendor family. Generic human-first SaaS with only secondary API/MCP/SDK compatibility does not qualify, but human operators and upstream services do not disqualify purpose-built agent tools.
 
-For coding-agent orchestrators, the product must own a material lifecycle across agent runs rather than merely invoke an agent. After product fit passes, evidence should show lifecycle controls such as task assignment and isolation, retained or shared state or validation evidence, and a separate gate that determines completion, review, or landing. Merely launching one agent, supplying prompts, wrapping an API or MCP server, advertising agent compatibility, or automating an ordinary developer task does not satisfy this boundary.
+The stricter lifecycle boundary for the **coding-agent orchestrators category** stays scoped to that category, not every Run tool and not Equip/Enable. Eligible tools may belong in a different category.
 
-When evidence is ambiguous after `pass-fit`, do not invent a rationale: request stronger first-party evidence or reject the listing.
+This repository update authorizes no existing-listing edits/removals, submission reviews/restart, installed-reviewer changes, merge or deployment. Structural validation is not a semantic evaluator; see the canonical policy's activation boundary.
 
 ## Structure
 
