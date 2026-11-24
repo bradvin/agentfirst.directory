@@ -1,9 +1,9 @@
 ---
 slug: "saver-verifier"
 name: "SAVER Verifier"
-description: "Source-backed factual claim verification for autonomous AI agents."
-seoTitle: "SAVER Verifier: Source-Backed Verification for AI Agents"
-seoDescription: "See how SAVER Verifier gives autonomous agents source-backed factual verification with cited web evidence before they act, pay, or decide."
+description: "Fact-checking API for research reports and factual claim verification before publishing."
+seoTitle: "SAVER Verifier: Fact-Checking API for Research Reports"
+seoDescription: "Before publishing a report, verify a factual claim against its cited source. Get a verdict and linked evidence for 0.20 USDC per completed check."
 agentSummary: "SAVER Verifier gives autonomous agents an independent verification step for external factual claims. Agents can submit a claim through a documented API, receive a source-backed result with cited web evidence, and use that verification before acting, paying, or making a decision. Access is pay-per-call through x402 using USDC on Base."
 category: "agent-verification-trust"
 tags: ["verification", "x402", "evidence", "agents"]
