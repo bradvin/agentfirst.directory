@@ -2,17 +2,36 @@
 
 ## Product fit comes first
 
-Before reviewing any evidence, record `pass-fit`, `fail-fit`, or `unclear-fit`, with the intended user, core job, and why the product is or is not built for agents. Use only its product description and operating model, plus canonical homepage positioning if necessary. Do not inspect evidence arrays, docs, MCP details, implementation, pricing, licence, or validation at this stage.
+Apply the [canonical editorial policy](editorial-policy.md), **v0.3: Run, Equip and Enable**, before accessing claim evidence, enriching metadata or making listing changes. Use the bounded positioning packet: exact offering/mode and overview, a short workflow explanation, and at most two short first-party positioning excerpts if needed. Introductory docs overviews are allowed; detailed API/MCP docs, claim-evidence arrays, code, pricing, licensing and validators cannot make or rescue fit.
 
-- `pass-fit`: only now perform full first-party evidence, schema, and contradiction review. Passing fit is necessary, not acceptance.
-- `fail-fit`: stop with nonacceptance. Do not review evidence, enrich metadata, or commit listing changes.
-- `unclear-fit`: hold for product-positioning clarification. Do not review evidence or proceed with metadata or listing commits.
+- `pass-fit`: record the primary Run/Equip/Enable route and its specific rationale. Only now proceed to claim evidence, listing accuracy/classification and technical validation. Fit is positioning eligibility, not acceptance.
+- `fail-fit`: state the known out-of-scope shape and exact exclusion. Stop with **evidence not reviewed**; no enrichment or listing commits.
+- `unclear-fit`: state the material missing fact or positioning contradiction and ask a bounded clarification. Stop with **evidence not reviewed**; no enrichment or listing commits. Unknown is not negative.
 
-A human-first app with REST, MCP, or SDK access is not rescued by integration depth or tool count. An AI agent serving humans is not, by itself, a tool built for agents. Agent-oriented infrastructure, protocols, and agent-builder tools may pass when designed for agent operation; exclusive agent use or agent-only origins are not required. `agent-enabling` and category guidance about internal autonomous agents cannot bypass this gate.
+Run needs meaningful customer control over agent execution, state or authority; approve/edit/skip of finished output alone does not establish that boundary. If control is unknown, hold rather than infer absence. Equip needs a concrete agent task/improvement and named purpose-built features, not infrastructure ownership: maintained connectors, catalogues, libraries, data/context tools and human-operated structured feedback/collaboration can qualify. Enable needs a named shared contract with first-class agents and a concrete interaction or portable representation; do not conflate standards with their same-branded harness/SDK or products that merely use them.
 
-Historical reassessments and public corrections require separate owner approval. This guidance authorizes no existing-listing changes.
+Generic compatibility, integration depth, tool count and AI labels alone do not qualify. Standalone skills/prompt packs, templates and one-off scripts remain excluded. Availability is separate from fit: a failed fetch alone is not rejection. Category-specific Run/orchestrator rules must not reject valid Equip/Enable tools. Existing inclusion and owner association give no exemption.
+
+## Required review record and stop checks
+
+Use section 7 of the canonical policy for the complete record. At minimum capture:
+
+- Policy version, slug, exact candidate revision, access date and exact listing unit/mode.
+- Customer/operator, agent workflow, permitted positioning sources/excerpts and source/availability gaps.
+- Fit outcome and reason; primary route and separately justified secondary routes (if passing), with Run control, Equip task plus named features, or Enable agent participant plus shared contract.
+- Stage reached; evidence consulted or **evidence not reviewed**; checks actually run/results; unresolved facts and bounded clarification; final recommendation and approval boundary.
+
+For fail/unclear, stop before claim evidence, metadata enrichment, validation as review evidence or acceptance. Preserve historical records and bind new results to the exact revision; do not overwrite or blindly duplicate comments. Run/Equip/Enable belong in the review record, not new listing fields; the existing classification and evidence schema stay unchanged.
 
 ## Review after `pass-fit`
+
+This repository's fixtures and copy/compatibility tests are not a semantic evaluator or an installed producer/verifier replay. This guidance authorizes no existing-listing edits/removals or reassessments, submission reviews/restart, private reviewer/configuration changes, merge or deployment. A separate authorized activation lane must implement and verify the canonical v0.3 contract in any installed reviewer.
+
+Verify claims against current first-party evidence and distinguish modes, prerelease/repository-only features and contradictions. For Enable, verify a public implementable specification separately from conformance claims and reference tools. Check listing accuracy, taxonomy, duplicates and known provenance, then run `npm test` and `npm run validate:content -- --require-submitters` against the exact candidate. Do not infer product behavior from a validation pass; state when functional testing was not performed.
+
+Use `eligible — corrections required`, `hold — evidence unresolved`, `meets policy`, or `does not meet policy`, recording stage and blockers. Missing evidence is unresolved, not proof of an absent capability. `meets policy` is not merge/deploy approval.
+
+### SEO suggestions
 
 Tool authors may suggest `seoTitle`, `seoDescription`, and `agentSummary` in tool frontmatter. All three are optional, including for existing listings. The editorial reviewer owns the final public wording and may revise, omit, or remove a suggestion before approval.
 

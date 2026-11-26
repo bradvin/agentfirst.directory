@@ -1,0 +1,196 @@
+{
+  "policyVersion": "0.3",
+  "policyDocument": "docs/editorial-policy.md",
+  "kind": "hypothetical-human-calibration-not-evaluator-results",
+  "notes": "Bounded hypothetical positioning packets, not vendor assessments or evidence verification. Expected outcomes are human-authored calibration expectations. Repository tests check copy/wiring, case consistency and schema compatibility; no semantic evaluator is executed. The installed producer/verifier must independently replay them before activation. Apply identical expectations regardless of vendor, author, existing inclusion or owner association.",
+  "cases": [
+    {
+      "id": "controlled-runtime",
+      "positioning": "A maintained installable agent runtime lets a customer schedule supplied agents, set tool permissions, retain session state and stop active runs. It bundles skills.",
+      "expectedFit": "pass-fit", "primaryRoute": "Run",
+      "reason": "Customer-operated execution/state/authority is explicit; bundled skills do not change the runtime listing unit.",
+      "policyClause": "The offering runs agents for the customer and gives the customer meaningful control over agent execution, state or authority.",
+      "clarification": null, "stage": "product-fit", "evidence": "evidence not reviewed"
+    },
+    {
+      "id": "finished-outcome-only",
+      "positioning": "A maintained marketing service explicitly offers only finished campaigns created by internal AI agents. Customers submit a brief and approve finished output; they cannot operate the agents, and no separate agent-facing capability or standard is offered.",
+      "expectedFit": "fail-fit", "primaryRoute": null,
+      "reason": "Known finished-outcome-only shape without a qualifying agent/service boundary, not merely missing control information.",
+      "policyClause": "Finished AI business-outcome apps without a qualifying customer-operated agent or agent-service boundary.",
+      "clarification": null, "stage": "product-fit", "evidence": "evidence not reviewed"
+    },
+    {
+      "id": "output-control-unknown",
+      "positioning": "A shared AI marketing team lets customers approve, edit or skip its output. The overview does not establish whether customers control agent runs, state or authority, or merely finished results.",
+      "expectedFit": "unclear-fit", "primaryRoute": null,
+      "reason": "Output controls alone leave the decisive execution boundary unknown, not demonstrably absent.",
+      "policyClause": "If the positioning only describes approve/edit/skip outputs and leaves customer control over execution, state or authority unknown, hold for that fact",
+      "clarification": "Can customers direct or intervene in agent execution, state or authority, and through which control?",
+      "stage": "product-fit", "evidence": "evidence not reviewed"
+    },
+    {
+      "id": "agent-connectors",
+      "positioning": "A maintained agent tool catalogue combines upstream connectors with agent-specific capability discovery, task-scoped tool selection and normalized action errors so agents can find and invoke relevant tools. It does not own upstream infrastructure.",
+      "expectedFit": "pass-fit", "primaryRoute": "Equip",
+      "reason": "Named discovery/selection/error features specifically improve agent tool use; upstream ownership is unnecessary.",
+      "policyClause": "Using upstream services, producing structured instructions or combining connectors does not automatically disqualify it.",
+      "clarification": null, "stage": "product-fit", "evidence": "evidence not reviewed"
+    },
+    {
+      "id": "human-feedback",
+      "positioning": "A maintained browser annotation tool lets a human select a UI element and send DOM-linked, structured feedback to a coding agent so it can locate and fix the exact interface defect. The human operates the UI; the tool does not run the agent.",
+      "expectedFit": "pass-fit", "primaryRoute": "Equip",
+      "reason": "Structured feedback and element context are named features specifically supporting human-agent collaboration.",
+      "policyClause": "Maintained agent-focused libraries, catalogues, data services and human-operated feedback/context tools can qualify.",
+      "clarification": null, "stage": "product-fit", "evidence": "evidence not reviewed"
+    },
+    {
+      "id": "agent-library",
+      "positioning": "A maintained open-source library provides coding agents with typed patch operations, conflict context and machine-readable patch failures. Builders install it into their own runtimes; it does not host or execute agents.",
+      "expectedFit": "pass-fit", "primaryRoute": "Equip",
+      "reason": "Maintained code with agent-specific patch behavior qualifies independently of runtime ownership.",
+      "policyClause": "Open-source code and libraries can qualify independently through Equip without being runtimes.",
+      "clarification": null, "stage": "product-fit", "evidence": "evidence not reviewed"
+    },
+    {
+      "id": "agent-data",
+      "positioning": "A maintained data service combines upstream research feeds with agent-specific query plans, bounded structured responses and citation bundles so research agents can consume source-linked results within context limits.",
+      "expectedFit": "pass-fit", "primaryRoute": "Equip",
+      "reason": "Named response/query features serve a concrete agent research workflow; upstream data is not an exclusion.",
+      "policyClause": "Do not reject a maintained agent-focused tool solely because it is a connector, catalogue, library, feedback tool or data service.",
+      "clarification": null, "stage": "product-fit", "evidence": "evidence not reviewed"
+    },
+    {
+      "id": "agent-context",
+      "positioning": "A maintained desktop context tool lets a person choose application history and send task-scoped context bundles with source references to their coding agent for continuing work across sessions.",
+      "expectedFit": "pass-fit", "primaryRoute": "Equip",
+      "reason": "Human-operated capture and task-scoped context features are specifically designed to improve agent continuity.",
+      "policyClause": "This includes tools and data access, discovery, memory, context capture, structured feedback, testing, permissions and human–agent collaboration.",
+      "clarification": null, "stage": "product-fit", "evidence": "evidence not reviewed"
+    },
+    {
+      "id": "instruction-producing-tool",
+      "positioning": "A maintained software tool compiles selected repository context and human annotations into structured, source-linked repair instructions for coding agents. Users install the tool and regenerate task-specific output.",
+      "expectedFit": "pass-fit", "primaryRoute": "Equip",
+      "reason": "Maintained workflow software generating instructions is distinct from a standalone prompt pack.",
+      "policyClause": "A maintained tool generating structured agent instructions is not thereby a prompt pack.",
+      "clarification": null, "stage": "product-fit", "evidence": "evidence not reviewed"
+    },
+    {
+      "id": "generic-api-mcp",
+      "positioning": "An ordinary human-first CRM adds an MCP adapter to its existing API and calls itself built for agents. Its only agent-specific contribution is compatibility, a token vault, retries and a catalogue of 1,000 generic endpoints.",
+      "expectedFit": "fail-fit", "primaryRoute": null,
+      "reason": "Known generic compatibility/repackaging; marketing, tool count and generic controls do not establish a purpose-built workflow.",
+      "policyClause": "Exclude generic products whose only agent-specific contribution is a compatibility interface, marketing label or repackaged API.",
+      "clarification": null, "stage": "product-fit", "evidence": "evidence not reviewed"
+    },
+    {
+      "id": "skill-pack",
+      "positioning": "A downloadable standalone bundle of agent prompt templates and skill files, with no maintained software offering or implementable interoperability contract.",
+      "expectedFit": "fail-fit", "primaryRoute": null,
+      "reason": "Excluded standalone entry unit; shared file formatting does not make it a standard.",
+      "policyClause": "Standalone skills, prompt packs, templates and one-off snippets/scripts.",
+      "clarification": null, "stage": "product-fit", "evidence": "evidence not reviewed"
+    },
+    {
+      "id": "payment-standard",
+      "positioning": "A maintained named payment protocol explicitly defines agents as paying participants across independent clients and resource servers using a shared payment-required challenge and signed settlement contract. Conventional clients may use it too.",
+      "expectedFit": "pass-fit", "primaryRoute": "Enable",
+      "reason": "Agent role, resource payment need, cross-system boundary and shared contract are explicit; no runtime ownership required.",
+      "policyClause": "A shared, implementable contract is its contribution; running agents or managing resources is not required.",
+      "clarification": null, "stage": "product-fit", "evidence": "evidence not reviewed"
+    },
+    {
+      "id": "agent-ui-standard",
+      "positioning": "A maintained named agent-to-application protocol defines shared streaming events for agent messages, tool activity, state updates and human interaction between agent backends and application frontends.",
+      "expectedFit": "pass-fit", "primaryRoute": "Enable",
+      "reason": "Concrete agent/application interaction across a frontend/backend boundary uses a defined common event contract.",
+      "policyClause": "Current first-party positioning must identify the agent role, concrete need and shared interaction or representation it defines.",
+      "clarification": null, "stage": "product-fit", "evidence": "evidence not reviewed"
+    },
+    {
+      "id": "portable-definition",
+      "positioning": "A maintained named agent-definition standard publishes a shared contract for portable agent identity, tools, permissions and entrypoints across runtimes. It is not an individual agent prompt, and only one implementation is currently described.",
+      "expectedFit": "pass-fit", "primaryRoute": "Enable",
+      "reason": "Portable agent representation is a qualifying contract; multiple implementations are not prerequisites for positioning fit.",
+      "policyClause": "Exclusive agent use, popularity, formal standards-body recognition and multiple existing independent implementations are not prerequisites.",
+      "clarification": null, "stage": "product-fit", "evidence": "evidence not reviewed"
+    },
+    {
+      "id": "generic-standard",
+      "positioning": "A general-purpose serialization standard supports ordinary software. Its sole agent relationship is that agents can also send the format; there is no agent-focused interaction or representation.",
+      "expectedFit": "fail-fit", "primaryRoute": null,
+      "reason": "Incidental compatibility is not first-class agent design.",
+      "policyClause": "Generic HTTP, JSON and ordinary authentication standards do not qualify merely because agents use them.",
+      "clarification": null, "stage": "product-fit", "evidence": "evidence not reviewed"
+    },
+    {
+      "id": "protocol-user",
+      "positioning": "A generic image API accepts a named agent payment protocol and exposes MCP, but defines no shared agent contract and offers no other agent-specific workflow features.",
+      "expectedFit": "fail-fit", "primaryRoute": null,
+      "reason": "Using another protocol is not Enable and compatibility alone supplies no independent Run/Equip fit.",
+      "policyClause": "Usage is not protocol authorship or a substitute for Run/Equip fit.",
+      "clarification": null, "stage": "product-fit", "evidence": "evidence not reviewed"
+    },
+    {
+      "id": "standard-harness-unknown",
+      "positioning": "A project with one brand describes a portable agent standard on one overview and a hosted harness on another. The proposed listing does not identify which unit it represents.",
+      "expectedFit": "unclear-fit", "primaryRoute": null,
+      "reason": "The standard and harness cannot silently share capabilities or a verdict.",
+      "policyClause": "When a standard and harness share branding or contradictory positioning, identify the exact unit or hold for clarification",
+      "clarification": "Is this listing the named standard or the hosted harness, and which overview describes that unit?",
+      "stage": "product-fit", "evidence": "evidence not reviewed"
+    },
+    {
+      "id": "contradictory-positioning",
+      "positioning": "Two permitted first-party overviews conflict: one describes customer-directed agent execution while the other explicitly says customers only receive finished results and cannot operate agents. No separate qualifying capability is established.",
+      "expectedFit": "unclear-fit", "primaryRoute": null,
+      "reason": "A material positioning contradiction cannot be rescued by repeated browsing or cherry-picking.",
+      "policyClause": "Meaningful contradictions in positioning produce a hold, not cherry-picking.",
+      "clarification": "Which current product mode is listed, and what customer execution control does that mode provide?",
+      "stage": "product-fit", "evidence": "evidence not reviewed"
+    },
+    {
+      "id": "unreachable-only",
+      "positioning": "The canonical page is inaccessible and the submitted overview gives only a product name and an AI label. No permitted alternative establishes an agent workflow.",
+      "expectedFit": "unclear-fit", "primaryRoute": null,
+      "reason": "Availability and missing positioning facts are not known negative capability findings.",
+      "policyClause": "An inaccessible page alone is not a negative fit finding.",
+      "clarification": "Provide an accessible introductory overview identifying the exact offering and concrete agent workflow/features.",
+      "stage": "product-fit", "evidence": "evidence not reviewed"
+    },
+    {
+      "id": "unreachable-with-overview",
+      "positioning": "A product homepage is unavailable. Its permitted introductory repository overview describes a maintained agent memory library with task-scoped recall and source-linked context retrieval for agent sessions.",
+      "expectedFit": "pass-fit", "primaryRoute": "Equip",
+      "reason": "The permitted overview establishes positioning fit; homepage availability remains a separate recorded blocker, not capability verification.",
+      "policyClause": "If another permitted canonical overview establishes fit, record fit separately from the availability blocker",
+      "clarification": null, "stage": "product-fit", "evidence": "evidence not reviewed"
+    },
+    {
+      "id": "api-only-inbox",
+      "positioning": "A maintained API-only service provisions dedicated agent inboxes and agent-addressable message threads so agents can send, receive and continue email workflows. It also supports conventional software clients.",
+      "expectedFit": "pass-fit", "primaryRoute": "Equip",
+      "reason": "Named agent inbox/thread behavior supports a concrete workflow; API-only and nonexclusive use are irrelevant exclusions.",
+      "policyClause": "Human interfaces and operators are allowed; API-only delivery, upstream providers and nonexclusive agent use are not exclusions.",
+      "clarification": null, "stage": "product-fit", "evidence": "evidence not reviewed"
+    },
+    {
+      "id": "mode-specific-run",
+      "positioning": "A vendor offers both a finished-report app and a separately named programmable agent mode. This listing explicitly covers only the maintained agent mode, with customer-defined tools, schedules and stop controls.",
+      "expectedFit": "pass-fit", "primaryRoute": "Run",
+      "reason": "The qualifying mode is the unit; the verdict does not qualify the vendor's unrelated app.",
+      "policyClause": "A vendor does not qualify every feature because one mode qualifies.",
+      "clarification": null, "stage": "product-fit", "evidence": "evidence not reviewed"
+    },
+    {
+      "id": "same-service-other-transport",
+      "positioning": "The same agent inbox service adds an MCP interface to its existing REST API. Agent mailbox/thread behavior and the adoption boundary remain identical; a second listing is proposed only for the new transport.",
+      "expectedFit": "pass-fit", "primaryRoute": "Equip",
+      "reason": "The underlying service keeps the same fit, but the transport does not justify another listing; duplicate checking follows fit.",
+      "policyClause": "One product is not entitled to a listing per endpoint, skill, connector or transport.",
+      "clarification": null, "stage": "product-fit", "evidence": "evidence not reviewed"
+    }
+  ]
+}

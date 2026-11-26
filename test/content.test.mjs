@@ -523,19 +523,22 @@ test("missing classification is rejected", async () => {
   assert(result.errors.some((error) => error.includes("classification must be one of")));
 });
 
-test("invalid classification is rejected", async () => {
-  const result = await withFixture(async (rootDir) => {
-    const filePath = path.join(rootDir, "tools/paperclip.md");
-    const original = await readFile(filePath, "utf8");
-    await writeFile(
-      filePath,
-      original.replace('classification: "agent-native"', 'classification: "agent-compatible"'),
-      "utf8",
-    );
-  });
+// Inclusion routes live in review records; never silently widen the persisted enum.
+for (const classification of ["agent-compatible", "Run", "Equip", "Enable"]) {
+  test(`non-schema classification ${classification} is rejected`, async () => {
+    const result = await withFixture(async (rootDir) => {
+      const filePath = path.join(rootDir, "tools/paperclip.md");
+      const original = await readFile(filePath, "utf8");
+      await writeFile(
+        filePath,
+        original.replace('classification: "agent-native"', `classification: "${classification}"`),
+        "utf8",
+      );
+    });
 
-  assert(result.errors.some((error) => error.includes("classification must be one of")));
-});
+    assert(result.errors.some((error) => error.includes("classification must be one of")));
+  });
+}
 
 for (const classification of [
   "agent-native",
