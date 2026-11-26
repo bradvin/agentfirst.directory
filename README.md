@@ -9,6 +9,13 @@ This repo contains the approved directory content only:
 
 The website code lives separately in [bradvin/agentfirst.directory-site](https://github.com/bradvin/agentfirst.directory-site).
 
+## Proposed submission protection
+
+The [review/merge/publication protection proposal](docs/submission-protection.md)
+describes exact-head trusted approval, fail-closed publication checks and the
+separate owner-approved settings activation plan. It is not active enforcement,
+a submission-review restart or deployment authorization.
+
 ## Editorial Policy
 
 The [canonical editorial policy](docs/editorial-policy.md) defines **v0.3: Run, Equip and Enable**. Agent First lists maintained offerings specifically designed for agents or people building, running and working with agents. Agent workflows must be a defining purpose, not merely a possible use.

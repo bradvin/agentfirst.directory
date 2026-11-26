@@ -1,0 +1,3 @@
+# Proposed trusted owner. Native required code-owner review must be activated.
+# Applies to data AND gate/workflow/config changes; no contributor self-approval.
+* @bradvin

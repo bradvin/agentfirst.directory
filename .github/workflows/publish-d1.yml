@@ -21,8 +21,33 @@ concurrency:
   group: publish-d1-${{ github.ref_name }}
   cancel-in-progress: false
 
+permissions:
+  contents: read
+  pull-requests: read
+
 jobs:
+  publication-approval:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: Verify complete main history before any production credentials
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/submission-gate.mjs publish
+
   publish:
+    needs: [publication-approval]
+    if: github.ref == 'refs/heads/main'
+    environment: production
     runs-on: ubuntu-latest
 
     env:
@@ -38,7 +63,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
         with:
+          ref: ${{ github.sha }}
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Setup Node
         uses: actions/setup-node@v5

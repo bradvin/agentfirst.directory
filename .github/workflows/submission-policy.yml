@@ -1,0 +1,38 @@
+name: Submission policy approval
+
+# Never run contributor files with this token. Only protected main supplies code.
+on:
+  pull_request_target:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+  issue_comment:
+    types: [created, edited]
+
+permissions:
+  contents: read
+  pull-requests: read
+  statuses: write
+
+concurrency:
+  group: submission-policy-${{ github.event.pull_request.number || github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  policy:
+    if: >-
+      github.event_name == 'pull_request_target' ||
+      (github.event.issue.pull_request && github.event.comment.body == '/recheck-submission-policy')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: Verify current-head trusted approval without executing PR code
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/submission-gate.mjs pr
